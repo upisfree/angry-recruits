@@ -1,0 +1,24 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "declaration": true,
+    "typeRoots" : ["node_modules/@types"],
+    "outDir": "bin/",
+    "sourceMap": true,
+    "target": "es5",
+    "lib": ["es2015", "es2017", "dom"],
+    "module": "commonjs",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowJs": false,
+    "strictNullChecks": false
+  },
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ],
+  "include": [
+    "node_modules/phaser3-docs/typescript/phaser.d.ts",
+    "src/*"
+  ]
+}

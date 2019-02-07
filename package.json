@@ -1,0 +1,32 @@
+{
+  "name": "priziv-birds",
+  "version": "1.0.0",
+  "description": "Game for prizyvanet.ru",
+  "main": "index.html",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/upisfree/priziv-birds.git"
+  },
+  "author": "upisfree",
+  "bugs": {
+    "url": "https://github.com/upisfree/priziv-birds/issues"
+  },
+  "homepage": "https://github.com/upisfree/priziv-birds#readme",
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "http-server": "^0.11.1",
+    "phaser3-docs": "github:photonstorm/phaser3-docs",
+    "typescript": "^3.3.1",
+    "webpack": "^4.29.2",
+    "webpack-cli": "^3.2.3"
+  },
+  "dependencies": {
+    "phaser": "^3.16.1"
+  }
+}
