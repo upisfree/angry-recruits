@@ -1,4 +1,4 @@
-# priziv-birds
+# angry-recruits
 Game for prizyvanet.ru
 
 ### dev
