@@ -1,4 +1,5 @@
 import * as Phaser from 'phaser';
+const PhaserMatterCollisionPlugin = (<any>window).PhaserMatterCollisionPlugin;
 
 export default {
   type: Phaser.AUTO,
@@ -16,14 +17,24 @@ export default {
       debugBodyColor: 0xffffff
     }
   },
-  // проставляем в core/game.ts
+  // проставляем в main.ts
   scene: {
     preload: undefined,
-    create: undefined
+    create: undefined,
+    update: undefined
   },
   scale: {
     mode: Phaser.Scale.RESIZE,
     autoCenter: Phaser.Scale.CENTER_BOTH,
     resolution: window.devicePixelRatio
+  },
+  plugins: {
+    scene: [
+      {
+        plugin: PhaserMatterCollisionPlugin,
+        key: 'matterCollision',
+        mapping: 'matterCollision'
+      }
+    ]
   }
 };

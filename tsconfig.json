@@ -18,7 +18,6 @@
     "**/*.spec.ts"
   ],
   "include": [
-    "node_modules/phaser3-docs/typescript/phaser.d.ts",
     "src/*"
   ]
 }
