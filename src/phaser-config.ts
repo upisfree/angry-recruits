@@ -1,0 +1,29 @@
+import * as Phaser from 'phaser';
+
+export default {
+  type: Phaser.AUTO,
+  resolution: window.devicePixelRatio,
+  pixelArt: true,
+  backgroundColor: '#000000',
+  parent: 'game', // block id
+  physics: {
+    default: 'matter',
+    matter: {
+      gravity: {
+        y: 0.8
+      },
+      debug: true,
+      debugBodyColor: 0xffffff
+    }
+  },
+  // проставляем в core/game.ts
+  scene: {
+    preload: undefined,
+    create: undefined
+  },
+  scale: {
+    mode: Phaser.Scale.RESIZE,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    resolution: window.devicePixelRatio
+  }
+};

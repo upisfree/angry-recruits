@@ -5,7 +5,7 @@ const { CheckerPlugin } = require('awesome-typescript-loader');
 module.exports = {
   mode: 'development',
   entry: {
-    app: [path.resolve(__dirname, 'src/index.ts')],
+    app: [path.resolve(__dirname, 'src/main.ts')],
     vendor: ['phaser']
   },
   output: {
