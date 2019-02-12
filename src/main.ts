@@ -1,4 +1,4 @@
-import * as Phaser from 'phaser';
+import Phaser from './lib/phaser';
 import phaserConfig from './phaser-config';
 import tick from './tick';
 import ASSETS from './assets';
@@ -16,7 +16,7 @@ export default class AngryRecruits {
     this.game = new Phaser.Game(phaserConfig);
   }
 
-  game: Phaser.Game;
+  game: any;
 
   beforePhaserInit = beforePhaserInit;
   afterPhaserInit = afterPhaserInit;

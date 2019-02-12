@@ -1,4 +1,4 @@
-import * as Phaser from 'phaser';
+import Phaser from './lib/phaser';
 const PhaserMatterCollisionPlugin = (<any>window).PhaserMatterCollisionPlugin;
 const { Body, Bodies } = Phaser.Physics.Matter.Matter;
 

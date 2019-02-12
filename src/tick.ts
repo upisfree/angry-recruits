@@ -1,4 +1,4 @@
-import * as Phaser from 'phaser';
+import Phaser from './lib/phaser';
 
 export default function(time, delta): void {
   

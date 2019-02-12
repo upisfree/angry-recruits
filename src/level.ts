@@ -1,5 +1,6 @@
-import * as Phaser from 'phaser';
+import Phaser from './lib/phaser';
 import Wall from './wall';
+import Slingshot from './enity/slingshot';
 const PhaserMatterCollisionPlugin = (<any>window).PhaserMatterCollisionPlugin;
 const { Body, Bodies, Vector } = Phaser.Physics.Matter.Matter;
 
@@ -12,6 +13,8 @@ export default class Level {
 
     let wall1 = new Wall(this.scene, 500, 400, 100, 100, { isStatic: true });
     let wall2 = new Wall(this.scene, 300, 0, 100, 100, { isStatic: false });
+    let slingshot = new Slingshot(this.scene, 700, 500);
+
     // let wall3 = new Wall(this, 300, 0, 100, 100);
 
     // walls.push(wall1, wall2, wall3);
