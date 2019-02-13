@@ -45,7 +45,7 @@ export default class Level {
 
   private getNewShell() {
     let shell = this.scene.matter.add.polygon(this.x, this.y, 8, 20, {
-      density: 0.004
+      density: 0.04
     });
 
     this.shells.push(shell);

@@ -10,9 +10,9 @@ export default {
   physics: {
     default: 'matter',
     matter: {
-      gravity: {
-        y: 0.8
-      },
+      // gravity: {
+      //   y: 2
+      // },
       debug: true,
       debugBodyColor: 0xffffff
     }

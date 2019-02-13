@@ -2,7 +2,6 @@ import Phaser from './lib/phaser';
 import phaserConfig from './phaser-config';
 import tick from './tick';
 import ASSETS from './assets';
-import Wall from './wall';
 import Level from './level';
 const { Vector } = Phaser.Physics.Matter.Matter.Vector;
 
