@@ -3,9 +3,10 @@ const ASSETS = {
     'player': 'assets/player.png',
     'vasya': 'assets/test.jpg',
     'drone': 'assets/drone.png',
-    'wall-100': 'assets/wall/wall-100.png',
-    'wall-50': 'assets/wall/wall-50.png',
+    'wall-1': 'assets/wall/wall-1.png',
+    'wall-2': 'assets/wall/wall-2.png',
     'wall-destruction-particle': 'assets/wall/wall-destruction-particle.png',
+    'player-destruction-particle': 'assets/player-destruction-particle.png',
   },
   SOUNDS: []
 }
