@@ -8,24 +8,25 @@ export default class LawyerShell extends Enity {
       scene,
       x,
       y,
-      'player',
-      Bodies.circle(0, 0, 50, {
-        density: 0.04
-      }),
-      {
-        steps: 1,
-        momentum: 20000,
-        particles: {
-          alpha: { start: 1, end: 0 },
-          scale: { start: 0.5, end: 1 },
-          speed: 20,
-          accelerationY: -200,
-          lifespan: { min: 500, max: 750 },
-          blendMode: 'NORMAL',
-          frequency: 250,
-          maxParticles: 3
-        }
-      }
+      'lawyer',
+      Bodies.circle(0, 0, 40, {
+        density: 0.015, // масса тела — 74 кг
+        restitution: 0.25
+      })
+      // {
+      //   steps: 1,
+      //   momentum: 1000,
+      //   particles: {
+      //     alpha: { start: 1, end: 0 },
+      //     scale: { start: 0.5, end: 1 },
+      //     speed: 20,
+      //     accelerationY: -200,
+      //     lifespan: { min: 500, max: 750 },
+      //     blendMode: 'NORMAL',
+      //     frequency: 250,
+      //     maxParticles: 3
+      //   }
+      // }
     );
   }
 }

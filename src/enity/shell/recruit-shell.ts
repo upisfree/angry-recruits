@@ -8,9 +8,10 @@ export default class RecruitShell extends Enity {
       scene,
       x,
       y,
-      'vasya',
-      Bodies.rectangle(0, 0, 50, 50, {
-        density: 0.04
+      'recruit',
+      Bodies.circle(0, 0, 40, {
+        density: 0.015, // масса тела — 74 кг
+        restitution: 0.25
       })
     );
   }

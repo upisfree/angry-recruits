@@ -4,7 +4,7 @@ const { Vector } = Phaser.Physics.Matter.Matter;
 
 interface DestructionOptions {
   steps: number;     // сколько текстур сменится от нетронутого объекта до полностью
-  momentum: number;  // максимальный импульс, после которого объект разрушается. при каждом ударе состояние объекта ухудшается
+  momentum: number; // максимальный импульс, после которого объект разрушается. при каждом ударе состояние объекта ухудшается
   particles?: any; // частицы, которые создадутся после уничтожения объекта
 }
 
@@ -33,6 +33,8 @@ export default class Enity {
     body: any,
     destructionOptions: DestructionOptions = null
   ) {
+    console.log(scene);
+
     this.scene = scene;
     this.body = body;
     this.textureKey = textureKey; // если объект разрушается, то у него ставим нулевой этап разрушения
@@ -53,6 +55,8 @@ export default class Enity {
       .setExistingBody(this.body)
       .setPosition(x, y);
 
+    console.log(this.textureKey, this.body.mass);
+
     if (destructionOptions) {
       this.destructionSteps = destructionOptions.steps;
       this.destructionParticlesConfig = destructionOptions.particles;
@@ -72,9 +76,11 @@ export default class Enity {
       return;
     }
 
+    console.log(e);
+
     let m = momentum(e.bodyA, e.bodyB);
 
-    console.log(m);
+    // console.log(m);
 
     this.currentMomentum -= m;
 

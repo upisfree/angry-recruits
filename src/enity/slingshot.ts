@@ -3,7 +3,6 @@ import distance from '../utils/distance';
 const PhaserMatterCollisionPlugin = (<any>window).PhaserMatterCollisionPlugin;
 const { Body, Bodies, Constraint, Vector } = Phaser.Physics.Matter.Matter;
 import Level from '../level';
-import Shell from './shell/shell';
 import RecruitShell from './shell/recruit-shell';
 
 export default class Slingshot {
@@ -27,7 +26,7 @@ export default class Slingshot {
   lastShootTime: number = 0;
 
   // конфиг
-  maxTensionDistance: number = 75; // расстояние, после которого можно отпустить рогатку
+  maxTensionDistance: number = 60; // расстояние, после которого можно отпустить рогатку
   shellSpawnTime: number = 500; // время, после которого можно спаунить новый снаряд
 
   private getNewShell() {

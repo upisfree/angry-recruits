@@ -1,8 +1,9 @@
+import CONFIG from './config';
 import Phaser from './lib/phaser';
 import phaserConfig from './phaser-config';
 import tick from './tick';
 import ASSETS from './assets';
-import Level from './level';
+import Level from './level/level';
 const { Vector } = Phaser.Physics.Matter.Matter.Vector;
 
 // main class
@@ -29,11 +30,15 @@ export function beforePhaserInit(): void {
 }
 
 export function afterPhaserInit(): void {
-  this.matter.world.setBounds();
+  // this.cameras.main.setBounds(0, 0, CONFIG.WIDTH, CONFIG.HEIGHT);
+  this.matter.world.setBounds(undefined, undefined, undefined, undefined, undefined, false, false, false, true);
+  // this.matter.world.setSize(800 * window.devicePixelRatio, 600 * window.devicePixelRatio);
   this.matter.add.mouseSpring();
-  this.matter.world.createDebugGraphic();
+  // this.matter.world.createDebugGraphic();
 
-  new Level(this);
+  // this.sys.scale.setGameSize(CONFIG.WIDTH, CONFIG.HEIGHT);
+
+  this.scene.add('level', Level, true);
 }
 
 var game;
