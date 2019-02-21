@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   mode: 'development',
   entry: {
-    app: [path.resolve(__dirname, 'src/main.ts')]
+    app: [path.resolve(__dirname, 'src/game.ts')]
   },
   output: {
     filename: 'angry-recruits.js',

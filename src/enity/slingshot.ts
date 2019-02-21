@@ -2,10 +2,22 @@ import Phaser from '../lib/phaser';
 import distance from '../utils/distance';
 const PhaserMatterCollisionPlugin = (<any>window).PhaserMatterCollisionPlugin;
 const { Body, Bodies, Constraint, Vector } = Phaser.Physics.Matter.Matter;
-import Level from '../level';
 import RecruitShell from './shell/recruit-shell';
 
 export default class Slingshot {
+  x: number;
+  y: number;
+  scene: any;
+  level: any;
+  constraint: any;
+  currentShell: any;
+  isNewShellSpawned: boolean = true; // чтобы работала задержка при спауне снаряда
+  lastShootTime: number = 0;
+
+  // конфиг
+  maxTensionDistance: number = 60; // расстояние, после которого можно отпустить рогатку
+  shellSpawnTime: number = 500; // время, после которого можно спаунить новый снаряд
+
   constructor(scene, level, x, y) {
     this.scene = scene;
     this.level = level;
@@ -15,19 +27,6 @@ export default class Slingshot {
     this.createConstraint();
     this.scene.matter.world.on('afterupdate', this.afterUpdateCallback.bind(this));
   }
-
-  x: number;
-  y: number;
-  scene: any;
-  level: Level;
-  constraint: any;
-  currentShell: any;
-  isNewShellSpawned: boolean = true; // чтобы работала задержка при спауне снаряда
-  lastShootTime: number = 0;
-
-  // конфиг
-  maxTensionDistance: number = 60; // расстояние, после которого можно отпустить рогатку
-  shellSpawnTime: number = 500; // время, после которого можно спаунить новый снаряд
 
   private getNewShell() {
     this.currentShell = new this.level.shellsQueue[0](this.scene, this.x, this.y);

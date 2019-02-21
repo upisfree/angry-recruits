@@ -1,6 +1,7 @@
 import Phaser from './lib/phaser';
 const PhaserMatterCollisionPlugin = (<any>window).PhaserMatterCollisionPlugin;
 import CONFIG from './config';
+import levelsList from './level/levels-list';
 
 export default {
   type: Phaser.AUTO,
@@ -11,19 +12,12 @@ export default {
   physics: {
     default: 'matter',
     matter: {
-      // gravity: {
-      //   y: 2
-      // },
       debug: true,
       debugBodyColor: 0xffffff
     }
   },
-  // проставляем в main.ts
-  scene: {
-    preload: undefined,
-    create: undefined,
-    update: undefined
-  },
+  scene: levelsList.map(L => new L({ key: L.name })),
+
   scale: {
     // здесь какая-то хуйня с Phaser.Scale.FIT
     mode: Phaser.Scale.NONE,

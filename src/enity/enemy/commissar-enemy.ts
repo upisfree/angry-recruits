@@ -1,8 +1,8 @@
 import Phaser from '../../lib/phaser';
-import Enity from '../enity';
+import Enemy from './enemy';
 const { Bodies } = Phaser.Physics.Matter.Matter;
 
-export default class CommissarEnemy extends Enity {
+export default class CommissarEnemy extends Enemy {
   constructor(scene, x, y) {
     super(
       scene,

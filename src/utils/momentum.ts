@@ -10,7 +10,7 @@ export default function(a, b): number {
   let aMomentum = Vector.mult(a.velocity, aMass);
   let bMomentum = Vector.mult(b.velocity, bMass);
 
-  console.log(Vector.magnitude(aMomentum), Vector.magnitude(bMomentum));
+  // console.log(Vector.magnitude(aMomentum), Vector.magnitude(bMomentum));
 
   let relativeMomentum = Vector.sub(aMomentum, bMomentum);
 

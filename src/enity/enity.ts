@@ -2,7 +2,7 @@ import Phaser from '../lib/phaser';
 import momentum from '../utils/momentum';
 const { Vector } = Phaser.Physics.Matter.Matter;
 
-interface DestructionOptions {
+export interface DestructionOptions {
   steps: number;     // сколько текстур сменится от нетронутого объекта до полностью
   momentum: number; // максимальный импульс, после которого объект разрушается. при каждом ударе состояние объекта ухудшается
   particles?: any; // частицы, которые создадутся после уничтожения объекта
@@ -33,7 +33,7 @@ export default class Enity {
     body: any,
     destructionOptions: DestructionOptions = null
   ) {
-    console.log(scene);
+    // console.log(scene);
 
     this.scene = scene;
     this.body = body;
@@ -55,7 +55,7 @@ export default class Enity {
       .setExistingBody(this.body)
       .setPosition(x, y);
 
-    console.log(this.textureKey, this.body.mass);
+    // console.log(this.textureKey, this.body.mass);
 
     if (destructionOptions) {
       this.destructionSteps = destructionOptions.steps;
@@ -76,7 +76,7 @@ export default class Enity {
       return;
     }
 
-    console.log(e);
+    // console.log(e);
 
     let m = momentum(e.bodyA, e.bodyB);
 
