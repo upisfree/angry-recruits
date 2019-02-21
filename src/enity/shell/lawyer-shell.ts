@@ -1,8 +1,8 @@
 import Phaser from '../../lib/phaser';
-import Enity from '../enity';
+import Shell from './shell';
 const { Bodies } = Phaser.Physics.Matter.Matter;
 
-export default class LawyerShell extends Enity {
+export default class LawyerShell extends Shell {
   constructor(scene, x, y) {
     super(
       scene,

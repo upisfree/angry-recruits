@@ -1,4 +1,4 @@
-import ASSETS from '../assets';
+import ASSETS from '../../assets';
 
 export default function() {
   for (let k in ASSETS.IMAGES) {

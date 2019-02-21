@@ -44,7 +44,10 @@ export default class Enity {
     let startTextureKey = (!destructionOptions || destructionOptions.steps === 1) ? textureKey : textureKey + '-1';
 
     this.sprite = this.scene.matter.add.sprite(0, 0, startTextureKey, 0);
-    // this.body.gameParent = this;
+    this.sprite.enityInstance = this;
+
+    // events
+    this.sprite.on('destroy', this.onDestroy.bind(this));
 
     // чтобы размер тела совпадал с размером спрайта
     const { w, h } = this.getBodyBounds();
@@ -69,6 +72,10 @@ export default class Enity {
         context: this
       });
     }
+  }
+
+  onDestroy(sprite): void {
+
   }
 
   private onCollideStart(e): void {

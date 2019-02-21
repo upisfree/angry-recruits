@@ -1,6 +1,6 @@
 import { default as Enity, DestructionOptions } from '../enity';
 
-export default class Enemy extends Enity {
+export default class Shell extends Enity {
   constructor(
     scene: any,
     x: number,
@@ -11,10 +11,10 @@ export default class Enemy extends Enity {
   ) {
     super(scene, x, y, textureKey, body, destructionOptions);
 
-    scene.enemies.push(this);
+    scene.shells.push(this);
   }
 
-  onDestroy(sprite) {
-    this.scene.enemies = this.scene.enemies.filter(e => e !== this);
-  }
+  // onDestroy(sprite) {
+  //   this.scene.enemies = this.scene.enemies.filter(e => e !== this);
+  // }
 }

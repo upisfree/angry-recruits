@@ -8,7 +8,6 @@ export default class Slingshot {
   x: number;
   y: number;
   scene: any;
-  level: any;
   constraint: any;
   currentShell: any;
   isNewShellSpawned: boolean = true; // чтобы работала задержка при спауне снаряда
@@ -18,9 +17,8 @@ export default class Slingshot {
   maxTensionDistance: number = 60; // расстояние, после которого можно отпустить рогатку
   shellSpawnTime: number = 500; // время, после которого можно спаунить новый снаряд
 
-  constructor(scene, level, x, y) {
+  constructor(scene, x, y) {
     this.scene = scene;
-    this.level = level;
     this.x = x;
     this.y = y;
 
@@ -29,8 +27,8 @@ export default class Slingshot {
   }
 
   private getNewShell() {
-    this.currentShell = new this.level.shellsQueue[0](this.scene, this.x, this.y);
-    this.level.shellsQueue.shift();
+    this.currentShell = new this.scene.shellsQueue[0](this.scene, this.x, this.y);
+    this.scene.shellsQueue.shift();
 
     return this.currentShell;
   }
@@ -54,7 +52,7 @@ export default class Slingshot {
     }
 
     // если уже можно спаунить новый снаряд — спауним (и снаряды на закончились)
-    if (e.timestamp - this.lastShootTime > this.shellSpawnTime && this.lastShootTime !== 0 && this.level.shellsQueue.length) {
+    if (e.timestamp - this.lastShootTime > this.shellSpawnTime && this.lastShootTime !== 0 && this.scene.shellsQueue.length) {
       this.constraint.bodyB = this.getNewShell().body;
       this.lastShootTime = 0;
       this.isNewShellSpawned = true;
