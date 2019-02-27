@@ -2,21 +2,28 @@ import Phaser from './lib/phaser';
 import phaserConfig from './phaser-config';
 
 // start
-window.onload = () => {
-  new Phaser.Game(phaserConfig);
-};
+let game;
 
+// document.querySelector('#start-button').addEventListener('click', onload);
+window.addEventListener('load', onload);
+window.addEventListener('resize', onresize);
 
+function onload() {
+  game = new Phaser.Game(phaserConfig);
 
-// export default class AngryRecruits extends Phaser.Game {
-//   constructor(config) {
-//     super(config);
-//   }
-// }
+  console.log(game);
 
-// // start
-// var game;
+  onresize();
+  
+  // game.scale.startFullscreen();
+}
 
-// window.onload = () => {
-//   game = new AngryRecruits(phaserConfig);
-// };
+function onresize() {
+  let scale = Math.min(
+    window.innerWidth / game.config.width,    
+    window.innerHeight / game.config.height
+  );
+  
+  game.canvas.style.transform = `translate(-50%, -50%) scale(${ scale })`;
+  game.scale.resize(game.config.width, game.config.height);
+}

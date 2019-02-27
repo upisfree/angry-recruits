@@ -14,15 +14,29 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Helvetica', sans-serif;
+  overflow: hidden;
 }
 
 #game canvas {
-  width: 100vw;
-  /*height: 100vh;*/
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#start-button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
     </style>
   </head>
   <body>
+    <button id="start-button">СТАРТ</button>
+
     <div id="game"></div>
 
     <script src="./lib/phaser.js"></script>
