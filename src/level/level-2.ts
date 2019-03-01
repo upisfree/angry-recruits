@@ -2,18 +2,19 @@ import Phaser from '../lib/phaser';
 import update from './shared/update';
 import preload from './shared/preload';
 import isWin from './shared/is-win';
-import Enity from '../enity/enity';
-import Shell from '../enity/shell/shell';
+import generateEntities from './shared/generate-entities';
+import Entity from '../entity/entity';
+import Shell from '../entity/shell/shell';
+import WoodenWall from '../entity/wall/wooden-wall';
+import Slingshot from '../entity/slingshot';
+import RecruitShell from '../entity/shell/recruit-shell';
+import LawyerShell from '../entity/shell/lawyer-shell';
+import { KeyedEntitiesList } from '../entity/list';
+import Level2Data from './data/level-2.data';
 import Level1 from './level-1';
-import WoodenWall from '../enity/wall/wooden-wall';
-import Slingshot from '../enity/slingshot';
-import RecruitShell from '../enity/shell/recruit-shell';
-import LawyerShell from '../enity/shell/lawyer-shell';
-import GrannieEnemy from '../enity/enemy/grannie-enemy';
-import CommissarEnemy from '../enity/enemy/commissar-enemy';
 
 export default class Level2 extends (<any>Phaser.Scene) {
-  enemies: Array<Enity> = [];
+  enemies: Array<Entity> = [];
   shells: Array<Shell> = [];
   shellsQueue: any;
   slingshot: Slingshot;
@@ -37,16 +38,6 @@ export default class Level2 extends (<any>Phaser.Scene) {
 
     this.slingshot = new Slingshot(this, 300, 300);
 
-    new WoodenWall(this, 600, 800, 40, 300);
-
-    new WoodenWall(this, 1200, 800, 40, 300);
-    new WoodenWall(this, 900, 800, 40, 300);
-
-    new GrannieEnemy(this, 800, 1000);
-    new CommissarEnemy(this, 800, 1000);
-    new GrannieEnemy(this, 800, 1000);
-    new CommissarEnemy(this, 800, 1000);
-    new GrannieEnemy(this, 800, 1000);
-    new CommissarEnemy(this, 800, 1000);
+    generateEntities(Level2Data, this);
   }
 }

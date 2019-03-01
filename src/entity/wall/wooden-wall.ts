@@ -1,8 +1,8 @@
 import Phaser from '../../lib/phaser';
-import Enity from '../enity';
+import Entity from '../entity';
 const { Bodies } = Phaser.Physics.Matter.Matter;
 
-export default class WoodenWall extends Enity {
+export default class WoodenWall extends Entity {
   constructor(scene, x, y, w = 35, h = 200) {
     super(
       scene,

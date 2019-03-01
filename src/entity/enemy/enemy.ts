@@ -1,6 +1,6 @@
-import { default as Enity, DestructionOptions } from '../enity';
+import { default as Entity, DestructionOptions } from '../entity';
 
-export default class Enemy extends Enity {
+export default class Enemy extends Entity {
   constructor(
     scene: any,
     x: number,

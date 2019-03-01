@@ -1,5 +1,6 @@
 const ASSETS = {
   IMAGES: {
+    'transparency': 'assets/transparency.png',
     'wall-1': 'assets/wall/wall-1.png',
     'wall-2': 'assets/wall/wall-2.png',
     'wall-destruction-particle': 'assets/wall/wall-destruction-particle.png',

@@ -8,12 +8,12 @@ export interface DestructionOptions {
   particles?: any; // частицы, которые создадутся после уничтожения объекта
 }
 
-// Enity — это любой физический объект с текстурой
+// Entity — это любой физический объект с текстурой
 // создаёт спрайт в Phaser и объединяет его с физическим телом,
 // разрушения описаны также здесь. 
 // 
-// PS: не Body, а Enity чтобы не путаться с Matter
-export default class Enity {
+// PS: не Body, а Entity чтобы не путаться с Matter
+export default class Entity {
   scene: any;
   sprite: any;
   body: any; // shortcut for sprite.body
@@ -39,12 +39,12 @@ export default class Enity {
     this.body = body;
     this.textureKey = textureKey; // если объект разрушается, то у него ставим нулевой этап разрушения
     
-    // если объект разрушается, то у него первая текстура типа enity-1
-    // а если нет, то просто enity. поэтому и решаем.
+    // если объект разрушается, то у него первая текстура типа entity-1
+    // а если нет, то просто entity. поэтому и решаем.
     let startTextureKey = (!destructionOptions || destructionOptions.steps === 1) ? textureKey : textureKey + '-1';
 
     this.sprite = this.scene.matter.add.sprite(0, 0, startTextureKey, 0);
-    this.sprite.enityInstance = this;
+    this.sprite.entityInstance = this;
 
     // events
     this.sprite.on('destroy', this.onDestroy.bind(this));
@@ -82,8 +82,6 @@ export default class Enity {
     if (this.body.isStatic === true) {
       return;
     }
-
-    // console.log(e);
 
     let m = momentum(e.bodyA, e.bodyB);
 

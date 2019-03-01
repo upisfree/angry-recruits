@@ -1,6 +1,8 @@
+import CONFIG from './config';
 import Phaser from './lib/phaser';
 const PhaserMatterCollisionPlugin = (<any>window).PhaserMatterCollisionPlugin;
 import levelsList from './level/levels-list';
+import LevelEditor from './editor/level';
 
 export default {
   type: Phaser.AUTO,
@@ -8,6 +10,7 @@ export default {
   pixelArt: true,
   backgroundColor: '#000000',
   parent: 'game', // block id
+  disableContextMenu: true,
   physics: {
     default: 'matter',
     matter: {
@@ -16,8 +19,9 @@ export default {
       debugBodyColor: 0xffffff
     }
   },
-  scene: levelsList.map(L => new L({ key: L.name })),
-
+  // если редактор включён, то запускаем уровень с редактором.
+  // нет? запускаем все остальные уровни
+  scene: (CONFIG.EDITOR_MODE) ? new LevelEditor({ key: LevelEditor.name }) : levelsList.map(L => new L({ key: L.name })),
   scale: {
     // здесь какая-то хуйня с Phaser.Scale.FIT, поэтому всё хендлю сам
     mode: Phaser.Scale.NONE,
