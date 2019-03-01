@@ -32,4 +32,4 @@ let server = http.createServer(function(req, res) {
 
 server.listen(1488);
 
-console.log('map editor saver started');
+console.log('map editor saver started at http://localhost:1488');
