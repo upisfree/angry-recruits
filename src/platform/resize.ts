@@ -1,6 +1,6 @@
 export default function(game) {
   let scale = Math.min(
-    window.innerWidth / game.config.width,    
+    window.innerWidth / game.config.width,
     window.innerHeight / game.config.height
   );
   
