@@ -5,7 +5,6 @@ import isWin from './shared/is-win';
 import generateEntities from './shared/generate-entities';
 import Entity from '../entity/entity';
 import Shell from '../entity/shell/shell';
-import WoodenWall from '../entity/wall/wooden-wall';
 import Slingshot from '../entity/slingshot';
 import RecruitShell from '../entity/shell/recruit-shell';
 import LawyerShell from '../entity/shell/lawyer-shell';

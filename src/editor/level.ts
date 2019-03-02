@@ -9,8 +9,10 @@ import { PlainEntitiesList, KeyedEntitiesList } from '../entity/list';
 import Level1Data from '../level/data/level-1.data';
 import Level2Data from '../level/data/level-2.data';
 
-const LEVEL_NAME = 'level-2';
-const LEVEL_DATA = Level2Data;
+const LEVEL_NAME = 'level-1';
+const LEVEL_DATA = Level1Data;
+
+const ENTITY_SELECTED_COLOR = 0x00ffff;
 
 export default class LevelEditor extends (<any>Phaser.Scene) {
   preload = preload.bind(this);
@@ -25,6 +27,8 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
   keyD: any;
   keyPlus: any;
   keyMinus: any;
+  keyBackspace: any;
+  keyDelete: any;
 
   cameraControls: any;
 
@@ -50,6 +54,8 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.keyPlus = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.PLUS);
     this.keyMinus = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.MINUS);
+    this.keyBackspace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.BACKSPACE);
+    this.keyDelete = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DELETE);
 
     this.initCamera();
     this.displayAllEnities();
@@ -78,23 +84,31 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
         body: this.generateJson(),
         // credentials: 'include'
       });
-    }, 2500);
+    }, 1000);
   }
 
   update(time, delta) {
     this.cameraControls.update(delta);
 
-    if (this.currentEntity) {
+    let rotationStep = 22.5;
+    let scaleStep = 0.05;
+
+    let cur = this.currentEntity;
+
+    if (cur) {
       if (Phaser.Input.Keyboard.JustDown(this.keyA)) {
-        this.currentEntity.sprite.angle -= 22.5;
+        cur.sprite.angle -= rotationStep;
       } else if (Phaser.Input.Keyboard.JustDown(this.keyD)) {
-        this.currentEntity.sprite.angle += 22.5;
+        cur.sprite.angle += rotationStep;
       } else if (Phaser.Input.Keyboard.JustDown(this.keyPlus)) {
-        this.currentEntity.sprite.scaleX += 0.05;
-        this.currentEntity.sprite.scaleY += 0.05;
+        cur.sprite.scaleX += scaleStep;
+        cur.sprite.scaleY += scaleStep;
       } else if (Phaser.Input.Keyboard.JustDown(this.keyMinus)) {
-        this.currentEntity.sprite.scaleX -= 0.05;
-        this.currentEntity.sprite.scaleY -= 0.05;
+        cur.sprite.scaleX -= scaleStep;
+        cur.sprite.scaleY -= scaleStep;
+      } else if (Phaser.Input.Keyboard.JustDown(this.keyBackspace) || Phaser.Input.Keyboard.JustDown(this.keyDelete)) {
+        this.entities = this.entities.filter(e => e !== cur);
+        cur.sprite.destroy();
       }
     }
   }
@@ -138,9 +152,9 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
         newEntity.body.frictionAir = 1;
         newEntity.destructionMomentum = Infinity;
         newEntity.sprite.setInteractive();
+        newEntity.sprite.setTint(ENTITY_SELECTED_COLOR);
 
         this.scene.entities.push(newEntity);
-
         this.scene.currentEntity = newEntity;
 
         newEntity.sprite.on('pointerdown', this.scene.onNewEntityClick);
@@ -171,6 +185,10 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
   }
 
   onNewEntityClick() {
+    this.scene.entities.forEach(e => e.sprite.clearTint());
+
+    this.setTint(ENTITY_SELECTED_COLOR);
+
     this.scene.currentEntity = this.entityInstance;
   }
 }
