@@ -28,7 +28,6 @@ export default class Slingshot {
 
   private getNewShell() {
     this.currentShell = new this.scene.shellsQueue[0](this.scene, this.x, this.y);
-    this.scene.shellsQueue.shift();
 
     return this.currentShell;
   }
@@ -47,6 +46,7 @@ export default class Slingshot {
       if (distance(this.constraint.pointA, this.currentShell.body.position) > this.maxTensionDistance && this.isNewShellSpawned) {
         this.isNewShellSpawned = false;
         this.lastShootTime = e.timestamp;
+        this.scene.shellsQueue.shift();
         this.constraint.bodyB = Bodies.rectangle(this.x, this.y, 1, 1);
       }
     }

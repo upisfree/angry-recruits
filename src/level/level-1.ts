@@ -18,6 +18,8 @@ export default class Level1 extends (<any>Phaser.Scene) {
   shellsQueue: any;
   slingshot: Slingshot;
   nextLevel: any = Level2;
+  winStatus: boolean;
+  winTimeout: any;
 
   preload = preload.bind(this);
   update = update.bind(this);

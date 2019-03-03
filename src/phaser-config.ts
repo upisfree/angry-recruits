@@ -14,7 +14,7 @@ export default {
   physics: {
     default: 'matter',
     matter: {
-      enableSleeping: true,
+      enableSleeping: false,
       debug: true,
       debugBodyColor: 0xffffff
     }

@@ -1,12 +1,15 @@
 import isAllSleeping from './is-all-sleeping';
 
 export default function(shells, enemies, slingshot, shellsQueue) {
-  // если будет лагать, то перенеси внутрь условий (пусть дублируется, но зато каждый тик не надо пробегаться по всему)
-  if (isAllSleeping(shells, enemies, slingshot)) {
-    if (enemies.length === 0) {
-      return true;
-    } else if (shellsQueue.length === 0 && enemies.length > 0) {
-      return false;
+  let isNeedToCheckSleeping = enemies.length === 0 || shellsQueue.length === 0;
+
+  if (isNeedToCheckSleeping) {
+    if (isAllSleeping(shells, enemies, slingshot)) { // микрооптимизации :)))
+      if (enemies.length === 0) {
+        return true;
+      } else if (shellsQueue.length === 0 && enemies.length > 0) {
+        return false;
+      }
     }
   }
 }
