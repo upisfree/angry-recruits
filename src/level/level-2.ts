@@ -1,7 +1,6 @@
 import Phaser from '../lib/phaser';
 import update from './shared/update';
 import preload from './shared/preload';
-import isWin from './shared/is-win';
 import generateEntities from './shared/generate-entities';
 import Entity from '../entity/entity';
 import Shell from '../entity/shell/shell';
@@ -18,8 +17,9 @@ export default class Level2 extends (<any>Phaser.Scene) {
   shellsQueue: any;
   slingshot: Slingshot;
   nextLevel: any = Level1;
-  winStatus: boolean;
-  winTimeout: any;
+  winTimeout: number = 5000;
+  isWin: boolean;
+  winTimeEvent: any;
 
   preload = preload.bind(this);
   update = update.bind(this);

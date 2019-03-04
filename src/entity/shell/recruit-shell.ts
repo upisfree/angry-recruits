@@ -11,7 +11,19 @@ export default class RecruitShell extends Shell {
       'recruit',
       Bodies.circle(0, 0, 40, {
         density: 0.015, // масса тела — 74 кг
-        restitution: 0.25
+        restitution: 0.25,
+        plugin: {
+          wrap: {
+            min: {
+              x: 0,
+              y: 0
+            },
+            max: {
+              x: scene.game.config.width,
+              y: scene.game.config.height
+            }
+          }
+        }
       })
     );
   }

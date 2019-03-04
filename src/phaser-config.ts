@@ -16,7 +16,10 @@ export default {
     matter: {
       enableSleeping: false,
       debug: true,
-      debugBodyColor: 0xffffff
+      debugBodyColor: 0xffffff,
+      plugins: {
+        wrap: true
+      }
     }
   },
   // если редактор включён, то запускаем уровень с редактором.

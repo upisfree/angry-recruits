@@ -3,25 +3,29 @@ import isAllSleeping from './is-all-sleeping';
 
 // смотреть sleeping всех тел, а не только врагов и снарядов
 export default function() {
+  // console.log(this);
+
+
+  // win check
   let currentWinStatus = isWin(this.shells, this.enemies, this.slingshot, this.shellsQueue);
   let timeout;
   let callback;
 
-  if (this.winStatus !== currentWinStatus && this.winTimeout) {
-    this.winTimeout.remove();
+  if (this.isWin !== currentWinStatus && this.winTimeEvent) {
+    this.winTimeEvent.remove();
   }
 
-  this.winStatus = currentWinStatus;
+  this.isWin = currentWinStatus;
 
-  if (this.winStatus !== undefined && this.winStatus !== null) {
-    if (this.winStatus === true) {
+  if (this.isWin !== undefined && this.isWin !== null) {
+    if (this.isWin === true) {
       callback = win;
-    } else if (this.winStatus === false) {
+    } else if (this.isWin === false) {
       callback = fail;
     }
 
-    this.winTimeout = this.time.addEvent({
-      delay: 5000,
+    this.winTimeEvent = this.time.addEvent({
+      delay: this.winTimeout,
       callback: callback,
       callbackScope: this
     });
