@@ -2,9 +2,11 @@ import isWin from './is-win';
 import isAllSleeping from './is-all-sleeping';
 
 // смотреть sleeping всех тел, а не только врагов и снарядов
-export default function() {
-  // console.log(this);
-
+export default function(time, delta) {
+  // camera update
+  if (this.cameraControls) {
+    this.cameraControls.update(delta);    
+  }
 
   // win check
   let currentWinStatus = isWin(this.shells, this.enemies, this.slingshot, this.shellsQueue);

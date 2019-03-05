@@ -8,7 +8,7 @@ export default {
   type: Phaser.AUTO,
   resolution: window.devicePixelRatio,
   pixelArt: true,
-  backgroundColor: '#000000',
+  backgroundColor: '#000',
   parent: 'game', // block id
   disableContextMenu: true,
   physics: {
@@ -17,9 +17,9 @@ export default {
       enableSleeping: false,
       debug: true,
       debugBodyColor: 0xffffff,
-      plugins: {
-        wrap: true
-      }
+      // plugins: {
+      //   wrap: true
+      // }
     }
   },
   // если редактор включён, то запускаем уровень с редактором.

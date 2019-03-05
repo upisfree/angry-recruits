@@ -8,8 +8,8 @@ export default class LawyerShell extends Shell {
       scene,
       x,
       y,
-      'lawyer',
-      Bodies.circle(0, 0, 40, {
+      'recruit', // TODO: other texture key here
+      Bodies.circle(0, 0, 80, {
         density: 0.015, // масса тела — 74 кг
         restitution: 0.25
       })

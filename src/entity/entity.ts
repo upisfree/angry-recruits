@@ -33,8 +33,6 @@ export default class Entity {
     body: any,
     destructionOptions: DestructionOptions = null
   ) {
-    // console.log(scene);
-
     this.scene = scene;
     this.body = body;
     this.textureKey = textureKey; // если объект разрушается, то у него ставим нулевой этап разрушения
@@ -49,16 +47,12 @@ export default class Entity {
     // events
     this.sprite.on('destroy', this.onDestroy.bind(this));
 
-    // чтобы размер тела совпадал с размером спрайта
-    const { w, h } = this.getBodyBounds();
-    this.sprite.displayWidth = w;
-    this.sprite.displayHeight = h;
-
     this.sprite
       .setExistingBody(this.body)
-      .setPosition(x, y);
+      .setPosition(x, y)
+      .setSizeToFrame(this.sprite.frame);
 
-    // console.log(this.textureKey, this.body.mass);
+    console.log(this.textureKey, this.body.mass);
 
     if (destructionOptions) {
       this.destructionSteps = destructionOptions.steps;
@@ -78,14 +72,14 @@ export default class Entity {
 
   }
 
-  private onCollideStart(e): void {
+  onCollideStart(e): void {
     if (this.body.isStatic === true) {
       return;
     }
 
     let m = momentum(e.bodyA, e.bodyB);
 
-    // console.log(m);
+    console.log(m);
 
     this.currentMomentum -= m;
 
@@ -96,18 +90,22 @@ export default class Entity {
       // если да, то менять только при изменении порога.
       this.sprite.setTexture(`${ this.textureKey }-${ destructionStep }`);
     } else if (this.currentMomentum <= 0) {
-      let particles = this.scene.add.particles(`${ this.textureKey }-destruction-particle`);
+      let particles;
 
-      this.destructionParticlesConfig.x = this.sprite.x;
-      this.destructionParticlesConfig.y = this.sprite.y;
+      if (this.destructionParticlesConfig) {
+        particles = this.scene.add.particles(`${ this.textureKey }-destruction-particle`);
 
-      particles.createEmitter(this.destructionParticlesConfig);
+        this.destructionParticlesConfig.x = this.sprite.x;
+        this.destructionParticlesConfig.y = this.sprite.y;
+
+        particles.createEmitter(this.destructionParticlesConfig);        
+      }
 
       this.sprite.destroy(); // это удаляет и физическое тело
     }
   }
 
-  private getBodyBounds() {
+  getBodyBounds() {
     const { min, max } = this.body.bounds;
 
     return {

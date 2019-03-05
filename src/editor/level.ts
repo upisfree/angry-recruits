@@ -50,6 +50,8 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
       'transparency'
     );
 
+    this.cameras.main.setBackgroundColor('#f0f0f0')
+
     this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.keyPlus = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.PLUS);
@@ -84,7 +86,7 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
         body: this.generateJson(),
         // credentials: 'include'
       });
-    }, 1000);
+    }, 2500);
   }
 
   update(time, delta) {
@@ -152,6 +154,8 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
         newEntity.body.frictionAir = 1;
         newEntity.destructionMomentum = Infinity;
         newEntity.sprite.setInteractive();
+
+        this.scene.entities.forEach(e => e.sprite.clearTint());
         newEntity.sprite.setTint(ENTITY_SELECTED_COLOR);
 
         this.scene.entities.push(newEntity);
@@ -160,7 +164,7 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
         newEntity.sprite.on('pointerdown', this.scene.onNewEntityClick);
       });
 
-      x += 100;
+      x += entity.sprite.displayWidth + 100;
     }
   }
 

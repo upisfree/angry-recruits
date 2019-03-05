@@ -9,7 +9,7 @@ export default class RecruitShell extends Shell {
       x,
       y,
       'recruit',
-      Bodies.circle(0, 0, 40, {
+      Bodies.circle(0, 0, 80, {
         density: 0.015, // масса тела — 74 кг
         restitution: 0.25,
         plugin: {

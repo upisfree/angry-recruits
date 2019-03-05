@@ -7,8 +7,8 @@ import CommissarEnemy from '../entity/enemy/commissar-enemy';
 const PlainEntitiesList = [
   WoodenWall,
   RecruitShell,
-  LawyerShell,
-  GrannieEnemy,
+  // LawyerShell,
+  // GrannieEnemy,
   CommissarEnemy
 ];
 

@@ -1,14 +1,14 @@
 const ASSETS = {
   IMAGES: {
     'transparency': 'assets/transparency.png',
-    'wall-1': 'assets/wall/wall-1.png',
-    'wall-2': 'assets/wall/wall-2.png',
-    'wall-destruction-particle': 'assets/wall/wall-destruction-particle.png',
-    'recruit-destruction-particle': 'assets/recruit-destruction-particle.png',
-    'lawyer': 'assets/lawyer.png',
-    'recruit': 'assets/recruit.png',
-    'commissar': 'assets/commissar.png',
-    'grannie': 'assets/grannie.png',
+    'grass': 'assets/environment/grass.png',
+    'sky': 'assets/environment/sky.jpg',
+    'wooden-wall-1': 'assets/wall/wooden-wall-1.png',
+    'wooden-wall-2': 'assets/wall/wooden-wall-2.png',
+    'wooden-wall-destruction-particle': 'assets/wall/wooden-wall-destruction-particle.png',
+    'recruit': 'assets/shell/recruit.png',
+    'commissar-1': 'assets/enemy/commissar-1.png',
+    'commissar-2': 'assets/enemy/commissar-2.png',
   },
   SOUNDS: []
 }
