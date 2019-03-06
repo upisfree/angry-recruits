@@ -10,6 +10,15 @@ const ASSETS = {
     'commissar-1': 'assets/enemy/commissar-1.png',
     'commissar-2': 'assets/enemy/commissar-2.png',
   },
+  SPRITESHEETS: {
+    'smoke': {
+      url: 'assets/particle/smoke.png',
+      options: {
+        frameWidth: 204,
+        frameHeight: 204
+      }
+    }
+  },
   SOUNDS: []
 }
 

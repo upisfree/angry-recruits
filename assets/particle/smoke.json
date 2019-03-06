@@ -1,0 +1,104 @@
+{
+	"textures": [
+		{
+			"image": "smoke.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 816,
+				"h": 204
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "smg-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 204,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 204,
+						"h": 204
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 204,
+						"h": 204
+					}
+				},
+				{
+					"filename": "smg-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 204,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 204,
+						"h": 204
+					},
+					"frame": {
+						"x": 204,
+						"y": 0,
+						"w": 204,
+						"h": 204
+					}
+				},
+				{
+					"filename": "smg-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 204,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 204,
+						"h": 204
+					},
+					"frame": {
+						"x": 408,
+						"y": 0,
+						"w": 204,
+						"h": 204
+					}
+				},
+				{
+					"filename": "smg-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 204,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 204,
+						"h": 204
+					},
+					"frame": {
+						"x": 612,
+						"y": 0,
+						"w": 204,
+						"h": 204
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:6fca776067650f8a849da13436cbc8c1:5d840429d186b3afc92d4fff5caf2df2:557cac7724a8d29be5c43a56587d549b$"
+	}
+}

@@ -43,7 +43,7 @@ export default class Level1 extends (<any>Phaser.Scene) {
 
     this.addEnvironment();
 
-    this.slingshot = new Slingshot(this, 200, 400);
+    this.slingshot = new Slingshot(this, 900, 200);
 
     generateEntities(Level1Data, this);
 
@@ -51,15 +51,24 @@ export default class Level1 extends (<any>Phaser.Scene) {
   }
 
   addEnvironment() {
+    let w = this.game.config.width;
+    let h = this.game.config.height;
+
     // let tileSprite = this.add.tileSprite(this.game.config.width / 2, 1920, 20000, 290, 'grass');
     // console.log(tileSprite);
     // this.matter.add.tileBody(tileSprite, {});
     // let grass = this.matter.add.image(this.game.config.width / 2, this.game.config.height, 'grass', null, { isStatic: true });
-    let grassTile = this.add.tileSprite(this.game.config.width / 2, this.game.config.height - 100, 1920 * 10, 280, 'grass');
+
+    let skyTile = this.add.sprite(0, 0, 'sky')
+      .setDisplaySize(w * 4, h * 4)
+      .setPosition(w * 4, h)
+      .setOrigin(1);
+      // .setScrollFactor(0.5);
+
+    let grassTile = this.add.tileSprite(w / 2, h - 100, w * 10, 280, 'grass');
     let grassSprite = this.matter.add.gameObject(grassTile).setStatic(true);
 
-    let skyTile = this.add.tileSprite(this.game.config.width / 2, this.game.config.height / 2, 1920, 1080, 'sky');
-
+    this.cameras.main.setBounds(0, -h * 3, w * 4, h * 4);
 
     // this.matter.add.image(this.game.config.width / 2, this.game.config.height, 'grass', null, { isStatic: true });
   }

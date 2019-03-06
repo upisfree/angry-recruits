@@ -90,15 +90,16 @@ export default class Entity {
       // если да, то менять только при изменении порога.
       this.sprite.setTexture(`${ this.textureKey }-${ destructionStep }`);
     } else if (this.currentMomentum <= 0) {
-      let particles;
 
       if (this.destructionParticlesConfig) {
-        particles = this.scene.add.particles(`${ this.textureKey }-destruction-particle`);
+        let particles = this.scene.add.particles(this.destructionParticlesConfig.name);
 
         this.destructionParticlesConfig.x = this.sprite.x;
         this.destructionParticlesConfig.y = this.sprite.y;
 
-        particles.createEmitter(this.destructionParticlesConfig);        
+        particles
+          .createEmitter(this.destructionParticlesConfig)
+          .explode(1, this.sprite.x, this.sprite.y);
       }
 
       this.sprite.destroy(); // это удаляет и физическое тело

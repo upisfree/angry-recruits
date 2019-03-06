@@ -15,7 +15,7 @@ export default class CommissarEnemy extends Enemy {
       }),
       {
         steps: 2,
-        momentum: 4000,
+        momentum: 20000,
         // particles: {
         //   alpha: { start: 1, end: 0 },
         //   scale: { start: 0.5, end: 1 },

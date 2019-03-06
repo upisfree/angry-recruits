@@ -45,10 +45,12 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
     this.add.tileSprite(
       this.game.config.width / 2,
       this.game.config.height / 2,
-      this.game.config.width * 4,
-      this.game.config.height * 4,
+      this.game.config.width * 6,
+      this.game.config.height * 6,
       'transparency'
     );
+
+    let grassTile = this.add.tileSprite(this.game.config.width / 2, this.game.config.height - 100, this.game.config.width * 10, 280, 'grass');
 
     this.cameras.main.setBackgroundColor('#f0f0f0')
 

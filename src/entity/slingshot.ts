@@ -36,7 +36,7 @@ export default class Slingshot {
     this.constraint = this.scene.matter.add.constraint(null, null, null, null, {
       pointA: { x: this.x, y: this.y },
       bodyB: this.getNewShell().body, 
-      stiffness: 0.05
+      stiffness: 0.025
     });
   }
 
