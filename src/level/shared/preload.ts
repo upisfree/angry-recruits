@@ -6,6 +6,6 @@ export default function() {
   }
 
   for (let k in ASSETS.SPRITESHEETS) {
-    this.load.image(k, ASSETS.SPRITESHEETS[k].url, ASSETS.SPRITESHEETS[k].options);
+    this.load.spritesheet(k, ASSETS.SPRITESHEETS[k].url, ASSETS.SPRITESHEETS[k].options);
   }
 }

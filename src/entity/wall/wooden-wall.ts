@@ -1,7 +1,6 @@
 import Phaser from '../../lib/phaser';
 import Entity from '../entity';
 const { Bodies } = Phaser.Physics.Matter.Matter;
-import SmokeParticles from '../../particle/smoke';
 
 export default class WoodenWall extends Entity {
   constructor(scene, x, y, w = 15, h = 250) {
@@ -20,7 +19,10 @@ export default class WoodenWall extends Entity {
       {
         steps: 2,
         momentum: 40000,
-        particles: SmokeParticles
+        particles: {
+          name: 'smoke',
+          frameRate: 18
+        }
       }
     );
   }
