@@ -1,6 +1,8 @@
 import Phaser from '../../lib/phaser';
 import Shell from './shell';
+import BODY_DATA from '../body-data';
 const { Bodies } = Phaser.Physics.Matter.Matter;
+const PhysicsEditorParser = (<any>window).PhysicsEditorParser;
 
 export default class RecruitShell extends Shell {
   constructor(scene, x, y) {
@@ -9,22 +11,7 @@ export default class RecruitShell extends Shell {
       x,
       y,
       'recruit',
-      Bodies.circle(0, 0, 80, {
-        density: 0.015, // масса тела — 74 кг
-        restitution: 0.25,
-        plugin: {
-          wrap: {
-            min: {
-              x: 0,
-              y: 0
-            },
-            max: {
-              x: scene.game.config.width,
-              y: scene.game.config.height
-            }
-          }
-        }
-      })
+      PhysicsEditorParser.parseBody(x, y, 1, 1, BODY_DATA['recruit'])
     );
   }
 }
