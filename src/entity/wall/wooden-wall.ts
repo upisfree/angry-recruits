@@ -10,11 +10,11 @@ export default class WoodenWall extends Entity {
       y,
       'wooden-wall',
       Bodies.rectangle(0, 0, w, h, {
-        density: 0.01, // масса тела — 350 кг
-        friction: 0.1,
-        // friction: 0.9,
-        // frictionAir: 0.0001,
-        // restitution: 0
+        density: 0.05, // масса тела — 350 кг
+        "restitution": 0.25,
+        // "friction": 1,
+        // "frictionAir": 0.00001,
+        // "frictionStatic": 100,
       }),
       {
         steps: 2,

@@ -1,7 +1,6 @@
 import Phaser from '../../lib/phaser';
 import Shell from './shell';
-import BODY_DATA from '../body-data';
-const { Bodies } = Phaser.Physics.Matter.Matter;
+import BODY_DATA from '../body.data';
 const PhysicsEditorParser = (<any>window).PhysicsEditorParser;
 
 export default class RecruitShell extends Shell {

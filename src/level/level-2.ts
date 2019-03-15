@@ -6,7 +6,6 @@ import Entity from '../entity/entity';
 import Shell from '../entity/shell/shell';
 import Slingshot from '../entity/slingshot';
 import RecruitShell from '../entity/shell/recruit-shell';
-import LawyerShell from '../entity/shell/lawyer-shell';
 import { KeyedEntitiesList } from '../entity/list';
 import Level2Data from './data/level-2.data';
 import Level1 from './level-1';
@@ -35,7 +34,7 @@ export default class Level2 extends (<any>Phaser.Scene) {
 
     this.enemies = [];
     this.shells = [];
-    this.shellsQueue = [RecruitShell, RecruitShell, LawyerShell];
+    this.shellsQueue = [RecruitShell, RecruitShell, RecruitShell];
 
     this.slingshot = new Slingshot(this, 300, 300);
 

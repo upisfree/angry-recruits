@@ -50,7 +50,8 @@ export default class Entity {
     this.sprite
       .setExistingBody(this.body)
       .setPosition(x, y)
-      .setSizeToFrame(this.sprite.frame);
+      .setSizeToFrame(this.sprite.frame)
+      .setTexture(startTextureKey);
 
     console.log(this.textureKey, this.body.mass);
 
@@ -85,6 +86,10 @@ export default class Entity {
 
     if (this.currentMomentum > 0 && this.destructionSteps > 1) {
       let destructionStep = Math.ceil(this.destructionSteps - (this.currentMomentum / this.destructionMomentum * this.destructionSteps));
+
+      if (destructionStep <= 0) {
+        destructionStep = 1;
+      }
 
       // будет лагать, если каждое столкновение переставлять текстуру?
       // если да, то менять только при изменении порога.

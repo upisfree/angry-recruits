@@ -1,6 +1,7 @@
 import Phaser from '../../lib/phaser';
 import Enemy from './enemy';
-const { Bodies } = Phaser.Physics.Matter.Matter;
+import BODY_DATA from '../body.data';
+const PhysicsEditorParser = (<any>window).PhysicsEditorParser;
 
 export default class CommissarEnemy extends Enemy {
   constructor(scene, x, y) {
@@ -9,10 +10,7 @@ export default class CommissarEnemy extends Enemy {
       x,
       y,
       'commissar',
-      Bodies.circle(0, 0, 115, {
-        density: 0.015, // масса тела — 74 кг
-        restitution: 0.25
-      }),
+      PhysicsEditorParser.parseBody(x, y, 1, 1, BODY_DATA['commissar-1']),
       {
         steps: 2,
         momentum: 20000,
