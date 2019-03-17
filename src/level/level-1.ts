@@ -42,7 +42,7 @@ export default class Level1 extends (<any>Phaser.Scene) {
 
     this.addEnvironment();
 
-    this.slingshot = new Slingshot(this, 900, 200);
+    this.slingshot = new Slingshot(this, 800, 600);
 
     generateEntities(Level1Data, this);
 
