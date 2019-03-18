@@ -1,6 +1,7 @@
 import Phaser from '../lib/phaser';
 import update from './shared/update';
 import preload from './shared/preload';
+import initDebugCamera from './shared/init-debug-camera';
 import generateEntities from './shared/generate-entities';
 import Entity from '../entity/entity';
 import Shell from '../entity/shell/shell';
@@ -22,13 +23,16 @@ export default class Level2 extends (<any>Phaser.Scene) {
 
   preload = preload.bind(this);
   update = update.bind(this);
+  initDebugCamera = initDebugCamera.bind(this);
+
+  cameraControls: any;
 
   constructor(config) {
     super(config);
   }
 
   create() {
-    this.matter.world.setBounds(undefined, undefined, undefined, undefined, undefined, false, false, false, true);
+    // this.matter.world.setBounds(undefined, undefined, undefined, undefined, undefined, false, false, false, true);
     this.matter.add.mouseSpring();
     this.matter.world.createDebugGraphic();
 
@@ -36,8 +40,35 @@ export default class Level2 extends (<any>Phaser.Scene) {
     this.shells = [];
     this.shellsQueue = [RecruitShell, RecruitShell, RecruitShell];
 
-    this.slingshot = new Slingshot(this, 300, 300);
+    this.addEnvironment();
+
+    this.slingshot = new Slingshot(this, 800, 600);
 
     generateEntities(Level2Data, this);
+
+    this.initDebugCamera();
+  }
+
+  addEnvironment() {
+    let w = this.game.config.width;
+    let h = this.game.config.height;
+
+    // let tileSprite = this.add.tileSprite(this.game.config.width / 2, 1920, 20000, 290, 'grass');
+    // console.log(tileSprite);
+    // this.matter.add.tileBody(tileSprite, {});
+    // let grass = this.matter.add.image(this.game.config.width / 2, this.game.config.height, 'grass', null, { isStatic: true });
+
+    let skyTile = this.add.sprite(0, 0, 'sky')
+      .setDisplaySize(w * 4, h * 4)
+      .setPosition(w * 4, h)
+      .setOrigin(1);
+      // .setScrollFactor(0.5);
+
+    let grassTile = this.add.tileSprite(w / 2, h - 100, w * 10, 280, 'grass');
+    let grassSprite = this.matter.add.gameObject(grassTile).setStatic(true);
+
+    this.cameras.main.setBounds(0, -h * 3, w * 4, h * 4);
+
+    // this.matter.add.image(this.game.config.width / 2, this.game.config.height, 'grass', null, { isStatic: true });
   }
 }

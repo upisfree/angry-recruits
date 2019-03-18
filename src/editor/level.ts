@@ -21,8 +21,8 @@ const { Body } = Phaser.Physics.Matter.Matter;
 import Level1Data from '../level/data/level-1.data';
 import Level2Data from '../level/data/level-2.data';
 
-const LEVEL_NAME = 'level-1';
-const LEVEL_DATA = Level1Data;
+const LEVEL_NAME = 'level-2';
+const LEVEL_DATA = Level2Data;
 
 const ENTITY_SELECTED_COLOR = 0x00ffff;
 
