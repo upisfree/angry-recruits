@@ -21,7 +21,7 @@ let server = http.createServer(function(req, res) {
         throw err;
       }
 
-      let info = `wrote to src/level/data/${ json.name }.ts at ${ new Date().toUTCString() }`; 
+      let info = `wrote to src/level/data/${ json.name }.data.ts at ${ new Date().toUTCString() }`; 
 
       console.log(info);
 

@@ -1,8 +1,8 @@
 const BODY_DATA = {
   "generator_info": "Shape definitions generated with PhysicsEditor. Visit https://www.codeandweb.com/physicseditor",
-  "recruit": {
+  "recruit-shell": {
     "type": "fromPhysicsEditor",
-    "label": "recruit",
+    "label": "recruit-shell",
     "isStatic": false,
     "fixtures": [
       {

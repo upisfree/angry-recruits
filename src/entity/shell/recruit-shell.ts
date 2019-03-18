@@ -9,8 +9,12 @@ export default class RecruitShell extends Shell {
       scene,
       x,
       y,
-      'recruit',
-      PhysicsEditorParser.parseBody(x, y, 1, 1, BODY_DATA['recruit'])
+      'recruit-shell',
+      PhysicsEditorParser.parseBody(x, y, 1, 1, BODY_DATA['recruit-shell'])
     );
+  }
+
+  activatePower() {
+    console.log('RecruitShell superpower activated');
   }
 }

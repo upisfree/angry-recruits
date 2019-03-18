@@ -80,7 +80,7 @@ export default class Entity {
 
     let m = momentum(e.bodyA, e.bodyB);
 
-    console.log(m);
+    // console.log(m);
 
     this.currentMomentum -= m;
 

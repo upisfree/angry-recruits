@@ -7,6 +7,7 @@ import Entity from '../entity/entity';
 import Shell from '../entity/shell/shell';
 import Slingshot from '../entity/slingshot';
 import RecruitShell from '../entity/shell/recruit-shell';
+import FatShell from '../entity/shell/fat-shell';
 import { KeyedEntitiesList } from '../entity/list';
 import Level2Data from './data/level-2.data';
 import Level1 from './level-1';
@@ -38,11 +39,11 @@ export default class Level2 extends (<any>Phaser.Scene) {
 
     this.enemies = [];
     this.shells = [];
-    this.shellsQueue = [RecruitShell, RecruitShell, RecruitShell];
+    this.shellsQueue = [FatShell, RecruitShell, RecruitShell];
 
     this.addEnvironment();
 
-    this.slingshot = new Slingshot(this, 800, 600);
+    this.slingshot = new Slingshot(this, 600, 400);
 
     generateEntities(Level2Data, this);
 
