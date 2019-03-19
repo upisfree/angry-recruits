@@ -2,6 +2,7 @@ import WoodenWall from '../entity/wall/wooden-wall';
 import ConcreteWall from '../entity/wall/concrete-wall';
 import RecruitShell from '../entity/shell/recruit-shell';
 import FatShell from '../entity/shell/fat-shell';
+import ExplosionShell from '../entity/shell/explosion-shell';
 import CommissarEnemy from '../entity/enemy/commissar-enemy';
 
 const PlainEntitiesList = [
@@ -9,6 +10,7 @@ const PlainEntitiesList = [
   ConcreteWall,
   RecruitShell,
   FatShell,
+  ExplosionShell,
   CommissarEnemy
 ];
 

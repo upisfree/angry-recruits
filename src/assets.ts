@@ -9,6 +9,7 @@ const ASSETS = {
     'concrete-wall-2': 'assets/wall/concrete/concrete-wall-2.png',
     'recruit-shell': 'assets/shell/recruit-shell.png',
     'fat-shell': 'assets/shell/fat-shell.png',
+    'explosion-shell': 'assets/shell/explosion-shell.png',
     'commissar-1': 'assets/enemy/commissar-1.png',
     'commissar-2': 'assets/enemy/commissar-2.png',
   },

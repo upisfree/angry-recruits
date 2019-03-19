@@ -8,6 +8,7 @@ import Shell from '../entity/shell/shell';
 import Slingshot from '../entity/slingshot';
 import RecruitShell from '../entity/shell/recruit-shell';
 import FatShell from '../entity/shell/fat-shell';
+import ExplosionShell from '../entity/shell/explosion-shell';
 import { KeyedEntitiesList } from '../entity/list';
 import Level1Data from './data/level-1.data';
 import Level2 from './level-2';
@@ -15,6 +16,7 @@ import Level2 from './level-2';
 export default class Level1 extends (<any>Phaser.Scene) {
   enemies: Array<Entity> = [];
   shells: Array<Shell> = [];
+  entites: Array<Entity>;
   shellsQueue: any;
   slingshot: Slingshot;
   nextLevel: any = Level2;
@@ -39,13 +41,13 @@ export default class Level1 extends (<any>Phaser.Scene) {
 
     this.enemies = [];
     this.shells = [];
-    this.shellsQueue = [FatShell, RecruitShell, RecruitShell];
+    this.shellsQueue = [ExplosionShell, FatShell, RecruitShell, RecruitShell];
 
     this.addEnvironment();
 
     this.slingshot = new Slingshot(this, 600, 300);
 
-    generateEntities(Level1Data, this);
+    this.entites = generateEntities(Level1Data, this);
 
     this.initDebugCamera();
   }
