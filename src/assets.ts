@@ -3,6 +3,7 @@ const ASSETS = {
     'transparency': 'assets/transparency.png',
     'grass': 'assets/environment/grass.png',
     'sky': 'assets/environment/sky.jpg',
+    'banned-organisation': 'assets/event/banned-organisation.png',
     'wooden-wall-1': 'assets/wall/wood/wooden-wall-1.png',
     'wooden-wall-2': 'assets/wall/wood/wooden-wall-2.png',
     'concrete-wall-1': 'assets/wall/concrete/concrete-wall-1.png',
