@@ -4,8 +4,10 @@ import RecruitShell from '../entity/shell/recruit-shell';
 import FatShell from '../entity/shell/fat-shell';
 import ExplosionShell from '../entity/shell/explosion-shell';
 import CommissarEnemy from '../entity/enemy/commissar-enemy';
+import { SlingshotEntity } from '../entity/slingshot';
 
 const PlainEntitiesList = [
+  SlingshotEntity,
   WoodenWall,
   ConcreteWall,
   RecruitShell,

@@ -12,6 +12,7 @@
 import CONFIG from '../config';
 import Phaser from '../lib/phaser';
 import preload from '../level/shared/preload';
+import addEnvironment from '../level/shared/add-environment';
 import Entity from '../entity/entity';
 import Shell from '../entity/shell/shell';
 import { PlainEntitiesList, KeyedEntitiesList } from '../entity/list';
@@ -26,11 +27,15 @@ const LEVEL_DATA = Level1Data;
 
 const ENTITY_SELECTED_COLOR = 0x00ffff;
 
-const NEW_ENTITY_START_POSITION_X = 1820;
-const NEW_ENTITY_START_POSITION_Y = 150;
+const ETHALON_ENTITY_START_POSITION_X = 150;
+const ETHALON_ENTITY_START_POSITION_Y = -700;
+
+const NEW_ENTITY_START_POSITION_X = 3000;
+const NEW_ENTITY_START_POSITION_Y = -700;
 
 export default class LevelEditor extends (<any>Phaser.Scene) {
   preload = preload.bind(this);
+  addEnvironment = addEnvironment.bind(this);
 
   enemies: Array<Entity> = [];
   shells: Array<Shell> = [];
@@ -63,6 +68,8 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
     this.matter.world.disableGravity();
     this.matter.world.createDebugGraphic();
 
+    this.cameras.main.setZoom(CONFIG.DEFAULT_ZOOM);
+
     this.add.tileSprite(
       this.game.config.width / 2,
       this.game.config.height / 2,
@@ -71,8 +78,7 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
       'transparency'
     );
 
-    let grassTile = this.add.tileSprite(this.game.config.width / 2, this.game.config.height - 100, this.game.config.width * 10, 280, 'grass');
-
+    this.addEnvironment();
     this.cameras.main.setBackgroundColor('#f0f0f0')
 
     this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -153,8 +159,8 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
   }
 
   displayAllEnities() {
-    let x = 100;
-    let y = 150;
+    let x = ETHALON_ENTITY_START_POSITION_X;
+    let y = ETHALON_ENTITY_START_POSITION_Y;
 
     for (let i = 0; i < PlainEntitiesList.length; i++) {
       let entity = new PlainEntitiesList[i](this, x, y);

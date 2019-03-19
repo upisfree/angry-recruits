@@ -1,4 +1,5 @@
 import Phaser from '../../lib/phaser';
+import CONFIG from '../../config';
 import Shell from './shell';
 import BODY_DATA from '../body.data';
 import phaserConfig from '../../phaser-config';
@@ -7,6 +8,8 @@ const PhysicsEditorParser = (<any>window).PhysicsEditorParser;
 import explosion from '../../utils/explosion';
 
 export default class ExplosionShell extends Shell {
+  bannedSprite: any;
+
   constructor(scene, x, y) {
     super(
       scene,
@@ -22,29 +25,30 @@ export default class ExplosionShell extends Shell {
       }),
       // PhysicsEditorParser.parseBody(x, y, 1, 1, BODY_DATA['shahid-shell'])
     );
+
+    if (!CONFIG.EDITOR_MODE) {
+      // this.bannedSprite = this.scene.add.sprite(
+      //   0,
+      //   0,
+      //   'banned-organisation'
+      // ).setOrigin(0, 0);
+    }
   }
 
   activatePower() {
-    let banned = this.scene.add.sprite(
-      phaserConfig.scale.width / 2,
-      phaserConfig.scale.height / 2,
-      'banned-organisation'
-    );
+    if (!CONFIG.EDITOR_MODE) {
+      // this.bannedSprite.destroy();
+    }
 
-    this.scene.scene.pause();
+    explosion(this.scene.entites, this.body.position, 10);
 
-    // this.scene.time.addEvent как-то не особо работает
-    setTimeout(() => {
-      this.scene.scene.resume();
+    this.showSmoke();
 
-      banned.destroy();
-
-      explosion(this.scene.entites, this.body.position, 15);
-
-      this.showSmoke();
-
-      this.sprite.destroy();
-    }, 2500);
+    this.scene.cameras.main.stopFollow();
+    this.scene.cameras.main.pan(this.scene.slingshot.x, this.scene.slingshot.y, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
+    this.scene.cameras.main.zoomTo(CONFIG.DEFAULT_ZOOM, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
+    this.scene.cameras.main.shake(250, 0.5);
+    this.sprite.destroy();
   }
 
   showSmoke() {

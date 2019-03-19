@@ -1,8 +1,9 @@
 import Phaser from '../lib/phaser';
+import CONFIG from '../config';
 import distance from '../utils/distance';
 const PhaserMatterCollisionPlugin = (<any>window).PhaserMatterCollisionPlugin;
 const { Body, Bodies, Constraint, Vector } = Phaser.Physics.Matter.Matter;
-import RecruitShell from './shell/recruit-shell';
+import { default as Entity, DestructionOptions } from './entity';
 
 export default class Slingshot {
   x: number;
@@ -53,6 +54,9 @@ export default class Slingshot {
         this.scene.shellsQueue.shift();
         this.constraint.bodyB = Bodies.rectangle(this.x, this.y, 1, 1);
 
+        this.scene.cameras.main.startFollow(this.currentShell.sprite, true, 0.5, 0.5);
+        this.scene.cameras.main.zoomTo(CONFIG.FLIGHT_ZOOM, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
+
         this.scene.input.once('pointerdown', this.currentShell.activatePower, this.currentShell);
       }
     }
@@ -62,6 +66,30 @@ export default class Slingshot {
       this.constraint.bodyB = this.getNewShell().body;
       this.lastShootTime = 0;
       this.isNewShellSpawned = true;
+
+      this.scene.cameras.main.stopFollow();
+      this.scene.cameras.main.pan(this.x, this.y, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
+      this.scene.cameras.main.zoomTo(CONFIG.DEFAULT_ZOOM, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
+    }
+  }
+}
+
+// класс, чтобы можно было рогатку в редакторе выставлять
+// фактически, просто обёртка над Slingshot
+export class SlingshotEntity extends Entity {
+  constructor(scene, x, y) {
+    super(
+      scene,
+      x,
+      y,
+      'slingshot',
+      Bodies.circle(0, 0, 50),
+    );
+
+    if (!CONFIG.EDITOR_MODE) {
+      this.sprite.destroy();
+
+      this.scene.slingshot = new Slingshot(this.scene, x, y);
     }
   }
 }

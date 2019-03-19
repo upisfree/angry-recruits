@@ -1,7 +1,9 @@
 import Phaser from '../lib/phaser';
+import CONFIG from '../config';
 import update from './shared/update';
 import preload from './shared/preload';
 import initDebugCamera from './shared/init-debug-camera';
+import addEnvironment from './shared/add-environment';
 import generateEntities from './shared/generate-entities';
 import Entity from '../entity/entity';
 import Shell from '../entity/shell/shell';
@@ -27,6 +29,7 @@ export default class Level1 extends (<any>Phaser.Scene) {
   preload = preload.bind(this);
   update = update.bind(this);
   initDebugCamera = initDebugCamera.bind(this);
+  addEnvironment = addEnvironment.bind(this);
 
   cameraControls: any;
 
@@ -41,37 +44,14 @@ export default class Level1 extends (<any>Phaser.Scene) {
 
     this.enemies = [];
     this.shells = [];
-    this.shellsQueue = [ExplosionShell, FatShell, RecruitShell, RecruitShell];
+    this.shellsQueue = [FatShell, ExplosionShell, RecruitShell, RecruitShell];
+
+    this.cameras.main.setZoom(CONFIG.DEFAULT_ZOOM);
 
     this.addEnvironment();
-
-    this.slingshot = new Slingshot(this, 600, 300);
 
     this.entites = generateEntities(Level1Data, this);
 
     this.initDebugCamera();
-  }
-
-  addEnvironment() {
-    let w = this.game.config.width;
-    let h = this.game.config.height;
-
-    // let tileSprite = this.add.tileSprite(this.game.config.width / 2, 1920, 20000, 290, 'grass');
-    // console.log(tileSprite);
-    // this.matter.add.tileBody(tileSprite, {});
-    // let grass = this.matter.add.image(this.game.config.width / 2, this.game.config.height, 'grass', null, { isStatic: true });
-
-    let skyTile = this.add.sprite(0, 0, 'sky')
-      .setDisplaySize(w * 4, h * 4)
-      .setPosition(w * 4, h)
-      .setOrigin(1);
-      // .setScrollFactor(0.5);
-
-    let grassTile = this.add.tileSprite(w / 2, h - 100, w * 10, 280, 'grass');
-    let grassSprite = this.matter.add.gameObject(grassTile).setStatic(true);
-
-    this.cameras.main.setBounds(0, -h * 3, w * 4, h * 4);
-
-    // this.matter.add.image(this.game.config.width / 2, this.game.config.height, 'grass', null, { isStatic: true });
   }
 }
