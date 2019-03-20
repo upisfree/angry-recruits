@@ -122,10 +122,18 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
     if (cur) {
       if (Phaser.Input.Keyboard.DownDuration(this.keyBracketLeft, keyDownDuration)) {
         cur.sprite.scaleX -= scaleStep;
+        
+        if (cur.sprite.scaleX <= 1) {
+          cur.sprite.scaleX = 1;
+        }
       } else if (Phaser.Input.Keyboard.DownDuration(this.keyBracketRight, keyDownDuration)) {
         cur.sprite.scaleX += scaleStep;
       } else if (Phaser.Input.Keyboard.DownDuration(this.keyQuote, keyDownDuration)) {
         cur.sprite.scaleY -= scaleStep;
+
+        if (cur.sprite.scaleY <= 1) {
+          cur.sprite.scaleY = 1;
+        }
       } else if (Phaser.Input.Keyboard.DownDuration(this.keyBackslash, keyDownDuration)) {
         cur.sprite.scaleY += scaleStep;
       } else if (Phaser.Input.Keyboard.DownDuration(this.keyA)) {
