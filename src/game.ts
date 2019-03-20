@@ -9,6 +9,7 @@ window.addEventListener('load', onload);
 
 function onload() {
   game = new Phaser.Game(phaserConfig);
+  game.score = 0;
 
   window.addEventListener('resize', resize.bind(this, game));
 

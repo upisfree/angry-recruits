@@ -1,30 +1,36 @@
 import Phaser from '../lib/phaser';
+import CONFIG from '../config';
 import update from './shared/update';
 import preload from './shared/preload';
 import initDebugCamera from './shared/init-debug-camera';
+import addEnvironment from './shared/add-environment';
 import generateEntities from './shared/generate-entities';
 import Entity from '../entity/entity';
 import Shell from '../entity/shell/shell';
 import Slingshot from '../entity/slingshot';
 import RecruitShell from '../entity/shell/recruit-shell';
 import FatShell from '../entity/shell/fat-shell';
+import ExplosionShell from '../entity/shell/explosion-shell';
 import { KeyedEntitiesList } from '../entity/list';
 import Level2Data from './data/level-2.data';
-import Level1 from './level-1';
+import Level1 from './level-2';
 
 export default class Level2 extends (<any>Phaser.Scene) {
   enemies: Array<Entity> = [];
   shells: Array<Shell> = [];
+  entites: Array<Entity>;
   shellsQueue: any;
   slingshot: Slingshot;
   nextLevel: any = Level1;
-  winTimeout: number = 5000;
+  winTimeout: number = 2500;
   isWin: boolean;
   winTimeEvent: any;
+  scoreText: any;
 
   preload = preload.bind(this);
   update = update.bind(this);
   initDebugCamera = initDebugCamera.bind(this);
+  addEnvironment = addEnvironment.bind(this);
 
   cameraControls: any;
 
@@ -39,37 +45,16 @@ export default class Level2 extends (<any>Phaser.Scene) {
 
     this.enemies = [];
     this.shells = [];
-    this.shellsQueue = [FatShell, RecruitShell, RecruitShell];
+    this.shellsQueue = [FatShell, ExplosionShell, RecruitShell, RecruitShell];
+
+    this.cameras.main.setZoom(CONFIG.DEFAULT_ZOOM);
 
     this.addEnvironment();
 
-    this.slingshot = new Slingshot(this, 600, 400);
-
-    generateEntities(Level2Data, this);
+    this.entites = generateEntities(Level2Data, this);
 
     this.initDebugCamera();
-  }
 
-  addEnvironment() {
-    let w = this.game.config.width;
-    let h = this.game.config.height;
-
-    // let tileSprite = this.add.tileSprite(this.game.config.width / 2, 1920, 20000, 290, 'grass');
-    // console.log(tileSprite);
-    // this.matter.add.tileBody(tileSprite, {});
-    // let grass = this.matter.add.image(this.game.config.width / 2, this.game.config.height, 'grass', null, { isStatic: true });
-
-    let skyTile = this.add.sprite(0, 0, 'sky')
-      .setDisplaySize(w * 4, h * 4)
-      .setPosition(w * 4, h)
-      .setOrigin(1);
-      // .setScrollFactor(0.5);
-
-    let grassTile = this.add.tileSprite(w / 2, h - 100, w * 10, 280, 'grass');
-    let grassSprite = this.matter.add.gameObject(grassTile).setStatic(true);
-
-    this.cameras.main.setBounds(0, -h * 3, w * 4, h * 4);
-
-    // this.matter.add.image(this.game.config.width / 2, this.game.config.height, 'grass', null, { isStatic: true });
+    this.scoreText = this.add.text(2000, 100, this.game.score).setFontSize(128);
   }
 }

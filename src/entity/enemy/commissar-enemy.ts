@@ -14,6 +14,10 @@ export default class CommissarEnemy extends Enemy {
       {
         steps: 2,
         momentum: 10000,
+        score: {
+          step: 2500,
+          destroy: 5000
+        },
         particles: {
           name: 'smoke',
           frameRate: 18

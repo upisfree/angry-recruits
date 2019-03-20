@@ -17,6 +17,10 @@ export default class ConcreteWall extends Entity {
       {
         steps: 2,
         momentum: 50000,
+        score: {
+          step: 500,
+          destroy: 1000
+        },
         particles: {
           name: 'smoke',
           frameRate: 18

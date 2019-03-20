@@ -1,10 +1,15 @@
 import Phaser from '../lib/phaser';
 import momentum from '../utils/momentum';
+import updateScore from '../utils/update-score';
 const { Vector } = Phaser.Physics.Matter.Matter;
 
 export interface DestructionOptions {
   steps: number;     // сколько текстур сменится от нетронутого объекта до полностью
   momentum: number; // максимальный импульс, после которого объект разрушается. при каждом ударе состояние объекта ухудшается
+  score?: {
+    step: number; // кол-во очков, начисляемых за этапы разрушения
+    destroy: number; // кол-во очков, начисляемых за полное разрушение объекта
+  };
   particles?: any; // частицы, которые создадутся после уничтожения объекта
 }
 
@@ -23,7 +28,9 @@ export default class Entity {
   destructionSteps: number; // сколько текстур меняется при разрушении
   destructionParticlesConfig: any; // конфиг частиц, которые появятся при разрушении
   destructionMomentum: number; // максимальное «здоровье» объекта
+  destructionScores: any; // сколько очков начисляется за разрушения
   currentMomentum: number; // «здоровье» объекта
+  currentDestructionStep: number = 1; // текущий этап разрушения объекта
 
   constructor(
     scene: any,
@@ -57,8 +64,9 @@ export default class Entity {
 
     if (destructionOptions) {
       this.destructionSteps = destructionOptions.steps;
-      this.destructionParticlesConfig = destructionOptions.particles;
+      this.destructionScores = destructionOptions.score;
       this.destructionMomentum = destructionOptions.momentum;
+      this.destructionParticlesConfig = destructionOptions.particles;
       this.currentMomentum = this.destructionMomentum;
 
       this.scene.matterCollision.addOnCollideStart({
@@ -91,21 +99,28 @@ export default class Entity {
         destructionStep = 1;
       }
 
+      if (this.currentDestructionStep !== destructionStep) {
+        this.currentDestructionStep = destructionStep;
+
+        if (this.destructionScores) {
+          updateScore(this.scene, this.destructionScores.step);
+          this.createDestroyScoreText(this.destructionScores.step);
+        }
+      }
+
       // будет лагать, если каждое столкновение переставлять текстуру?
       // если да, то менять только при изменении порога.
       this.sprite.setTexture(`${ this.textureKey }-${ destructionStep }`);
     } else if (this.currentMomentum <= 0) {
       if (this.destructionParticlesConfig) {
-        let particle = this.scene.add.sprite(this.sprite.x, this.sprite.y, this.destructionParticlesConfig.name);
+        this.createDestroyParticles();
+      }
 
-        this.scene.anims.create({
-          key: 'destroy',
-          frames: this.scene.anims.generateFrameNumbers(this.destructionParticlesConfig.name),
-          frameRate: this.destructionParticlesConfig.frameRate,
-          hideOnComplete: true
-        });
+      this.currentDestructionStep = this.destructionSteps;
 
-        particle.anims.play('destroy');
+      if (this.destructionScores) {
+        updateScore(this.scene, this.destructionScores.destroy);
+        this.createDestroyScoreText(this.destructionScores.destroy);
       }
 
       this.sprite.destroy(); // это удаляет и физическое тело
@@ -119,5 +134,32 @@ export default class Entity {
       w: max.x - min.x,
       h: max.y - min.y
     }
+  }
+
+  createDestroyParticles() {
+    let particle = this.scene.add.sprite(this.sprite.x, this.sprite.y, this.destructionParticlesConfig.name);
+
+    this.scene.anims.create({
+      key: 'destroy',
+      frames: this.scene.anims.generateFrameNumbers(this.destructionParticlesConfig.name),
+      frameRate: this.destructionParticlesConfig.frameRate,
+      hideOnComplete: true
+    });
+
+    particle.anims.play('destroy');
+  }
+
+  createDestroyScoreText(score) {
+    console.log(this);
+
+    let text = this.scene.add.text(this.sprite.x, this.sprite.y, score).setFontSize(64);
+
+    this.scene.time.addEvent({
+      delay: 1000,
+      callback: () => {
+        text.destroy();
+      },
+      callbackScope: this
+    });
   }
 }

@@ -21,10 +21,11 @@ export default class Level1 extends (<any>Phaser.Scene) {
   entites: Array<Entity>;
   shellsQueue: any;
   slingshot: Slingshot;
-  nextLevel: any = Level2;
-  winTimeout: number = 5000;
+  nextLevel: any = Level1;
+  winTimeout: number = 2500;
   isWin: boolean;
   winTimeEvent: any;
+  scoreText: any;
 
   preload = preload.bind(this);
   update = update.bind(this);
@@ -53,5 +54,7 @@ export default class Level1 extends (<any>Phaser.Scene) {
     this.entites = generateEntities(Level1Data, this);
 
     this.initDebugCamera();
+
+    this.scoreText = this.add.text(2000, 100, this.game.score).setFontSize(128);
   }
 }

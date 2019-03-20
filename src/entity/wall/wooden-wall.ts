@@ -17,6 +17,10 @@ export default class WoodenWall extends Entity {
       {
         steps: 2,
         momentum: 10000,
+        score: {
+          step: 100,
+          destroy: 200
+        },
         particles: {
           name: 'smoke',
           frameRate: 18
