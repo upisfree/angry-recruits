@@ -3,7 +3,7 @@ import CONFIG from '../config';
 import distance from '../utils/distance';
 const PhaserMatterCollisionPlugin = (<any>window).PhaserMatterCollisionPlugin;
 const { Body, Bodies, Constraint, Vector } = Phaser.Physics.Matter.Matter;
-import { default as Entity, DestructionOptions } from './entity';
+import { default as Entity, IDestructionOptions } from './entity';
 
 export default class Slingshot {
   x: number;

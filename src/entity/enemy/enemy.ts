@@ -1,4 +1,4 @@
-import { default as Entity, DestructionOptions } from '../entity';
+import { default as Entity, IDestructionOptions } from '../entity';
 
 export default class Enemy extends Entity {
   constructor(
@@ -7,7 +7,7 @@ export default class Enemy extends Entity {
     y: number,
     textureKey: string,
     body: any,
-    destructionOptions: DestructionOptions = null
+    destructionOptions: IDestructionOptions = null
   ) {
     super(scene, x, y, textureKey, body, destructionOptions);
 

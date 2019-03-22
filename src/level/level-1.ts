@@ -21,7 +21,7 @@ export default class Level1 extends (<any>Phaser.Scene) {
   entites: Array<Entity>;
   shellsQueue: any;
   slingshot: Slingshot;
-  nextLevel: any = Level1;
+  nextLevel: any;
   winTimeout: number = 2500;
   isWin: boolean;
   winTimeEvent: any;

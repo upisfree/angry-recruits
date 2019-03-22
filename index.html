@@ -35,18 +35,22 @@ body {
   transform: translate(-50%, -50%);
 }
 
-#start-button {
+#start-button,
+#vk-auth {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
     </style>
+
+    <script src="https://vk.com/js/api/openapi.js?160" type="text/javascript"></script>
   </head>
   <body>
     <button id="start-button">СТАРТ</button>
 
     <div id="game"></div>
+    <div id="vk-auth"></div>
 
     <script src="./lib/phaser.js"></script>
     <!-- <script src="./lib/phaser.min.js"></script> -->

@@ -26,5 +26,7 @@
     "webpack": "^4.29.2",
     "webpack-cli": "^3.2.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "mongoose": "^5.4.19"
+  }
 }

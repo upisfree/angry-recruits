@@ -3,7 +3,7 @@ import momentum from '../utils/momentum';
 import updateScore from '../utils/update-score';
 const { Vector } = Phaser.Physics.Matter.Matter;
 
-export interface DestructionOptions {
+export interface IDestructionOptions {
   steps: number;     // сколько текстур сменится от нетронутого объекта до полностью
   momentum: number; // максимальный импульс, после которого объект разрушается. при каждом ударе состояние объекта ухудшается
   score?: {
@@ -38,7 +38,7 @@ export default class Entity {
     y: number,
     textureKey: string,
     body: any,
-    destructionOptions: DestructionOptions = null
+    destructionOptions: IDestructionOptions = null
   ) {
     this.scene = scene;
     this.body = body;
