@@ -32,7 +32,8 @@ export default class Slingshot {
       this.scene.input.removeListener('pointerdown', this.currentShell.activatePower, this.currentShell, true);
     }
 
-    this.currentShell = new this.scene.shellsQueue[0](this.scene, this.x, this.y);
+    this.currentShell = this.scene.shells[0];
+    this.currentShell.sprite.setPosition(this.x, this.y);
 
     return this.currentShell;
   }
@@ -41,17 +42,19 @@ export default class Slingshot {
     this.constraint = this.scene.matter.add.constraint(null, null, null, null, {
       pointA: { x: this.x, y: this.y },
       bodyB: this.getNewShell().body, 
-      stiffness: 0.025
+      stiffness: 0.1,
     });
   }
 
   private afterUpdateCallback(e): void {
+    // console.log(this.constraint.length);
+
     // если уже можно отпустить рогатку и снаряд заряжен, то стреляем
     if (!this.scene.input.activePointer.primaryDown) {
       if (distance(this.constraint.pointA, this.currentShell.body.position) > this.maxTensionDistance && this.isNewShellSpawned) {
         this.isNewShellSpawned = false;
         this.lastShootTime = e.timestamp;
-        this.scene.shellsQueue.shift();
+        this.scene.shells.shift();
         this.constraint.bodyB = Bodies.rectangle(this.x, this.y, 1, 1);
 
         this.currentShell.isShooted = true;
@@ -64,7 +67,7 @@ export default class Slingshot {
     }
 
     // если уже можно спаунить новый снаряд — спауним (и снаряды не закончились)
-    if (e.timestamp - this.lastShootTime > this.shellSpawnTime && this.lastShootTime !== 0 && this.scene.shellsQueue.length) {
+    if (e.timestamp - this.lastShootTime > this.shellSpawnTime && this.lastShootTime !== 0 && this.scene.shells.length) {
       this.constraint.bodyB = this.getNewShell().body;
       this.lastShootTime = 0;
       this.isNewShellSpawned = true;

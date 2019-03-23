@@ -9,7 +9,7 @@ export default function(time, delta) {
   }
 
   // win check
-  let currentWinStatus = isWin(this.shells, this.enemies, this.slingshot, this.shellsQueue);
+  let currentWinStatus = isWin(this.shells, this.enemies, this.slingshot);
   let timeout;
   let callback;
 

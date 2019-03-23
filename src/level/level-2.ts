@@ -18,7 +18,6 @@ export default class Level2 extends (<any>Phaser.Scene) {
   enemies: Array<Entity> = [];
   shells: Array<Shell> = [];
   entites: Array<Entity>;
-  shellsQueue: any;
   slingshot: Slingshot;
   nextLevel: any = Level1;
   winTimeout: number = 2500;
@@ -49,7 +48,6 @@ export default class Level2 extends (<any>Phaser.Scene) {
 
     this.enemies = [];
     this.shells = [];
-    this.shellsQueue = [FatShell, ExplosionShell, RecruitShell, RecruitShell];
 
     this.cameras.main.setZoom(CONFIG.DEFAULT_ZOOM);
 
