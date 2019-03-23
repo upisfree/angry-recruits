@@ -1,7 +1,7 @@
-import Phaser from '../lib/phaser';
-const { Body, Common, Composite, Vector } = Phaser.Physics.Matter.Matter;
 import Entity from '../entity/entity';
+import Phaser from '../lib/phaser';
 import distance from './distance';
+const { Body, Common, Composite, Vector } = Phaser.Physics.Matter.Matter;
 
 export default function(entites: Array<Entity>, position, force: number) {
   for (let i = 0; i < entites.length; i++) {

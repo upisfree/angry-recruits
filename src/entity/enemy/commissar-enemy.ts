@@ -1,6 +1,5 @@
-import Phaser from '../../lib/phaser';
-import Enemy from './enemy';
 import BODY_DATA from '../body.data';
+import Enemy from './enemy';
 const PhysicsEditorParser = (<any>window).PhysicsEditorParser;
 
 export default class CommissarEnemy extends Enemy {

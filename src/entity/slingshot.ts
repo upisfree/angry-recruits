@@ -1,9 +1,9 @@
-import Phaser from '../lib/phaser';
 import CONFIG from '../config';
+import Phaser from '../lib/phaser';
 import distance from '../utils/distance';
+import { default as Entity } from './entity';
 const PhaserMatterCollisionPlugin = (<any>window).PhaserMatterCollisionPlugin;
 const { Body, Bodies, Constraint, Vector } = Phaser.Physics.Matter.Matter;
-import { default as Entity, IDestructionOptions } from './entity';
 
 export default class Slingshot {
   x: number;

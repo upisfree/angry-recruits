@@ -1,8 +1,8 @@
 import CONFIG from './config';
 import Phaser from './lib/phaser';
+import VK from './lib/vk';
 import phaserConfig from './phaser-config';
 import resize from './platform/resize';
-import VK from './lib/vk';
 
 let game;
 

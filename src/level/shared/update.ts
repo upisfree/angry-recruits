@@ -1,5 +1,4 @@
 import isWin from './is-win';
-import isAllSleeping from './is-all-sleeping';
 import onWin from './on-win';
 
 // смотреть sleeping всех тел, а не только врагов и снарядов

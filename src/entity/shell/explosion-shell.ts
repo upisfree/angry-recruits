@@ -1,11 +1,9 @@
-import Phaser from '../../lib/phaser';
 import CONFIG from '../../config';
+import Phaser from '../../lib/phaser';
+import explosion from '../../utils/explosion';
 import Shell from './shell';
-import BODY_DATA from '../body.data';
-import phaserConfig from '../../phaser-config';
 const { Bodies } = Phaser.Physics.Matter.Matter;
 const PhysicsEditorParser = (<any>window).PhysicsEditorParser;
-import explosion from '../../utils/explosion';
 
 export default class ExplosionShell extends Shell {
   bannedSprite: any;

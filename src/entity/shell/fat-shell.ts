@@ -1,6 +1,5 @@
 import Phaser from '../../lib/phaser';
 import Shell from './shell';
-import BODY_DATA from '../body.data';
 const { Bodies } = Phaser.Physics.Matter.Matter;
 const PhysicsEditorParser = (<any>window).PhysicsEditorParser;
 

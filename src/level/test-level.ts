@@ -6,21 +6,20 @@ import RecruitShell from '../entity/shell/recruit-shell';
 import Shell from '../entity/shell/shell';
 import Slingshot from '../entity/slingshot';
 import Phaser from '../lib/phaser';
-import Level2Data from './data/level-2.data';
-import Level1 from './level-2';
+import TestLevelData from './data/test-level.data';
 import addEnvironment from './shared/add-environment';
 import generateEntities from './shared/generate-entities';
 import initDebugCamera from './shared/init-debug-camera';
 import preload from './shared/preload';
 import update from './shared/update';
 
-export default class Level2 extends (<any>Phaser.Scene) {
+export default class TestLevel extends (<any>Phaser.Scene) {
   enemies: Array<Entity> = [];
   shells: Array<Shell> = [];
   entites: Array<Entity>;
   shellsQueue: any;
   slingshot: Slingshot;
-  nextLevel: any = Level1;
+  nextLevel: any;
   winTimeout: number = 2500;
   isWin: boolean;
   winTimeEvent: any;
@@ -44,13 +43,13 @@ export default class Level2 extends (<any>Phaser.Scene) {
 
     this.enemies = [];
     this.shells = [];
-    this.shellsQueue = [FatShell, ExplosionShell, RecruitShell, RecruitShell];
+    this.shellsQueue = [RecruitShell, ExplosionShell, FatShell];
 
     this.cameras.main.setZoom(CONFIG.DEFAULT_ZOOM);
 
     this.addEnvironment();
 
-    this.entites = generateEntities(Level2Data, this);
+    this.entites = generateEntities(TestLevelData, this);
 
     this.initDebugCamera();
 
