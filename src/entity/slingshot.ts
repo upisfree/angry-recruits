@@ -54,6 +54,8 @@ export default class Slingshot {
         this.scene.shellsQueue.shift();
         this.constraint.bodyB = Bodies.rectangle(this.x, this.y, 1, 1);
 
+        this.currentShell.isShooted = true;
+
         this.scene.cameras.main.startFollow(this.currentShell.sprite, true, 0.5, 0.5);
         this.scene.cameras.main.zoomTo(CONFIG.FLIGHT_ZOOM, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
 
@@ -82,7 +84,8 @@ export class SlingshotEntity extends Entity {
       scene,
       x,
       y,
-      'slingshot',
+      'slingshot', // type
+      'slingshot', // textureKey
       Bodies.circle(0, 0, 50),
     );
 

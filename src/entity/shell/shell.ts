@@ -1,6 +1,8 @@
 import { default as Entity, IDestructionOptions } from '../entity';
 
 export default class Shell extends Entity {
+  isShooted: boolean = false; // флаг, чтобы нельзя было взять снаряд после выстрела
+
   constructor(
     scene: any,
     x: number,
@@ -9,7 +11,7 @@ export default class Shell extends Entity {
     body: any,
     destructionOptions: IDestructionOptions = null
   ) {
-    super(scene, x, y, textureKey, body, destructionOptions);
+    super(scene, x, y, 'shell', textureKey, body, destructionOptions);
 
     scene.shells.push(this);
   }

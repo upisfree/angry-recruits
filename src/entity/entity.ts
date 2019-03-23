@@ -19,6 +19,7 @@ export interface IDestructionOptions {
 // 
 // PS: не Body, а Entity чтобы не путаться с Matter
 export default class Entity {
+  type: string;
   scene: any;
   sprite: any;
   body: any; // shortcut for sprite.body
@@ -36,11 +37,13 @@ export default class Entity {
     scene: any,
     x: number,
     y: number,
+    type: string,
     textureKey: string,
     body: any,
     destructionOptions: IDestructionOptions = null
   ) {
     this.scene = scene;
+    this.type = type;
     this.body = body;
     this.textureKey = textureKey; // если объект разрушается, то у него ставим нулевой этап разрушения
     

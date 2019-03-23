@@ -8,6 +8,7 @@ export default class ConcreteWall extends Entity {
       scene,
       x,
       y,
+      'wall',
       'concrete-wall',
       Bodies.rectangle(0, 0, w, h, {
         density: 0.1, // масса тела — 350 кг

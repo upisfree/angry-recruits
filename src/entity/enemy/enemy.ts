@@ -9,7 +9,7 @@ export default class Enemy extends Entity {
     body: any,
     destructionOptions: IDestructionOptions = null
   ) {
-    super(scene, x, y, textureKey, body, destructionOptions);
+    super(scene, x, y, 'enemy', textureKey, body, destructionOptions);
 
     scene.enemies.push(this);
   }

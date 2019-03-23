@@ -37,9 +37,14 @@ export default class Level1 extends (<any>Phaser.Scene) {
   }
 
   create() {
-    // this.matter.world.setBounds(undefined, undefined, undefined, undefined, undefined, false, false, false, true);
+    // здесь я поправил Phaser.Physics.Matter.PointerConstraint#getBodyPart
+    // чтобы можно было брать только ещё невыпущенные снаряды
     this.matter.add.mouseSpring();
-    this.matter.world.createDebugGraphic();
+
+    if (CONFIG.DEBUG_MODE) {
+      this.matter.world.createDebugGraphic();
+      this.initDebugCamera();
+    }
 
     this.enemies = [];
     this.shells = [];
@@ -50,8 +55,6 @@ export default class Level1 extends (<any>Phaser.Scene) {
     this.addEnvironment();
 
     this.entites = generateEntities(Level1Data, this);
-
-    this.initDebugCamera();
 
     this.scoreText = this.add.text(2000, 100, this.game.score).setFontSize(128);
   }
