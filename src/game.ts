@@ -12,6 +12,7 @@ function onload() {
   game = new Phaser.Game(phaserConfig);
   game.score = 0;
   game.isGameOver = false;
+  game.isLevelOver = false;
 
   VK.init({
     apiId: CONFIG.VK_AUTH_APP_ID

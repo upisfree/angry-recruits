@@ -17,7 +17,7 @@ import update from './shared/update';
 export default class Level2 extends (<any>Phaser.Scene) {
   enemies: Array<Entity> = [];
   shells: Array<Shell> = [];
-  entites: Array<Entity>;
+  entities: Array<Entity>;
   slingshot: Slingshot;
   nextLevel: any = Level1;
   winTimeout: number = 2500;
@@ -37,6 +37,8 @@ export default class Level2 extends (<any>Phaser.Scene) {
   }
 
   create() {
+    this.game.isLevelOver = false;
+
     // здесь я поправил Phaser.Physics.Matter.PointerConstraint#getBodyPart
     // чтобы можно было брать только ещё невыпущенные снаряды
     this.matter.add.mouseSpring();
@@ -53,7 +55,7 @@ export default class Level2 extends (<any>Phaser.Scene) {
 
     this.addEnvironment();
 
-    this.entites = generateEntities(Level2Data, this);
+    this.entities = generateEntities(Level2Data, this);
 
     this.scoreText = this.add.text(2000, 100, this.game.score).setFontSize(128);
   }

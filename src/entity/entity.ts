@@ -1,14 +1,15 @@
 import Phaser from '../lib/phaser';
 import momentum from '../utils/momentum';
 import updateScore from '../utils/update-score';
+import createScoreText from '../utils/create-score-text';
 const { Vector } = Phaser.Physics.Matter.Matter;
 
 export interface IDestructionOptions {
-  steps: number;     // сколько текстур сменится от нетронутого объекта до полностью
-  momentum: number; // максимальный импульс, после которого объект разрушается. при каждом ударе состояние объекта ухудшается
+  steps?: number;     // сколько текстур сменится от нетронутого объекта до полностью
+  momentum?: number; // максимальный импульс, после которого объект разрушается. при каждом ударе состояние объекта ухудшается
   score?: {
-    step: number; // кол-во очков, начисляемых за этапы разрушения
-    destroy: number; // кол-во очков, начисляемых за полное разрушение объекта
+    step?: number; // кол-во очков, начисляемых за этапы разрушения
+    destroy?: number; // кол-во очков, начисляемых за полное разрушение объекта
   };
   particles?: any; // частицы, которые создадутся после уничтожения объекта
 }
@@ -72,11 +73,13 @@ export default class Entity {
       this.destructionParticlesConfig = destructionOptions.particles;
       this.currentMomentum = this.destructionMomentum;
 
-      this.scene.matterCollision.addOnCollideStart({
-        objectA: this.sprite,
-        callback: this.onCollideStart,
-        context: this
-      });
+      if (this.destructionMomentum) {
+        this.scene.matterCollision.addOnCollideStart({
+          objectA: this.sprite,
+          callback: this.onCollideStart,
+          context: this
+        });        
+      }
     }
   }
 
@@ -107,7 +110,7 @@ export default class Entity {
 
         if (this.destructionScores) {
           updateScore(this.scene, this.destructionScores.step);
-          this.createDestroyScoreText(this.destructionScores.step);
+          createScoreText(this.scene, this, this.destructionScores.step);
         }
       }
 
@@ -123,7 +126,7 @@ export default class Entity {
 
       if (this.destructionScores) {
         updateScore(this.scene, this.destructionScores.destroy);
-        this.createDestroyScoreText(this.destructionScores.destroy);
+        createScoreText(this.scene, this, this.destructionScores.destroy);
       }
 
       this.sprite.destroy(); // это удаляет и физическое тело

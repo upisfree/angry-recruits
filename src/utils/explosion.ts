@@ -3,9 +3,9 @@ import Phaser from '../lib/phaser';
 import distance from './distance';
 const { Body, Common, Composite, Vector } = Phaser.Physics.Matter.Matter;
 
-export default function(entites: Array<Entity>, position, force: number) {
-  for (let i = 0; i < entites.length; i++) {
-    let body = entites[i].body;
+export default function(entities: Array<Entity>, position, force: number) {
+  for (let i = 0; i < entities.length; i++) {
+    let body = entities[i].body;
 
     if (body && !body.isStatic) {
       let forceMagnitude = force * body.mass;

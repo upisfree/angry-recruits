@@ -1,5 +1,6 @@
 import isWin from './is-win';
 import onWin from './on-win';
+import countShellsScore from './count-shells-score';
 
 // смотреть sleeping всех тел, а не только врагов и снарядов
 export default function(time, delta) {
@@ -35,26 +36,27 @@ export default function(time, delta) {
 }
 
 function win() {
-  if (!this.game.isGameOver) {
+  if (!this.game.isGameOver && !this.game.isLevelOver) {
     console.log('win');
 
-    if (this.nextLevel) {
-      this.scene.start(this.nextLevel.name);    
-    } else {
-      this.game.isGameOver = true;
+    this.game.isLevelOver = true;
 
-      onWin(this);
+    countShellsScore(this, () => {
+      if (this.nextLevel) {
+        this.scene.start(this.nextLevel.name);
+      } else {
+        this.game.isGameOver = true;
 
-      // tmp
-      // this.scene.pause();
-      // location.reload();
-    }
+        onWin(this);
+      }
+    });
   }
 }
 
 function fail() {
-  if (!this.game.isGameOver) {
+  if (!this.game.isGameOver && !this.game.isLevelOver) {
     this.game.isGameOver = true;
+    this.game.isLevelOver = true;
 
     console.log('fail');
 

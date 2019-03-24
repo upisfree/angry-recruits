@@ -9,7 +9,13 @@ export default class RecruitShell extends Shell {
       x,
       y,
       'recruit-shell',
-      PhysicsEditorParser.parseBody(x, y, 1, 1, BODY_DATA['recruit-shell'])
+      PhysicsEditorParser.parseBody(x, y, 1, 1, BODY_DATA['recruit-shell']),
+      {
+        steps: 1,
+        score: {
+          destroy: 10000
+        }
+      }
     );
   }
 

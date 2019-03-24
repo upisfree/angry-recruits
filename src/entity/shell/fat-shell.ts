@@ -14,6 +14,12 @@ export default class FatShell extends Shell {
         density: 0.015, // масса тела — 74 кг
         restitution: 0.25
       }),
+      {
+        steps: 1,
+        score: {
+          destroy: 10000
+        }
+      }
       // PhysicsEditorParser.parseBody(x, y, 1, 1, BODY_DATA['fat-shell'])
     );
   }

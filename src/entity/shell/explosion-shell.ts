@@ -22,6 +22,12 @@ export default class ExplosionShell extends Shell {
         frictionStatic: 100,
       }),
       // PhysicsEditorParser.parseBody(x, y, 1, 1, BODY_DATA['shahid-shell'])
+      {
+        steps: 1,
+        score: {
+          destroy: 10000
+        }
+      }
     );
 
     if (!CONFIG.EDITOR_MODE) {
@@ -38,7 +44,7 @@ export default class ExplosionShell extends Shell {
       // this.bannedSprite.destroy();
     }
 
-    explosion(this.scene.entites, this.body.position, 10);
+    explosion(this.scene.entities, this.body.position, 10);
 
     this.showSmoke();
 

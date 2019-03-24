@@ -47,8 +47,6 @@ export default class Slingshot {
   }
 
   private afterUpdateCallback(e): void {
-    // console.log(this.constraint.length);
-
     // если уже можно отпустить рогатку и снаряд заряжен, то стреляем
     if (!this.scene.input.activePointer.primaryDown) {
       if (distance(this.constraint.pointA, this.currentShell.body.position) > this.maxTensionDistance && this.isNewShellSpawned) {
