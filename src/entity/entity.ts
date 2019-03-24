@@ -79,10 +79,10 @@ export default class Entity {
           objectA: this.sprite,
           callback: this.onCollideStart,
           context: this
-        });        
+        });
       }
     }
-  }
+  } 
 
   onDestroy(sprite): void {
 
@@ -154,19 +154,5 @@ export default class Entity {
     });
 
     particle.anims.play('destroy');
-  }
-
-  createDestroyScoreText(score) {
-    console.log(this);
-
-    let text = this.scene.add.text(this.sprite.x, this.sprite.y, score).setFontSize(64);
-
-    this.scene.time.addEvent({
-      delay: 1000,
-      callback: () => {
-        text.destroy();
-      },
-      callbackScope: this
-    });
   }
 }

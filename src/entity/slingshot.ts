@@ -2,6 +2,7 @@ import CONFIG from '../config';
 import Phaser from '../lib/phaser';
 import distance from '../utils/distance';
 import { default as Entity } from './entity';
+import Shell from './shell/shell';
 const PhaserMatterCollisionPlugin = (<any>window).PhaserMatterCollisionPlugin;
 const { Body, Bodies, Constraint, Vector } = Phaser.Physics.Matter.Matter;
 
@@ -10,17 +11,21 @@ export default class Slingshot {
   y: number;
   scene: any;
   constraint: any;
-  currentShell: any;
+  previousShell: Shell;
+  currentShell: Shell;
   frontSprite: any;
   backSprite: any;
   rubberSpriteFront: any;
   rubberSpriteBack: any;
   isNewShellSpawned: boolean = true; // чтобы работала задержка при спауне снаряда
   lastShootTime: number = 0;
+  shellDirtyTime: number = 0;
+  lastPathSpawnTime: number = 0;
 
   // конфиг
   maxTensionDistance: number = 60; // расстояние, после которого можно отпустить рогатку
   shellSpawnTime: number = 3500; // время, после которого можно спаунить новый снаряд
+  pathSpawnTime: number = 25; // время, после которого можно спаунить часть пути полёта
 
   constructor(scene, x, y) {
     this.scene = scene;
@@ -61,6 +66,7 @@ export default class Slingshot {
 
     this.currentShell = this.scene.shells[0];
     this.currentShell.sprite.setPosition(this.x, this.y);
+    this.currentShell.isDirty = false;
 
     return this.currentShell;
   }
@@ -73,7 +79,8 @@ export default class Slingshot {
     });
   }
 
-  private afterUpdateCallback(e): void {
+  private updateRubber() {
+    // чтобы тянулась резинка у рогатки
     if (this.currentShell && !this.currentShell.isShooted) {
       let textureRotation = Math.PI / -2;
 
@@ -89,18 +96,19 @@ export default class Slingshot {
       this.rubberSpriteFront.displayHeight = 0;
       this.rubberSpriteBack.displayHeight = 0;
     }
+  }
 
+  private updateWhenPrimaryPointerDown() {
     // если уже можно отпустить рогатку и снаряд заряжен, то стреляем
     if (!this.scene.input.activePointer.primaryDown) {
       this.rubberSpriteFront.displayHeight = 0;
 
       if (distance(this.constraint.pointA, this.currentShell.body.position) > this.maxTensionDistance && this.isNewShellSpawned) {
         this.isNewShellSpawned = false;
-        this.lastShootTime = e.timestamp;
-        this.scene.shells.shift();
         this.constraint.bodyB = Bodies.rectangle(this.x, this.y, 1, 1);
 
         this.currentShell.isShooted = true;
+        this.currentShell.pathGroup = this.scene.add.group();
 
         this.scene.cameras.main.startFollow(this.currentShell.sprite, true, 0.5, 0.5);
         this.scene.cameras.main.zoomTo(CONFIG.FLIGHT_ZOOM, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
@@ -108,17 +116,71 @@ export default class Slingshot {
         this.scene.input.once('pointerdown', this.currentShell.activatePower, this.currentShell);
       }
     }
+  }
 
+  private updateOnDirtyCurrentShell(e) {
+    // чтобы задержка после выстрела сработала только после первого столкновения у снаряда
+    if (this.currentShell.isDirty && this.currentShell.isShooted && this.shellDirtyTime === 0) {
+      this.scene.shells.shift();
+      this.shellDirtyTime = e.timestamp;
+      this.lastShootTime = e.timestamp;
+
+      if (this.previousShell && this.previousShell.pathGroup) {
+        let pathSprites = this.previousShell.pathGroup.getChildren();
+        pathSprites.forEach((s) => {
+          let tween = this.scene.tweens.add({
+            targets: s,
+            scaleX: 5,
+            scaleY: 5,
+            alpha: 0,
+            ease: 'Quad.easeOut',
+            duration: 500,
+            onComplete: () => {
+              this.previousShell.pathGroup.clear(true, true);
+            },
+          });
+        });
+      }
+    }
+  }
+
+  private updateFlightPath(e) {
+    // рисуем путь полёта
+    if (
+      !this.isNewShellSpawned &&
+      !this.currentShell.isDirty &&
+      this.currentShell.pathGroup &&
+      (e.timestamp - this.lastPathSpawnTime > this.pathSpawnTime)
+    ) {
+      let pathPart = this.scene.add.sprite(this.currentShell.sprite.x, this.currentShell.sprite.y, 'path-dot');
+
+      this.currentShell.pathGroup.add(pathPart);
+
+      this.lastPathSpawnTime = e.timestamp;
+    }
+  }
+
+  private updateNewShellSpawn(e) {
     // если уже можно спаунить новый снаряд — спауним (и снаряды не закончились)
     if (e.timestamp - this.lastShootTime > this.shellSpawnTime && this.lastShootTime !== 0 && this.scene.shells.length) {
+      this.previousShell = this.currentShell;
       this.constraint.bodyB = this.getNewShell().body;
       this.lastShootTime = 0;
+      this.shellDirtyTime = 0;
       this.isNewShellSpawned = true;
 
       this.scene.cameras.main.stopFollow();
       this.scene.cameras.main.pan(this.x, this.y, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
       this.scene.cameras.main.zoomTo(CONFIG.DEFAULT_ZOOM, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
     }
+  }
+
+  private afterUpdateCallback(e): void {
+    this.updateRubber();
+    this.updateWhenPrimaryPointerDown();
+    this.updateOnDirtyCurrentShell(e);
+    this.updateFlightPath(e);
+    this.updateNewShellSpawn(e);
   }
 }
 

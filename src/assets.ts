@@ -6,6 +6,7 @@ const ASSETS = {
     'slingshot-front': 'assets/environment/slingshot/slingshot-front.png',
     'slingshot-back': 'assets/environment/slingshot/slingshot-back.png',
     'slingshot-rubber': 'assets/environment/slingshot/slingshot-rubber.png',
+    'path-dot': 'assets/particle/path-dot.png',
     'banned-organisation': 'assets/event/banned-organisation.png',
     'wooden-wall-1': 'assets/wall/wood/wooden-wall-1.png',
     'wooden-wall-2': 'assets/wall/wood/wooden-wall-2.png',
