@@ -12,6 +12,7 @@ import addEnvironment from './shared/add-environment';
 import generateEntities from './shared/generate-entities';
 import initDebugCamera from './shared/init-debug-camera';
 import preload from './shared/preload';
+import create from './shared/create';
 import update from './shared/update';
 
 export default class Level2 extends (<any>Phaser.Scene) {
@@ -19,6 +20,7 @@ export default class Level2 extends (<any>Phaser.Scene) {
   shells: Array<Shell> = [];
   entities: Array<Entity>;
   slingshot: Slingshot;
+  levelData: any = Level2Data;
   nextLevel: any = Level1;
   winTimeout: number = 2500;
   isWin: boolean;
@@ -26,6 +28,7 @@ export default class Level2 extends (<any>Phaser.Scene) {
   scoreText: any;
 
   preload = preload.bind(this);
+  create = create.bind(this);
   update = update.bind(this);
   initDebugCamera = initDebugCamera.bind(this);
   addEnvironment = addEnvironment.bind(this);
@@ -34,29 +37,5 @@ export default class Level2 extends (<any>Phaser.Scene) {
 
   constructor(config) {
     super(config);
-  }
-
-  create() {
-    this.game.isLevelOver = false;
-
-    // здесь я поправил Phaser.Physics.Matter.PointerConstraint#getBodyPart
-    // чтобы можно было брать только ещё невыпущенные снаряды
-    this.matter.add.mouseSpring();
-
-    if (CONFIG.DEBUG_MODE) {
-      this.matter.world.createDebugGraphic();
-      this.initDebugCamera();
-    }
-
-    this.enemies = [];
-    this.shells = [];
-
-    this.cameras.main.setZoom(CONFIG.DEFAULT_ZOOM);
-
-    this.addEnvironment();
-
-    this.entities = generateEntities(Level2Data, this);
-
-    this.scoreText = this.add.text(2000, 100, this.game.score).setFontSize(128);
   }
 }
