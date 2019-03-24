@@ -54,6 +54,7 @@ export default class Entity {
 
     this.sprite = this.scene.matter.add.sprite(0, 0, startTextureKey, 0);
     this.sprite.entityInstance = this;
+    this.sprite.depth = 10;
 
     // events
     this.sprite.on('destroy', this.onDestroy.bind(this));

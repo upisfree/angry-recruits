@@ -15,7 +15,7 @@ export default {
     default: 'matter',
     matter: {
       enableSleeping: false,
-      debug: true,
+      debug: (CONFIG.DEBUG_MODE) ? true : false,
       debugBodyColor: 0xffffff,
       // plugins: {
       //   wrap: true
