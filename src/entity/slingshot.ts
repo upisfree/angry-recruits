@@ -26,6 +26,7 @@ export default class Slingshot {
   maxTensionDistance: number = 60; // расстояние, после которого можно отпустить рогатку
   shellSpawnTime: number = 3500; // время, после которого можно спаунить новый снаряд
   pathSpawnTime: number = 25; // время, после которого можно спаунить часть пути полёта
+  slingshotSpritesScaleFactor: number = 2;
 
   constructor(scene, x, y) {
     this.scene = scene;
@@ -38,20 +39,18 @@ export default class Slingshot {
   }
 
   private createSprites(): any {
-    let scaleFactor = 2;
-
     this.frontSprite = this.scene.add.sprite(this.x, this.y + 150, 'slingshot-front')
-      .setScale(scaleFactor);
+      .setScale(this.slingshotSpritesScaleFactor);
 
     this.backSprite = this.scene.add.sprite(this.x + 55, this.y + 35, 'slingshot-back')
-      .setScale(scaleFactor);
+      .setScale(this.slingshotSpritesScaleFactor);
 
     this.rubberSpriteFront = this.scene.add.sprite(this.x - 40, this.y - 50, 'slingshot-rubber')
-      .setScale(scaleFactor)
+      .setScale(this.slingshotSpritesScaleFactor)
       .setOrigin(0, 0);
 
     this.rubberSpriteBack = this.scene.add.sprite(this.x + 50, this.y, 'slingshot-rubber')
-      .setScale(scaleFactor)
+      .setScale(this.slingshotSpritesScaleFactor)
       .setOrigin(0, 0);
 
     this.frontSprite.depth = 15;
@@ -67,6 +66,7 @@ export default class Slingshot {
     this.currentShell = this.scene.shells[0];
     this.currentShell.sprite.setPosition(this.x, this.y);
     this.currentShell.isDirty = false;
+    this.currentShell.isInSlingshot = true;
 
     return this.currentShell;
   }
@@ -164,6 +164,7 @@ export default class Slingshot {
     // если уже можно спаунить новый снаряд — спауним (и снаряды не закончились)
     if (e.timestamp - this.lastShootTime > this.shellSpawnTime && this.lastShootTime !== 0 && this.scene.shells.length) {
       this.previousShell = this.currentShell;
+      this.previousShell.isInSlingshot = false;
       this.constraint.bodyB = this.getNewShell().body;
       this.lastShootTime = 0;
       this.shellDirtyTime = 0;
@@ -193,9 +194,11 @@ export class SlingshotEntity extends Entity {
       x,
       y,
       'slingshot', // type
-      'slingshot', // textureKey
+      'slingshot-front', // textureKey
       Bodies.circle(0, 0, 50),
     );
+
+    this.sprite.setScale(2);
 
     if (!CONFIG.EDITOR_MODE) {
       this.sprite.destroy();

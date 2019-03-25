@@ -223,6 +223,7 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
   newEntity(e) {
     let ne = new KeyedEntitiesList[e.type](this, e.x, e.y);
 
+    ne.type = '_editor';
     ne.sprite
       .setScale(e.scaleX, e.scaleY)
       .setRotation(e.rotation);

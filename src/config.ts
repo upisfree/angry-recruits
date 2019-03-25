@@ -1,6 +1,6 @@
 const CONFIG = {
-  DEBUG_MODE: false,
-  EDITOR_MODE: false,
+  DEBUG_MODE: true,
+  EDITOR_MODE: true,
   EDITOR_URL: 'http://localhost:1488/',
   SCORE_URL: 'http://localhost:8888/score', // адрес, куда слать результат (может, лучше название придумать?)
   // SCORE_URL: 'http://134.209.226.168/score', // адрес, куда слать результат (может, лучше название придумать?)
@@ -9,7 +9,7 @@ const CONFIG = {
   FLIGHT_ZOOM: 0.75,
   FLIGHT_ZOOM_DURATION: 1000,
   FLIGHT_ZOOM_EASING: 'Expo.easeInOut',
-  DEFAULT_ZOOM: 0.425,
+  DEFAULT_ZOOM: 0.5,
   MIN_ZOOM: 0.35,
   MAX_ZOOM: 1,
 };
