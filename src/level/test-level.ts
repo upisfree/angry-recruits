@@ -1,17 +1,12 @@
-import CONFIG from '../config';
 import Entity from '../entity/entity';
-import ExplosionShell from '../entity/shell/explosion-shell';
-import FatShell from '../entity/shell/fat-shell';
-import RecruitShell from '../entity/shell/recruit-shell';
 import Shell from '../entity/shell/shell';
 import Slingshot from '../entity/slingshot';
 import Phaser from '../lib/phaser';
 import TestLevelData from './data/test-level.data';
 import addEnvironment from './shared/add-environment';
-import generateEntities from './shared/generate-entities';
+import create from './shared/create';
 import initDebugCamera from './shared/init-debug-camera';
 import preload from './shared/preload';
-import create from './shared/create';
 import update from './shared/update';
 
 export default class TestLevel extends (<any>Phaser.Scene) {

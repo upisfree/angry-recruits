@@ -1,16 +1,12 @@
-import CONFIG from '../config';
 import Entity from '../entity/entity';
-import ExplosionShell from '../entity/shell/explosion-shell';
-import FatShell from '../entity/shell/fat-shell';
-import RecruitShell from '../entity/shell/recruit-shell';
 import Shell from '../entity/shell/shell';
 import Slingshot from '../entity/slingshot';
 import Phaser from '../lib/phaser';
 import Level1Data from './data/level-1.data';
 import addEnvironment from './shared/add-environment';
+import create from './shared/create';
 import initDebugCamera from './shared/init-debug-camera';
 import preload from './shared/preload';
-import create from './shared/create';
 import update from './shared/update';
 
 export default class Level1 extends (<any>Phaser.Scene) {

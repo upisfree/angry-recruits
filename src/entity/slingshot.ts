@@ -27,6 +27,7 @@ export default class Slingshot {
   shellSpawnTime: number = 3500; // время, после которого можно спаунить новый снаряд
   pathSpawnTime: number = 25; // время, после которого можно спаунить часть пути полёта
   slingshotSpritesScaleFactor: number = 2;
+  shellVelocityCutFactor: number = 3; // во сколько раз нужно уменьшить силу полёта снаряда (т.к. я не могу нормально это сделать через constraint)
 
   constructor(scene, x, y) {
     this.scene = scene;
@@ -109,6 +110,13 @@ export default class Slingshot {
 
         this.currentShell.isShooted = true;
         this.currentShell.pathGroup = this.scene.add.group();
+
+        this.currentShell.sprite.setVelocity(
+          this.currentShell.body.velocity.x / this.shellVelocityCutFactor,
+          this.currentShell.body.velocity.y / this.shellVelocityCutFactor
+        );
+
+        console.log(this.currentShell.body);
 
         this.scene.cameras.main.startFollow(this.currentShell.sprite, true, 0.5, 0.5);
         this.scene.cameras.main.zoomTo(CONFIG.FLIGHT_ZOOM, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);

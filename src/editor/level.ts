@@ -3,6 +3,7 @@
 // чтобы выбрать сущность, кликни на неё                //
 // чтобы перетащить — тащи                              //
 //                                                      //
+// S — сохранить уровень                                //
 // Q & E — зум камеры                                   //
 // A & D — поворот сущности                             //
 // BracketLeft & BracketRight — скейл по X              //
@@ -19,11 +20,12 @@ import { PlainEntitiesList, KeyedEntitiesList } from '../entity/list';
 const { Body } = Phaser.Physics.Matter.Matter;
 
 // к сожалению, модули в es6 только статичные и генерировать их нельзя :(
+import TestLevelData from '../level/data/test-level.data';
 import Level1Data from '../level/data/level-1.data';
 import Level2Data from '../level/data/level-2.data';
 
-const LEVEL_NAME = 'level-1';
-const LEVEL_DATA = Level1Data;
+const LEVEL_NAME = 'level-2';
+const LEVEL_DATA = Level2Data;
 
 const ENTITY_SELECTED_COLOR = 0x00ffff;
 
@@ -43,6 +45,7 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
   currentEntity: Entity;
   entitiesListWithKeys: any;
 
+  keyS: any;
   keyA: any;
   keyD: any;
   keyPlus: any;
@@ -81,6 +84,7 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
     this.addEnvironment();
     this.cameras.main.setBackgroundColor('#f0f0f0')
 
+    this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.keyPlus = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.PLUS);
@@ -101,13 +105,13 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
       });
     }
 
-    setInterval(() => {
+    this.input.keyboard.on('keydown_S', (e) => {
       fetch(CONFIG.EDITOR_URL, {
         method: 'POST',
         body: this.generateJson(),
         // credentials: 'include'
       });
-    }, 2500);
+    });
   }
 
   update(time, delta) {
@@ -183,6 +187,7 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
           NEW_ENTITY_START_POSITION_X,
           NEW_ENTITY_START_POSITION_Y
         );
+        ne.type = '_editor';
         ne.body.frictionAir = 1;
         ne.destructionMomentum = Infinity;
         ne.sprite.setInteractive();
