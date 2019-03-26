@@ -27,7 +27,6 @@ export default class Slingshot {
   shellSpawnTime: number = 3500; // время, после которого можно спаунить новый снаряд
   pathSpawnTime: number = 25; // время, после которого можно спаунить часть пути полёта
   slingshotSpritesScaleFactor: number = 2;
-  shellVelocityCutFactor: number = 3; // во сколько раз нужно уменьшить силу полёта снаряда (т.к. я не могу нормально это сделать через constraint)
 
   constructor(scene, x, y) {
     this.scene = scene;
@@ -112,14 +111,12 @@ export default class Slingshot {
         this.currentShell.pathGroup = this.scene.add.group();
 
         this.currentShell.sprite.setVelocity(
-          this.currentShell.body.velocity.x / this.shellVelocityCutFactor,
-          this.currentShell.body.velocity.y / this.shellVelocityCutFactor
+          this.currentShell.body.velocity.x / this.currentShell.velocityCutFactor,
+          this.currentShell.body.velocity.y / this.currentShell.velocityCutFactor
         );
 
-        console.log(this.currentShell.body);
-
-        this.scene.cameras.main.startFollow(this.currentShell.sprite, true, 0.5, 0.5);
-        this.scene.cameras.main.zoomTo(CONFIG.FLIGHT_ZOOM, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
+        // this.scene.cameras.main.startFollow(this.currentShell.sprite, true, 0.5, 0.5);
+        // this.scene.cameras.main.zoomTo(CONFIG.FLIGHT_ZOOM, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
 
         this.scene.input.once('pointerdown', this.currentShell.activatePower, this.currentShell);
       }
@@ -156,6 +153,7 @@ export default class Slingshot {
     // рисуем путь полёта
     if (
       !this.isNewShellSpawned &&
+      this.currentShell.sprite.scene &&
       !this.currentShell.isDirty &&
       this.currentShell.pathGroup &&
       (e.timestamp - this.lastPathSpawnTime > this.pathSpawnTime)
@@ -178,9 +176,9 @@ export default class Slingshot {
       this.shellDirtyTime = 0;
       this.isNewShellSpawned = true;
 
-      this.scene.cameras.main.stopFollow();
-      this.scene.cameras.main.pan(this.x, this.y, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
-      this.scene.cameras.main.zoomTo(CONFIG.DEFAULT_ZOOM, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
+      // this.scene.cameras.main.stopFollow();
+      // this.scene.cameras.main.pan(this.x, this.y, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
+      // this.scene.cameras.main.zoomTo(CONFIG.DEFAULT_ZOOM, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
     }
   }
 

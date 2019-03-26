@@ -4,6 +4,7 @@ export default class Shell extends Entity {
   isShooted: boolean = false; // флаг, чтобы нельзя было взять снаряд после выстрела
   isDirty: boolean = false; // «девственен» ли снаряд — не было ли ещё ни одного столкновения
   isInSlingshot: boolean = false; // флаг, чтобы можно было таскать только снаряд в рогатке
+  velocityCutFactor: number = 1; // во сколько раз нужно уменьшить силу полёта снаряда (т.к. я не могу нормально это сделать через constraint)
   pathGroup: any; // группа, в которой хранятся все спрайты, показывающие путь полёта
 
   constructor(

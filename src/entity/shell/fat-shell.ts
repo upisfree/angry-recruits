@@ -4,6 +4,8 @@ const { Bodies } = Phaser.Physics.Matter.Matter;
 const PhysicsEditorParser = (<any>window).PhysicsEditorParser;
 
 export default class FatShell extends Shell {
+  velocityCutFactor: number = 3; // во сколько раз нужно уменьшить силу полёта снаряда (т.к. я не могу нормально это сделать через constraint)
+
   constructor(scene, x, y) {
     super(
       scene,
@@ -26,7 +28,7 @@ export default class FatShell extends Shell {
 
   activatePower() {
     this.sprite.setDensity(0.1);
-    this.sprite.setBounce(0);
+    this.sprite.setBounce(0.1);
     this.sprite.setFriction(1);
     this.sprite.setFrictionStatic(10);
 

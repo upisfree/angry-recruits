@@ -3,6 +3,8 @@ import Shell from './shell';
 const PhysicsEditorParser = (<any>window).PhysicsEditorParser;
 
 export default class RecruitShell extends Shell {
+  velocityCutFactor: number = 3; // во сколько раз нужно уменьшить силу полёта снаряда (т.к. я не могу нормально это сделать через constraint)
+
   constructor(scene, x, y) {
     super(
       scene,
