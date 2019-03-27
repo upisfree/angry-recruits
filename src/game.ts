@@ -5,10 +5,15 @@ import phaserConfig from './phaser-config';
 import resize from './platform/resize';
 
 let game;
+let subpoenasElement = document.querySelector('.subpoenas');
 
-window.addEventListener('load', onload);
+// TODO: iOS? touchstart? tap?
+subpoenasElement.addEventListener('click', startGame);
 
-function onload() {
+function startGame() {
+  subpoenasElement.classList.remove('subpoenas-front');
+  subpoenasElement.classList.add('subpoenas-back');
+
   game = new Phaser.Game(phaserConfig);
   game.score = 0;
   game.isGameOver = false;
