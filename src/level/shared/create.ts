@@ -8,6 +8,8 @@ export default function() {
   // чтобы можно было брать только ещё невыпущенные снаряды
   this.matter.add.mouseSpring();
 
+  this.cameras.main.setBackgroundColor(CONFIG.BACKGROUND_COLOR);
+
   if (CONFIG.DEBUG_MODE) {
     this.matter.world.createDebugGraphic();
     this.initDebugCamera();

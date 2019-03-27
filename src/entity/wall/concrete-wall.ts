@@ -14,6 +14,7 @@ export default class ConcreteWall extends Entity {
         density: 0.1, // масса тела — 350 кг
         restitution: 0.1,
         friction: 1,
+        frictionStatic: 1,
       }),
       {
         steps: 2,

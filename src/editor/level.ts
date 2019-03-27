@@ -20,12 +20,12 @@ import { PlainEntitiesList, KeyedEntitiesList } from '../entity/list';
 const { Body } = Phaser.Physics.Matter.Matter;
 
 // к сожалению, модули в es6 только статичные и генерировать их нельзя :(
-import TestLevelData from '../level/data/test-level.data';
 import Level1Data from '../level/data/level-1.data';
 import Level2Data from '../level/data/level-2.data';
+import Level3Data from '../level/data/level-3.data';
 
-const LEVEL_NAME = 'level-2';
-const LEVEL_DATA = Level2Data;
+const LEVEL_NAME = 'level-3';
+const LEVEL_DATA = Level3Data;
 
 const ENTITY_SELECTED_COLOR = 0x00ffff;
 
@@ -98,6 +98,8 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
 
     this.initCamera();
     this.displayAllEnities();
+
+    this.levelNameText = this.add.text(100, -1900, LEVEL_NAME).setFontSize(128);
 
     if (LEVEL_DATA) {
       LEVEL_DATA.forEach((e) => {

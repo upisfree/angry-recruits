@@ -14,6 +14,7 @@ export default class WoodenWall extends Entity {
         density: 0.005, // масса тела — 350 кг
         restitution: 0.25,
         friction: 1,
+        frictionStatic: 1,
       }),
       {
         steps: 2,

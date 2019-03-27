@@ -14,7 +14,8 @@ export default function() {
     // .setScrollFactor(0.5);
 
   let grassTile = this.add.tileSprite(w / 2, h - 100, w * 10, 280, 'grass');
-  let grassSprite = this.matter.add.gameObject(grassTile).setStatic(true);
+  let grassSprite = this.matter.add.gameObject(grassTile)
+    .setStatic(true);
 
   this.cameras.main.setBounds(0, -h * 3, w * 4, h * 4);
 
