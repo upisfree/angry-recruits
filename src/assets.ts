@@ -1,7 +1,8 @@
 const ASSETS = {
   IMAGES: {
     'transparency': 'assets/transparency.png',
-    'grass': 'assets/environment/grass.png',
+    'grass-top': 'assets/environment/grass/grass-top.png',
+    'grass-bottom': 'assets/environment/grass/grass-bottom.png',
     'sky': 'assets/environment/sky.jpg',
     'slingshot-front': 'assets/environment/slingshot/slingshot-front.png',
     'slingshot-back': 'assets/environment/slingshot/slingshot-back.png',

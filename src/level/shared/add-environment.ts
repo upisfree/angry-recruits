@@ -13,9 +13,12 @@ export default function() {
     .setOrigin(1);
     // .setScrollFactor(0.5);
 
-  let grassTile = this.add.tileSprite(w / 2, h - 100, w * 10, 280, 'grass');
-  let grassSprite = this.matter.add.gameObject(grassTile)
+  // 87 — высота картинки верхней части травы
+  // 193 — высота картинки нижней части травы
+  let grassBottomTile = this.add.tileSprite(w / 2, h - 100, w * 10, 193, 'grass-bottom');
+  let grassBottomSprite = this.matter.add.gameObject(grassBottomTile)
     .setStatic(true);
+  let grassBottomTop = this.add.tileSprite(w / 2, h - 242, w * 10, 87, 'grass-top');
 
   this.cameras.main.setBounds(0, -h * 3, w * 4, h * 4);
 
