@@ -54,6 +54,10 @@ export default class ExplosionShell extends Shell {
     // this.scene.cameras.main.zoomTo(CONFIG.DEFAULT_ZOOM, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
     this.scene.cameras.main.shake(75, 0.55);
     this.sprite.destroy();
+
+    this.isDirty = true;
+    this.isShooted = true;
+    this.isInSlingshot = false;
   }
 
   showSmoke() {

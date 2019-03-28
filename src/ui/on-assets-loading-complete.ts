@@ -1,7 +1,8 @@
-let subpoenas = document.querySelector('.subpoenas');
-let gameElement = document.querySelector('#game');
+import ui from './ui';
 
 export default function(progress) {
-  subpoenas.classList.add('hidden');
-  gameElement.classList.remove('hidden');
+  ui.hide('.subpoenas');
+  ui.show('#game');
+
+  ui.showUI();
 }

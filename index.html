@@ -12,6 +12,30 @@
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&amp;subset=cyrillic" rel="stylesheet">
 
     <style>
+@keyframes text-blinking {
+  14% {
+    color: #ff0000;
+  }
+  28% {
+    color: #ffa500;
+  }
+  42% {
+    color: #ffff00;
+  }
+  56% {
+    color: #008000;
+  }
+  70% {
+    color: #add8e6;
+  }
+  84% {
+    color: #0000ff;
+  }
+  100% {
+    color: #800080;
+  }
+}
+
 /* css-only image preload */
 body::after {
   content: url('./assets/ui/subpoena-front.jpg') url('./assets/ui/subpoena-back.jpg');
@@ -35,14 +59,19 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Press Start 2P', sans-serif;
 }
 
 .hidden {
-  display: none;  
+  display: none !important;  
 }
 
-#game canvas {
+.no-interaction {
+  pointer-events: none;
+}
+
+#game canvas,
+#ui-container {
   width: 1920px;
   height: 1080px;
   position: absolute;
@@ -76,6 +105,72 @@ body {
   background-image: url('./assets/ui/subpoena-back.jpg');
   filter: hue-rotate(1030deg) saturate(1);
 }
+
+#ui-container {
+  user-select: none;
+}
+
+#ui-container .screen {
+  display: grid;
+  width: 100%;
+  height: 100%;
+
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+#ui-container .screen h1,
+#ui-container .screen h2 {
+  margin: auto;
+}
+
+#ui-container .screen h1 {
+  font-size: 64pt;
+}
+
+#ui-container .screen h2 {
+  font-size: 32pt;
+}
+
+#ui-container .win-screen p {
+  padding: 0 36%;
+  font-size: 14pt;
+  line-height: 1.4;
+  text-align: center;
+}
+
+#ui-container .score-screen {
+  background-color: transparent;
+}
+
+#ui-container .score-screen p {
+  margin: 6%;
+  font-size: 28pt;
+  text-align: center;
+}
+
+#ui-container .next-level-screen {
+  cursor: pointer;
+  text-align: center;
+}
+
+#ui-container .next-level-screen h1 {
+  font-size: 32pt;
+  margin-bottom: 1em;
+}
+
+#ui-container .next-level-screen h2 {
+  font-size: 24pt;
+}
+
+#ui-container .next-level-screen p {
+  font-size: 18pt;
+}
+
+#ui-container .screen:not(.score-screen) .score-text-value,
+.next-level-japanese {
+  animation: text-blinking 1s step-start infinite;
+}
     </style>
 
     <script src="https://vk.com/js/api/openapi.js?160" type="text/javascript"></script>
@@ -86,7 +181,34 @@ body {
     <!-- <button id="start-button">СТАРТ</button> -->
 
     <div id="game" class="hidden"></div>
-    <div id="vk-auth"></div>
+
+    <div id="ui-container" class="hidden no-interaction">
+      <div class="screen score-screen">
+        <p><span class="score-text-value">0</span> очков</p>
+      </div>
+
+      <div class="screen win-screen hidden">
+        <h1>н е г о д е н</h1>
+        <div id="vk-auth"></div>
+
+        <p>
+Зайди через ВК, чтобы сохранить результат и попасть в рейтинг лучших игроков!
+(первые десять человек получат скидку в 10% на услуги ПРИЗЫВАНЕТ.РУ) 
+        </p>
+        <h2 class="score-text"><span class="score-text-value">1000</span> очков</h2>
+      </div>
+
+      <div class="screen fail-screen hidden">
+        <h1>г о д е н</h1>
+        <h2 class="score-text"><span class="score-text-value">1000</span> очков</h2> 
+      </div>
+
+      <div class="screen next-level-screen hidden">
+        <h1>очередной военком поставлен на место</h1>
+        <h2 class="score-text">у тебя сейчас <span class="score-text-value">1000</span> очков. го ещё</h2>
+        <p>кликни где-нибудь, чтобы <span class="next-level-japanese">前進する</span></p>
+      </div>
+    </div>
 
     <script src="./lib/phaser.js"></script>
     <!-- <script src="./lib/phaser.min.js"></script> -->

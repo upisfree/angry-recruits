@@ -9,7 +9,7 @@ import initDebugCamera from './shared/init-debug-camera';
 import preload from './shared/preload';
 import update from './shared/update';
 
-export default class Level1 extends (<any>Phaser.Scene) {
+export default class Level3 extends (<any>Phaser.Scene) {
   enemies: Array<Entity> = [];
   shells: Array<Shell> = [];
   entities: Array<Entity>;

@@ -1,4 +1,5 @@
 import CONFIG from '../config';
+import ui from '../ui/ui';
 
 export default function(scene, score) {
   if (CONFIG.EDITOR_MODE) {
@@ -7,5 +8,5 @@ export default function(scene, score) {
 
   scene.game.score += score;
 
-  scene.scoreText.setText(scene.game.score);
+  ui.get('.score-screen .score-text-value').textContent = scene.game.score;
 }

@@ -1,5 +1,5 @@
 import updateScore from '../../utils/update-score';
-import createScoreText from '../../utils/create-score-text';
+import createScoreText from '../../ui/create-score-text';
 
 export default function(scene, callback) {
   let shells = [];

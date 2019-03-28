@@ -1,7 +1,7 @@
 import Phaser from '../lib/phaser';
 import momentum from '../utils/momentum';
 import updateScore from '../utils/update-score';
-import createScoreText from '../utils/create-score-text';
+import createScoreText from '../ui/create-score-text';
 const { Vector } = Phaser.Physics.Matter.Matter;
 
 export interface IDestructionOptions {

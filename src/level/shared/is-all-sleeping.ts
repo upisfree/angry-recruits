@@ -16,10 +16,10 @@ function isSleeping(body) {
   }
 }
 
-export default function(shells, enemies, slingshot) {
+export default function(scene) {
   // текущий снаряд подвешен и не может уснуть :(
-  let isShellsSleeping  = shells.every(e => isSleeping(e.body) || e === slingshot.currentShell);
-  let isEnemiesSleeping = enemies.every(e => isSleeping(e.body));
+  let isShellsSleeping  = scene.shells.every(e => isSleeping(e.body) || e === scene.slingshot.currentShell);
+  let isEnemiesSleeping = scene.enemies.every(e => isSleeping(e.body));
 
   return isShellsSleeping && isEnemiesSleeping;
 }

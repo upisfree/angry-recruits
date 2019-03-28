@@ -23,7 +23,4 @@ export default function() {
   this.addEnvironment();
 
   this.entities = generateEntities(this.levelData, this);
-
-  // TODO: to ui.ts
-  this.scoreText = this.add.text(2000, 100, this.game.score).setFontSize(128);
 }

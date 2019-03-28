@@ -1,5 +1,5 @@
 import Entity from '../../entity/entity';
-import { KeyedEntitiesList } from '../../entity/list';
+import { KeyedEntitiesList } from '../../entity/entities-list';
 
 export default function(levelData, level): Array<Entity>  {
   let entities: Array<Entity> = [];
