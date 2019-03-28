@@ -18,7 +18,7 @@ export default function() {
   let grassBottomTile = this.add.tileSprite(w / 2, h - 100, w * 10, 193, 'grass-bottom');
   let grassBottomSprite = this.matter.add.gameObject(grassBottomTile)
     .setStatic(true);
-  let grassBottomTop = this.add.tileSprite(w / 2, h - 242, w * 10, 87, 'grass-top');
+  let grassBottomTop = this.add.tileSprite(w / 2, h - 240, w * 10, 87, 'grass-top');
 
   this.cameras.main.setBounds(0, -h * 3, w * 4, h * 4);
 

@@ -115,8 +115,8 @@ export default class Slingshot {
           this.currentShell.body.velocity.y / this.currentShell.velocityCutFactor
         );
 
-        // this.scene.cameras.main.startFollow(this.currentShell.sprite, true, 0.5, 0.5);
-        // this.scene.cameras.main.zoomTo(CONFIG.FLIGHT_ZOOM, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
+        this.scene.cameras.main.startFollow(this.currentShell.sprite, true, 0.5, 0.5);
+        this.scene.cameras.main.zoomTo(CONFIG.FLIGHT_ZOOM, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
 
         this.scene.input.once('pointerdown', this.currentShell.activatePower, this.currentShell);
       }
@@ -176,9 +176,9 @@ export default class Slingshot {
       this.shellDirtyTime = 0;
       this.isNewShellSpawned = true;
 
-      // this.scene.cameras.main.stopFollow();
-      // this.scene.cameras.main.pan(this.x, this.y, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
-      // this.scene.cameras.main.zoomTo(CONFIG.DEFAULT_ZOOM, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
+      this.scene.cameras.main.stopFollow();
+      this.scene.cameras.main.pan(this.x, this.y, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
+      this.scene.cameras.main.zoomTo(CONFIG.DEFAULT_ZOOM, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
     }
   }
 
