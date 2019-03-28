@@ -3,6 +3,7 @@
 // иначе пиздец как больно делать элементарные вещи 
 
 import CONFIG from '../config';
+
 var Phaser = window['Phaser'];
 var Constraint = Phaser.Physics.Matter.Matter.Constraint;
 
