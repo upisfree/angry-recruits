@@ -12,7 +12,7 @@ const CONFIG = {
   FLIGHT_ZOOM_DURATION: 2000,
   FLIGHT_ZOOM_EASING: 'Sine.easeInOut',
   DEFAULT_ZOOM: 0.55,
-  MIN_ZOOM: 0.55,
+  MIN_ZOOM: 0.25,
   MAX_ZOOM: 1,
 };
 

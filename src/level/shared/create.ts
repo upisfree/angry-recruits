@@ -24,6 +24,8 @@ export default function() {
 
   this.entities = generateEntities(this.levelData, this);
 
+  this.cameras.main.setZoom(this.zoom);
+
   this.cameras.main.pan(this.enemies[0].sprite.x, this.enemies[0].sprite.y, 0);
   this.winTimeEvent = this.time.addEvent({
     delay: CONFIG.SLINGSHOT_PAN_DELAY,

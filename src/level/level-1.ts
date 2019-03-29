@@ -18,6 +18,7 @@ export default class Level1 extends (<any>Phaser.Scene) {
   levelData: any = Level1Data;
   nextLevel: any = Level2;
   winTimeout: number = 2500;
+  zoom: number = 0.5;
   isWin: boolean;
   winTimeEvent: any;
   scoreText: any;

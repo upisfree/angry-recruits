@@ -6,6 +6,7 @@
 // S — сохранить уровень                                //
 // Q & E — зум камеры                                   //
 // A & D — поворот сущности                             //
+// Z & C — поворот сущности на 45 градусов              //
 // BracketLeft & BracketRight — скейл по X              //
 // Quote & Backslash — скейл по Y                       //
 //////////////////////////////////////////////////////////
@@ -24,8 +25,8 @@ import Level1Data from '../level/data/level-1.data';
 import Level2Data from '../level/data/level-2.data';
 import Level3Data from '../level/data/level-3.data';
 
-const LEVEL_NAME = 'level-2';
-const LEVEL_DATA = Level2Data;
+const LEVEL_NAME = 'level-1';
+const LEVEL_DATA = Level1Data;
 
 const ENTITY_SELECTED_COLOR = 0x00ffff;
 
@@ -48,6 +49,8 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
   keyS: any;
   keyA: any;
   keyD: any;
+  keyZ: any;
+  keyC: any;
   keyPlus: any;
   keyMinus: any;
   keyBracketLeft: any;
@@ -87,6 +90,8 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
     this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+    this.keyZ = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
+    this.keyC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
     this.keyPlus = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.PLUS);
     this.keyMinus = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.MINUS);
     this.keyBracketLeft = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.OPEN_BRACKET);
@@ -146,6 +151,10 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
         cur.sprite.rotation -= rotationStep;
       } else if (Phaser.Input.Keyboard.DownDuration(this.keyD, keyDownDuration)) {
         cur.sprite.rotation += rotationStep;
+      } else if (Phaser.Input.Keyboard.JustDown(this.keyZ)) {
+        cur.sprite.rotation -= Math.PI / 4;
+      } else if (Phaser.Input.Keyboard.JustDown(this.keyC)) {
+        cur.sprite.rotation += Math.PI / 4;
       } else if (Phaser.Input.Keyboard.DownDuration(this.keyBackspace, keyDownDuration) || Phaser.Input.Keyboard.DownDuration(this.keyDelete, keyDownDuration)) {
         this.entities = this.entities.filter(e => e !== cur);
         cur.sprite.destroy();
