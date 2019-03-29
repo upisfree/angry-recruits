@@ -8,7 +8,7 @@ const BODY_DATA = {
       {
         "label": "outline",
         "density": 0.004, // масса тела — 100 кг
-        "restitution": 0.25,
+        "restitution": 0.65,
         "friction": 1,
         "frictionAir": 0.00001,
         "frictionStatic": 100,
@@ -42,7 +42,7 @@ const BODY_DATA = {
     "fixtures": [
       {
         "label": "outline",
-        "density": 0.0055, // масса тела — 203 кг
+        "density": 0.0025, // масса тела — 203 кг
         "restitution": 0.25,
         "friction": 1,
         "frictionAir": 0.00001,

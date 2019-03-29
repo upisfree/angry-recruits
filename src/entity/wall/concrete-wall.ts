@@ -11,7 +11,7 @@ export default class ConcreteWall extends Entity {
       'wall',
       'concrete-wall',
       Bodies.rectangle(0, 0, w, h, {
-        density: 0.1, // масса тела — 350 кг
+        density: 0.025,
         restitution: 0.1,
         friction: 1,
         frictionStatic: 1,

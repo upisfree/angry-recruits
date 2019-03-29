@@ -12,7 +12,7 @@ export default class CommissarEnemy extends Enemy {
       PhysicsEditorParser.parseBody(x, y, 1, 1, BODY_DATA['commissar-1']),
       {
         steps: 2,
-        momentum: 10000,
+        momentum: 7500,
         score: {
           step: 2500,
           destroy: 5000

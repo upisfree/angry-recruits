@@ -79,7 +79,7 @@ function fail() {
 
     console.log('fail');
 
-    ui.get('.win-screen .score-text-value').textContent = this.game.score;
+    ui.get('.fail-screen .score-text-value').textContent = this.game.score;
     ui.enableUIInteraction();
     ui.hide('.score-screen');
     ui.show('.fail-screen');

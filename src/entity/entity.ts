@@ -1,3 +1,4 @@
+import CONFIG from '../config';
 import Phaser from '../lib/phaser';
 import momentum from '../utils/momentum';
 import updateScore from '../utils/update-score';
@@ -33,6 +34,7 @@ export default class Entity {
   destructionScores: any; // сколько очков начисляется за разрушения
   currentMomentum: number; // «здоровье» объекта
   currentDestructionStep: number = 1; // текущий этап разрушения объекта
+  minimalMomentum: number = 200;
 
   constructor(
     scene: any,
@@ -74,7 +76,7 @@ export default class Entity {
       this.destructionParticlesConfig = destructionOptions.particles;
       this.currentMomentum = this.destructionMomentum;
 
-      if (this.destructionMomentum) {
+      if (this.destructionMomentum && !CONFIG.EDITOR_MODE) {
         this.scene.matterCollision.addOnCollideStart({
           objectA: this.sprite,
           callback: this.onCollideStart,
@@ -95,7 +97,11 @@ export default class Entity {
 
     let m = momentum(e.bodyA, e.bodyB);
 
-    // console.log(m);
+    if (m < this.minimalMomentum) {
+      return;
+    }
+
+    console.log(m);
 
     this.currentMomentum -= m;
 

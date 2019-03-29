@@ -23,4 +23,13 @@ export default function() {
   this.addEnvironment();
 
   this.entities = generateEntities(this.levelData, this);
+
+  this.cameras.main.pan(this.enemies[0].sprite.x, this.enemies[0].sprite.y, 0);
+  this.winTimeEvent = this.time.addEvent({
+    delay: CONFIG.SLINGSHOT_PAN_DELAY,
+    callback: () => {
+      this.cameras.main.pan(this.slingshot.x, this.slingshot.y, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
+    },
+    callbackScope: this
+  });
 }
