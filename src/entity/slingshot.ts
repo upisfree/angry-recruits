@@ -23,7 +23,8 @@ export default class Slingshot {
   lastPathSpawnTime: number = 0;
 
   // конфиг
-  maxTensionDistance: number = 60; // расстояние, после которого можно отпустить рогатку
+  minTensionDistance: number = 60; // расстояние, после которого можно отпустить рогатку
+  maxTensionDistance: number = 400; // максильное расстояние, на которое можно натянуть рогатку
   shellSpawnTime: number = 3500; // время, после которого можно спаунить новый снаряд
   pathSpawnTime: number = 25; // время, после которого можно спаунить часть пути полёта
   slingshotSpritesScaleFactor: number = 2;
@@ -35,6 +36,7 @@ export default class Slingshot {
 
     this.createSprites();
     this.createConstraint();
+    this.scene.matter.world.on('beforeupdate', this.beforeUpdateCallback.bind(this));
     this.scene.matter.world.on('afterupdate', this.afterUpdateCallback.bind(this));
   }
 
@@ -76,6 +78,7 @@ export default class Slingshot {
       pointA: { x: this.x, y: this.y },
       bodyB: this.getNewShell().body, 
       stiffness: 0.1,
+      maxLength: 400
     });
   }
 
@@ -103,7 +106,7 @@ export default class Slingshot {
     if (!this.scene.input.activePointer.primaryDown) {
       this.rubberSpriteFront.displayHeight = 0;
 
-      if (distance(this.constraint.pointA, this.currentShell.body.position) > this.maxTensionDistance && this.isNewShellSpawned) {
+      if (distance(this.constraint.pointA, this.currentShell.body.position) > this.minTensionDistance && this.isNewShellSpawned) {
         this.isNewShellSpawned = false;
         this.constraint.bodyB = Bodies.rectangle(this.x, this.y, 1, 1);
 
@@ -178,6 +181,30 @@ export default class Slingshot {
       this.scene.cameras.main.stopFollow();
       this.scene.cameras.main.pan(this.x, this.y, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
     }
+  }
+
+  private beforeUpdateCallback(e): void {
+почему он два раза повторяет?
+пока на это забить, делать саму игру, это фиксить как-то чуть позже. возможно, mousemove return
+делать, если дальше от области рогатки и нажата клавиша... ну а что ещё остаётся?!
+
+    // if (distance(this.constraint.pointA, this.currentShell.body.position) > this.maxTensionDistance) {
+    //   this.constraint.stiffness = 1;
+    //   // this.constraint.length = this.maxTensionDistance;
+      
+    //   var angle = function(a, b) {
+    //     return Math.atan2(b.y - a.y, b.x - a.x);
+    //   };
+
+    //   var d = distance(this.constraint.pointA, this.currentShell.body.position);
+    //   var a = angle(this.constraint.pointA, this.currentShell.body.position);
+
+    //   this.constraint.pointB.x = this.constraint.pointA.x * Math.cos(a);
+    //   this.constraint.pointB.y = this.constraint.pointA.y  * Math.sin(a);
+    // } else {
+    //   this.constraint.stiffness = 0.1;
+    //   this.constraint.length = 0;
+    // }
   }
 
   private afterUpdateCallback(e): void {
