@@ -34,7 +34,7 @@ export default class Entity {
   destructionScores: any; // сколько очков начисляется за разрушения
   currentMomentum: number; // «здоровье» объекта
   currentDestructionStep: number = 1; // текущий этап разрушения объекта
-  minimalMomentum: number = 200;
+  minimalMomentum: number = 200; // если сила меньше этого значения, то это погрешность и не уменьшаем здоровье
 
   constructor(
     scene: any,
@@ -101,7 +101,7 @@ export default class Entity {
       return;
     }
 
-    console.log(m);
+    // console.log(m);
 
     this.currentMomentum -= m;
 

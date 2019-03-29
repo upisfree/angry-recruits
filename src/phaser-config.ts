@@ -11,6 +11,14 @@ export default {
   backgroundColor: '#000',
   parent: 'game', // block id
   disableContextMenu: true,
+  input: {
+    mouse: {
+      target: window
+    },
+    touch: {
+      target: window
+    }
+  },
   physics: {
     default: 'matter',
     matter: {
