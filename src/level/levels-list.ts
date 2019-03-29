@@ -3,4 +3,4 @@ import Level2 from './level-2';
 import Level3 from './level-3';
 
 // export default [Level1, Level2];
-export default [Level3];
+export default [Level2];

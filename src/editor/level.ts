@@ -24,8 +24,8 @@ import Level1Data from '../level/data/level-1.data';
 import Level2Data from '../level/data/level-2.data';
 import Level3Data from '../level/data/level-3.data';
 
-const LEVEL_NAME = 'level-3';
-const LEVEL_DATA = Level3Data;
+const LEVEL_NAME = 'level-2';
+const LEVEL_DATA = Level2Data;
 
 const ENTITY_SELECTED_COLOR = 0x00ffff;
 
