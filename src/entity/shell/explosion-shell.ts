@@ -41,6 +41,10 @@ export default class ExplosionShell extends Shell {
   }
 
   activatePower() {
+    if (this.isMaxTensionReached) {
+      return false;
+    }
+
     if (!CONFIG.EDITOR_MODE) {
       // this.bannedSprite.destroy();
     }

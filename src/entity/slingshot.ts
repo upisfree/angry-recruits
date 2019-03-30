@@ -24,7 +24,8 @@ export default class Slingshot {
 
   // конфиг
   minTensionDistance: number = 60; // расстояние, после которого можно отпустить рогатку
-  maxTensionDistance: number = 400; // максильное расстояние, на которое можно натянуть рогатку
+  maxTensionDistanceX: number = 700; // максильное расстояние по X, на которое можно натянуть рогатку
+  maxTensionDistanceY: number = 350; // максильное расстояние по Y, на которое можно натянуть рогатку
   shellSpawnTime: number = 3500; // время, после которого можно спаунить новый снаряд
   pathSpawnTime: number = 25; // время, после которого можно спаунить часть пути полёта
   slingshotSpritesScaleFactor: number = 2;
@@ -36,7 +37,6 @@ export default class Slingshot {
 
     this.createSprites();
     this.createConstraint();
-    this.scene.matter.world.on('beforeupdate', this.beforeUpdateCallback.bind(this));
     this.scene.matter.world.on('afterupdate', this.afterUpdateCallback.bind(this));
   }
 
@@ -54,6 +54,8 @@ export default class Slingshot {
     this.rubberSpriteBack = this.scene.add.sprite(this.x + 50, this.y, 'slingshot-rubber')
       .setScale(this.slingshotSpritesScaleFactor)
       .setOrigin(0, 0);
+
+    this.scene.add.text(this.x - this.maxTensionDistanceX, this.y - 10, '|', { fontSize: 64 })
 
     this.frontSprite.depth = 15;
     this.rubberSpriteFront.depth = 12;
@@ -77,8 +79,7 @@ export default class Slingshot {
     this.constraint = this.scene.matter.add.constraint(null, null, null, null, {
       pointA: { x: this.x, y: this.y },
       bodyB: this.getNewShell().body, 
-      stiffness: 0.1,
-      maxLength: 400
+      stiffness: 0.1
     });
   }
 
@@ -101,28 +102,53 @@ export default class Slingshot {
     }
   }
 
-  private updateWhenPrimaryPointerDown() {
-    // если уже можно отпустить рогатку и снаряд заряжен, то стреляем
-    if (!this.scene.input.activePointer.primaryDown) {
+  private updatePrimaryPointer() {
+    let d = distance(this.constraint.pointA, this.currentShell.body.position);
+
+    if (this.scene.input.activePointer.primaryDown) {
+      // если уже можно отпустить рогатку и снаряд заряжен, то стреляем
+
+      let dx = Math.abs(this.constraint.pointA.x - this.currentShell.body.position.x);
+      let dy = Math.abs(this.constraint.pointA.y - this.currentShell.body.position.y);
+
+      if ((dx > this.maxTensionDistanceX || dy > this.maxTensionDistanceY) && this.isNewShellSpawned) {
+        this.currentShell.isInSlingshot = false;
+        this.currentShell.isMaxTensionReached = true;
+        this.currentShell.isDirty = true;
+
+        // this.currentShell.sprite.disableInteractive();
+        this.shootTightShell();
+
+        // this.scene.cameras.main.stopFollow();
+
+        this.currentShell.sprite.setIgnoreGravity(true);
+        this.currentShell.sprite.setVelocity(0, -20);
+      }
+    } else {
+      // если уже можно отпустить рогатку и снаряд заряжен, то стреляем
       this.rubberSpriteFront.displayHeight = 0;
 
-      if (distance(this.constraint.pointA, this.currentShell.body.position) > this.minTensionDistance && this.isNewShellSpawned) {
-        this.isNewShellSpawned = false;
-        this.constraint.bodyB = Bodies.rectangle(this.x, this.y, 1, 1);
-
-        this.currentShell.isShooted = true;
-        this.currentShell.pathGroup = this.scene.add.group();
-
-        this.currentShell.sprite.setVelocity(
-          this.currentShell.body.velocity.x / this.currentShell.velocityCutFactor,
-          this.currentShell.body.velocity.y / this.currentShell.velocityCutFactor
-        );
-
-        this.scene.cameras.main.startFollow(this.currentShell.sprite, true, 0.5, 0.5);
-
-        this.scene.input.once('pointerdown', this.currentShell.activatePower, this.currentShell);
+      if (d > this.minTensionDistance && this.isNewShellSpawned) {
+        this.shootTightShell();
       }
     }
+  }
+
+  private shootTightShell() {
+    this.isNewShellSpawned = false;
+    this.constraint.bodyB = Bodies.rectangle(this.x, this.y, 1, 1);
+
+    this.currentShell.isShooted = true;
+    this.currentShell.pathGroup = this.scene.add.group();
+
+    this.currentShell.sprite.setVelocity(
+      this.currentShell.body.velocity.x / this.currentShell.velocityCutFactor,
+      this.currentShell.body.velocity.y / this.currentShell.velocityCutFactor
+    );
+
+    this.scene.cameras.main.startFollow(this.currentShell.sprite, true, 0.5, 0.5);
+
+    this.scene.input.once('pointerdown', this.currentShell.activatePower, this.currentShell);    
   }
 
   private updateOnDirtyCurrentShell(e) {
@@ -158,6 +184,7 @@ export default class Slingshot {
       this.currentShell.sprite.scene &&
       !this.currentShell.isDirty &&
       this.currentShell.pathGroup &&
+      !this.currentShell.isMaxTensionReached &&
       (e.timestamp - this.lastPathSpawnTime > this.pathSpawnTime)
     ) {
       let pathPart = this.scene.add.sprite(this.currentShell.sprite.x, this.currentShell.sprite.y, 'path-dot');
@@ -183,33 +210,9 @@ export default class Slingshot {
     }
   }
 
-  private beforeUpdateCallback(e): void {
-почему он два раза повторяет?
-пока на это забить, делать саму игру, это фиксить как-то чуть позже. возможно, mousemove return
-делать, если дальше от области рогатки и нажата клавиша... ну а что ещё остаётся?!
-
-    // if (distance(this.constraint.pointA, this.currentShell.body.position) > this.maxTensionDistance) {
-    //   this.constraint.stiffness = 1;
-    //   // this.constraint.length = this.maxTensionDistance;
-      
-    //   var angle = function(a, b) {
-    //     return Math.atan2(b.y - a.y, b.x - a.x);
-    //   };
-
-    //   var d = distance(this.constraint.pointA, this.currentShell.body.position);
-    //   var a = angle(this.constraint.pointA, this.currentShell.body.position);
-
-    //   this.constraint.pointB.x = this.constraint.pointA.x * Math.cos(a);
-    //   this.constraint.pointB.y = this.constraint.pointA.y  * Math.sin(a);
-    // } else {
-    //   this.constraint.stiffness = 0.1;
-    //   this.constraint.length = 0;
-    // }
-  }
-
   private afterUpdateCallback(e): void {
     this.updateRubber();
-    this.updateWhenPrimaryPointerDown();
+    this.updatePrimaryPointer();
     this.updateOnDirtyCurrentShell(e);
     this.updateFlightPath(e);
     this.updateNewShellSpawn(e);

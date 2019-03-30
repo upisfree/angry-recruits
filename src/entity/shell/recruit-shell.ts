@@ -22,6 +22,10 @@ export default class RecruitShell extends Shell {
   }
 
   activatePower() {
+    if (this.isMaxTensionReached) {
+      return false;
+    }
+
     console.log('RecruitShell superpower activated');
   }
 }

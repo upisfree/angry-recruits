@@ -27,6 +27,10 @@ export default class FatShell extends Shell {
   }
 
   activatePower() {
+    if (this.isMaxTensionReached) {
+      return false;
+    }
+
     this.sprite.setDensity(0.1);
     this.sprite.setBounce(0.1);
     this.sprite.setFriction(1);
