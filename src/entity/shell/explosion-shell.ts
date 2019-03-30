@@ -40,6 +40,8 @@ export default class ExplosionShell extends Shell {
     }
   }
 
+  update() { }
+
   activatePower() {
     if (this.isMaxTensionReached) {
       return false;

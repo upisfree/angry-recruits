@@ -15,9 +15,14 @@ const ASSETS = {
     'concrete-wall-2': 'assets/wall/concrete/concrete-wall-2.png',
     'commissar-1': 'assets/enemy/commissar-1.png',
     'commissar-2': 'assets/enemy/commissar-2.png',
-    'recruit-shell': 'assets/shell/recruit-shell.png',
-    'fat-shell': 'assets/shell/fat-shell.png',
-    'explosion-shell': 'assets/shell/explosion-shell.png',
+    'recruit-shell': 'assets/shell/recruit/recruit-shell.png',
+    'recruit-shell-sleep': 'assets/shell/recruit/recruit-shell-sleep.png',
+    'recruit-shell-angry': 'assets/shell/recruit/recruit-shell-angry.png',
+    'fat-shell': 'assets/shell/fat/fat-shell.png',
+    'fat-shell-sleep': 'assets/shell/fat/fat-shell-sleep.png',
+    'fat-shell-angry': 'assets/shell/fat/fat-shell-angry.png',
+    'explosion-shell': 'assets/shell/explosion/explosion-shell.png',
+    'explosion-shell-sleep': 'assets/shell/explosion/explosion-shell-sleep.png',
   },
   SPRITESHEETS: {
     'smoke': {
