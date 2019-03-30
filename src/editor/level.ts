@@ -24,9 +24,11 @@ const { Body } = Phaser.Physics.Matter.Matter;
 import Level1Data from '../level/data/level-1.data';
 import Level2Data from '../level/data/level-2.data';
 import Level3Data from '../level/data/level-3.data';
+import Level4Data from '../level/data/level-4.data';
+import Level5Data from '../level/data/level-5.data';
 
-const LEVEL_NAME = 'level-1';
-const LEVEL_DATA = Level1Data;
+const LEVEL_NAME = 'level-4';
+const LEVEL_DATA = Level4Data;
 
 const ENTITY_SELECTED_COLOR = 0x00ffff;
 
@@ -222,7 +224,9 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
       entities: [],
     };
 
-    this.entities.forEach(v => {
+    let slingshotEntity;
+
+    var push = (v) => {
       out.entities.push({
         type: v.constructor.name,
         x: v.sprite.x,
@@ -231,7 +235,17 @@ export default class LevelEditor extends (<any>Phaser.Scene) {
         scaleX: v.sprite.scaleX,
         scaleY: v.sprite.scaleY
       });
+    };
+
+    this.entities.forEach(v => {
+      if (v.constructor.name !== 'SlingshotEntity') {
+        push(v);
+      } else {
+        slingshotEntity = v;
+      }
     });
+
+    push(slingshotEntity); // потому что рогатка должна спаунится всегда после снарядов
 
     return JSON.stringify(out);
   }

@@ -45,6 +45,11 @@ export default class Shell extends Entity {
   }
 
   private updateBlinking() {
+    // если спрайт уничтожен, не моргаем
+    if (!this.sprite.active) {
+      return;
+    }
+
     let key = this.sprite.texture.key.split('-');
 
     // открываю глаза
@@ -60,7 +65,11 @@ export default class Shell extends Entity {
 
     // закрываю глаза
     if (Date.now() - this.lastBlinkTime > this.blinkInterval) {
-      key.push('sleep');
+      if (key[2] === 'angry') {
+        key[2] = 'sleep';
+      } else {
+        key.push('sleep');        
+      }
 
       this.lastBlinkTime = Date.now();
     }

@@ -40,8 +40,6 @@ export default class ExplosionShell extends Shell {
     }
   }
 
-  update() { }
-
   activatePower() {
     if (this.isMaxTensionReached) {
       return false;
@@ -51,7 +49,7 @@ export default class ExplosionShell extends Shell {
       // this.bannedSprite.destroy();
     }
 
-    explosion(this.scene.entities, this.body.position, 30);
+    explosion(this.scene.entities, this.body.position, 10);
 
     this.showSmoke();
 

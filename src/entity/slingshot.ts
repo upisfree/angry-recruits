@@ -122,7 +122,7 @@ export default class Slingshot {
         // this.scene.cameras.main.stopFollow();
 
         this.currentShell.sprite.setIgnoreGravity(true);
-        this.currentShell.sprite.setVelocity(0, -20);
+        this.currentShell.sprite.setVelocity(-10, -50);
       }
     } else {
       // если уже можно отпустить рогатку и снаряд заряжен, то стреляем

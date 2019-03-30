@@ -23,6 +23,7 @@ const ASSETS = {
     'fat-shell-angry': 'assets/shell/fat/fat-shell-angry.png',
     'explosion-shell': 'assets/shell/explosion/explosion-shell.png',
     'explosion-shell-sleep': 'assets/shell/explosion/explosion-shell-sleep.png',
+    'explosion-shell-angry': 'assets/shell/explosion/explosion-shell-angry.png',
   },
   SPRITESHEETS: {
     'smoke': {
