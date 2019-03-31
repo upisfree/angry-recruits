@@ -7,11 +7,17 @@ export default class Enemy extends Entity {
     y: number,
     textureKey: string,
     body: any,
-    destructionOptions: IDestructionOptions = null
+    destructionOptions: IDestructionOptions = null,
+    noScore: boolean = false
   ) {
     super(scene, x, y, 'enemy', textureKey, body, destructionOptions);
 
-    scene.enemies.push(this);
+    // теперь можно делать дождь из любых врагов (см. пятый уровень)!
+    this.noScore = noScore;
+
+    if (!this.noScore) {
+      scene.enemies.push(this);      
+    }
   }
 
   onDestroy(sprite) {

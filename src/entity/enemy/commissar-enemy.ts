@@ -3,7 +3,7 @@ import Enemy from './enemy';
 const PhysicsEditorParser = (<any>window).PhysicsEditorParser;
 
 export default class CommissarEnemy extends Enemy {
-  constructor(scene, x, y) {
+  constructor(scene, x, y, noScore = false) {
     super(
       scene,
       x,
@@ -21,7 +21,8 @@ export default class CommissarEnemy extends Enemy {
           name: 'smoke',
           frameRate: 18
         }
-      }
+      },
+      noScore
     );
   }
 }

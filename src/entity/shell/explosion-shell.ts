@@ -46,6 +46,7 @@ export default class ExplosionShell extends Shell {
     this.scene.cameras.main.shake(2000, 0.4);
     this.sprite.destroy();
 
+    this.isDestroyed = true;
     this.isDirty = true;
     this.isShooted = true;
     this.isInSlingshot = false;

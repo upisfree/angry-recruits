@@ -56,8 +56,7 @@ export default class Level5 extends (<any>Phaser.Scene) {
     let x = randomBetween(0, 3000); // 3500 — это чтобы не падали военкомы на главного военкома
     let y = -2000;
 
-    let commissar = new CommissarEnemy(this, x, y);
-    commissar.noScore = true;
+    let commissar = new CommissarEnemy(this, x, y, true);
 
     let angularVelocityDirection = (Math.random() > 0.5) ? 1 : -1;
 
@@ -69,5 +68,5 @@ export default class Level5 extends (<any>Phaser.Scene) {
         x: 0,
         y: randomBetween(0, 100)
       });
-  }
+`  }
 }
