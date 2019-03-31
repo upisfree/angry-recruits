@@ -24,7 +24,6 @@ export default class Level3 extends (<any>Phaser.Scene) {
   scoreText: any;
 
   preload = preload.bind(this);
-  create = create.bind(this);
   update = update.bind(this);
   initDebugCamera = initDebugCamera.bind(this);
   addEnvironment = addEnvironment.bind(this);
@@ -33,5 +32,11 @@ export default class Level3 extends (<any>Phaser.Scene) {
 
   constructor(config) {
     super(config);
+  }
+
+  create() {
+    create.bind(this)();
+
+    this.add.sprite(5300, 465, 'lenin');
   }
 }

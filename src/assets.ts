@@ -4,6 +4,7 @@ const ASSETS = {
     'grass-top': 'assets/environment/grass/grass-top.png',
     'grass-bottom': 'assets/environment/grass/grass-bottom.png',
     'sky': 'assets/environment/sky.jpg',
+    'lenin': 'assets/environment/lenin.jpg',
     'slingshot-front': 'assets/environment/slingshot/slingshot-front.png',
     'slingshot-back': 'assets/environment/slingshot/slingshot-back.png',
     'slingshot-rubber': 'assets/environment/slingshot/slingshot-rubber.png',

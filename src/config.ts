@@ -1,5 +1,5 @@
 const CONFIG = {
-  DEBUG_MODE: false,
+  DEBUG_MODE: true,
   EDITOR_MODE: false,
   EDITOR_URL: 'http://localhost:1488/',
   SCORE_URL: 'http://localhost:8888/score', // адрес, куда слать результат (может, лучше название придумать?)
