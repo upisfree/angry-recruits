@@ -14,7 +14,7 @@ export default function(levelData, level): Array<Entity>  {
         .setScale(e.scaleX, e.scaleY)
         .setRotation(e.rotation);
 
-      entities.push(entity);      
+      entities.push(entity);
     }
   });
 

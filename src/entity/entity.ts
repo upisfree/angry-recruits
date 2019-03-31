@@ -26,6 +26,7 @@ export default class Entity {
   sprite: any;
   body: any; // shortcut for sprite.body
   textureKey: string;
+  noScore: boolean = false; // для дождя из военкомов из пятого уровня
 
   // есть только если предмет можно разрушить
   destructionSteps: number; // сколько текстур меняется при разрушении
@@ -116,7 +117,7 @@ export default class Entity {
       if (this.currentDestructionStep !== destructionStep) {
         this.currentDestructionStep = destructionStep;
 
-        if (this.destructionScores) {
+        if (this.destructionScores && !this.noScore) {
           updateScore(this.scene, this.destructionScores.step);
           createScoreText(this.scene, this, this.destructionScores.step);
         }
@@ -132,7 +133,7 @@ export default class Entity {
 
       this.currentDestructionStep = this.destructionSteps;
 
-      if (this.destructionScores) {
+      if (this.destructionScores && !this.noScore) {
         updateScore(this.scene, this.destructionScores.destroy);
         createScoreText(this.scene, this, this.destructionScores.destroy);
       }
