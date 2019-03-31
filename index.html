@@ -212,6 +212,16 @@ body {
 .comics-end {
   background-image: url('./assets/ui/comics-end.jpg');
 }
+
+.wrong-orientation-screen {
+  position: absolute;
+  top: 0;
+}
+
+.wrong-orientation-screen h1 {
+  font-size: 50pt;
+  text-align: center;
+}
     </style>
 
     <script src="https://vk.com/js/api/openapi.js?160" type="text/javascript"></script>
@@ -251,6 +261,10 @@ body {
         <h1>очередной военком посажен на бутылку</h1>
         <h2 class="score-text">у тебя сейчас <span class="score-text-value">0</span> очков, продолжаем работу</h2>
         <p>кликни где-нибудь, чтобы <span class="next-level-japanese">前進する</span></p>
+      </div>
+
+      <div class="screen wrong-orientation-screen hidden">
+        <h1>переверни 🔄 телефон 📱, играть неудобно</h1>
       </div>
     </div>
 

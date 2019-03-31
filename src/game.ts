@@ -4,12 +4,12 @@ import VK from './lib/vk';
 import phaserConfig from './phaser-config';
 import ui from './ui/ui';
 import resize from './platform/resize';
+import orientationchange from './platform/orientationchange';
 
 let game;
 let subpoenasElement = document.querySelector('.subpoenas');
 let uiContainer = ui.getUI();
 
-// TODO: iOS? touchstart? tap?
 subpoenasElement.addEventListener('click', startGame);
 
 if (!CONFIG.DEBUG_MODE) {
@@ -30,5 +30,7 @@ function startGame() {
   });
 
   window.addEventListener('resize', resize.bind(this, game, uiContainer));
+  window.addEventListener('orientationchange', orientationchange.bind(this, game));
+
   resize(game, uiContainer);
 }

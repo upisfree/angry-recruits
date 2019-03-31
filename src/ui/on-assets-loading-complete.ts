@@ -1,4 +1,7 @@
 import ui from './ui';
+import orientationchange from '../platform/orientationchange';
+import isMobile from '../platform/is-mobile';
+import fullscreenFunction from '../platform/fullscreen-function';
 
 export default function() {
   this.systems.scene.scene.pause();
@@ -18,5 +21,11 @@ export default function() {
     ui.showUI();
   
     this.systems.scene.scene.resume();
+
+    if (isMobile()) {
+      document.documentElement[fullscreenFunction]();
+
+      orientationchange(this.systems.game);      
+    }
   });
 }
