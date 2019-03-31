@@ -24,8 +24,8 @@ export default class Slingshot {
 
   // конфиг
   minTensionDistance: number = 60; // расстояние, после которого можно отпустить рогатку
-  maxTensionDistanceX: number = 700; // максильное расстояние по X, на которое можно натянуть рогатку
-  maxTensionDistanceY: number = 350; // максильное расстояние по Y, на которое можно натянуть рогатку
+  maxTensionDistanceX: number = 800; // максильное расстояние по X, на которое можно натянуть рогатку
+  maxTensionDistanceY: number = 400; // максильное расстояние по Y, на которое можно натянуть рогатку
   shellSpawnTime: number = 3500; // время, после которого можно спаунить новый снаряд
   pathSpawnTime: number = 25; // время, после которого можно спаунить часть пути полёта
   slingshotSpritesScaleFactor: number = 2;
@@ -116,10 +116,7 @@ export default class Slingshot {
         this.currentShell.isMaxTensionReached = true;
         this.currentShell.isDirty = true;
 
-        // this.currentShell.sprite.disableInteractive();
         this.shootTightShell();
-
-        // this.scene.cameras.main.stopFollow();
 
         this.currentShell.sprite.setIgnoreGravity(true);
         this.currentShell.sprite.setVelocity(-10, -50);

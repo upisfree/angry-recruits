@@ -1,2 +1,2 @@
-// Generated at Sun, 31 Mar 2019 00:01:25 GMT
-export default [{"type":"RecruitShell","x":762.3022519200728,"y":803.7467461146709,"rotation":0,"scaleX":1,"scaleY":1},{"type":"CommissarEnemy","x":6180.805713771861,"y":-141.44318956173836,"rotation":0,"scaleX":8.349999999999984,"scaleY":7.84999999999998},{"type":"SlingshotEntity","x":1068.4760072303227,"y":480.42508750929863,"rotation":0,"scaleX":2,"scaleY":2}];
+// Generated at Sun, 31 Mar 2019 04:30:45 GMT
+export default [{"type":"RecruitShell","x":762.3022519200728,"y":803.7467461146709,"rotation":0,"scaleX":1,"scaleY":1},{"type":"CommissarEnemy","x":3848.1456466209984,"y":145.81604827715663,"rotation":0,"scaleX":6.099999999999986,"scaleY":5.649999999999988},{"type":"SlingshotEntity","x":1007.7108733705651,"y":480.42508750929863,"rotation":0,"scaleX":2,"scaleY":2}];
