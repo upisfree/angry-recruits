@@ -1,2 +1,2 @@
-// Generated at Fri, 29 Mar 2019 01:12:23 GMT
-export default [];
+// Generated at Sun, 31 Mar 2019 00:01:25 GMT
+export default [{"type":"RecruitShell","x":762.3022519200728,"y":803.7467461146709,"rotation":0,"scaleX":1,"scaleY":1},{"type":"CommissarEnemy","x":5480.805713771861,"y":-141.44318956173836,"rotation":0,"scaleX":8.349999999999984,"scaleY":7.84999999999998},{"type":"SlingshotEntity","x":1568.4760072303227,"y":490.42508750929863,"rotation":0,"scaleX":2,"scaleY":2}];
