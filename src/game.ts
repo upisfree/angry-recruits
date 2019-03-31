@@ -12,6 +12,10 @@ let uiContainer = ui.getUI();
 // TODO: iOS? touchstart? tap?
 subpoenasElement.addEventListener('click', startGame);
 
+if (!CONFIG.DEBUG_MODE) {
+  console.log('%cчё лезешь сюда? пиздуй служить', 'font-size: 32pt');  
+}
+
 function startGame() {
   subpoenasElement.classList.remove('subpoenas-front');
   subpoenasElement.classList.add('subpoenas-back');

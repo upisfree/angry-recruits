@@ -25,8 +25,7 @@ export default function(time, delta) {
     if (this.isWin === true) {
       callback = win;
     } else if (this.isWin === false) {
-      callback = win; // ВРЕМЕННО ПОКА НЕ ПОЧИНИЛ ОПРЕДЕЛЕНИЕ ПОБЕДЫ
-      // callback = fail;
+      callback = fail;
     }
 
     this.winTimeEvent = this.time.addEvent({

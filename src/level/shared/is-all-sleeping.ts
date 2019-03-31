@@ -1,4 +1,4 @@
-const MOTION_SLEEP_THRESHOLD = 0.08; // from Matter.Sleeping
+const MOTION_SLEEP_THRESHOLD = 0.1; // from Matter.Sleeping
 
 // у нас выключен sleeping, потому что иногда тела не обновляются, поэтому
 // считаем сами: http://brm.io/matter-js/docs/classes/Body.html#property_motion
@@ -7,7 +7,7 @@ function getMotion(body) {
 }
 
 function isSleeping(body) {
-  var timeFactor = body.timeScale * body.timeScale * body.timeScale;
+  let timeFactor = body.timeScale * body.timeScale * body.timeScale;
 
   if (getMotion(body) > MOTION_SLEEP_THRESHOLD * timeFactor) {
     return false;
@@ -17,9 +17,9 @@ function isSleeping(body) {
 }
 
 export default function(scene) {
-  // текущий снаряд подвешен и не может уснуть :(
-  let isShellsSleeping  = scene.shells.every(e => isSleeping(e.body) || e === scene.slingshot.currentShell);
-  let isEnemiesSleeping = scene.enemies.every(e => isSleeping(e.body));
+  let isEntitiesSleeping = scene.entities
+    .filter(e => !e.isDestroyed && !e.body.ignoreGravity)
+    .every(e => isSleeping(e.body));
 
-  return isShellsSleeping && isEnemiesSleeping;
+  return isEntitiesSleeping;
 }

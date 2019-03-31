@@ -29,6 +29,7 @@ export default class Entity {
   noScore: boolean = false; // для дождя из военкомов из пятого уровня
 
   // есть только если предмет можно разрушить
+  isDestroyed: boolean = false;
   destructionSteps: number; // сколько текстур меняется при разрушении
   destructionParticlesConfig: any; // конфиг частиц, которые появятся при разрушении
   destructionMomentum: number; // максимальное «здоровье» объекта
@@ -139,6 +140,7 @@ export default class Entity {
       }
 
       this.sprite.destroy(); // это удаляет и физическое тело
+      this.isDestroyed = true;
     }
   }
 
@@ -153,7 +155,7 @@ export default class Entity {
 
   createDestroyParticles() {
     let particle = this.scene.add.sprite(this.sprite.x, this.sprite.y, this.destructionParticlesConfig.name)
-      .setScale(this.sprite.scaleX, this.sprite.scaleY);
+      .setScale(this.sprite.scaleX);
 
     this.scene.anims.create({
       key: 'destroy',

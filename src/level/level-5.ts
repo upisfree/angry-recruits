@@ -69,7 +69,5 @@ export default class Level5 extends (<any>Phaser.Scene) {
         x: 0,
         y: randomBetween(0, 100)
       });
-
-    console.log(commissar.sprite);
   }
 }

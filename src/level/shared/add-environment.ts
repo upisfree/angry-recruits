@@ -20,7 +20,7 @@ export default function() {
     .setStatic(true);
   let grassBottomTop = this.add.tileSprite(w / 2, h - 240, w * 10, 87, 'grass-top');
 
-  this.cameras.main.setBounds(0, -h * 3, w * 4, h * 4);
+  grassBottomSprite.body.label = 'grassBottomSprite';
 
-  // this.matter.add.image(this.game.config.width / 2, this.game.config.height, 'grass', null, { isStatic: true });
+  this.cameras.main.setBounds(0, -h * 3, w * 4, h * 4);
 }
