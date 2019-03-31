@@ -22,10 +22,6 @@ export default function() {
   
     this.systems.scene.scene.resume();
 
-    if (isMobile()) {
-      document.documentElement[fullscreenFunction]();
-
-      orientationchange(this.systems.game);      
-    }
+    orientationchange(this.systems.game);      
   });
 }
