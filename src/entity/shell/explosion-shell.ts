@@ -7,7 +7,7 @@ const PhysicsEditorParser = (<any>window).PhysicsEditorParser;
 
 export default class ExplosionShell extends Shell {
   velocityCutFactor: number = 3; // во сколько раз нужно уменьшить силу полёта снаряда (т.к. я не могу нормально это сделать через constraint)
-  bannedSprite: any;
+  explosionForce: number = 15;
 
   constructor(scene, x, y) {
     super(
@@ -30,14 +30,6 @@ export default class ExplosionShell extends Shell {
         }
       }
     );
-
-    if (!CONFIG.EDITOR_MODE) {
-      // this.bannedSprite = this.scene.add.sprite(
-      //   0,
-      //   0,
-      //   'banned-organisation'
-      // ).setOrigin(0, 0);
-    }
   }
 
   activatePower() {
@@ -45,11 +37,7 @@ export default class ExplosionShell extends Shell {
       return false;
     }
 
-    if (!CONFIG.EDITOR_MODE) {
-      // this.bannedSprite.destroy();
-    }
-
-    explosion(this.scene.entities, this.body.position, 10);
+    explosion(this.scene.entities, this.body.position, this.explosionForce);
 
     this.showSmoke();
 

@@ -4,14 +4,14 @@ import Level3 from './level-3';
 import Level4 from './level-4';
 import Level5 from './level-5';
 
-export default [
-  Level5,
-];
-
 // export default [
-//   Level1,
-//   Level2,
-//   Level3,
-//   Level4,
-//   Level5
+//   Level5,
 // ];
+
+export default [
+  Level1,
+  Level2,
+  Level3,
+  Level4,
+  Level5
+];

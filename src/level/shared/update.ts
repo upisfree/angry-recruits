@@ -25,7 +25,8 @@ export default function(time, delta) {
     if (this.isWin === true) {
       callback = win;
     } else if (this.isWin === false) {
-      callback = fail;
+      callback = win; // ВРЕМЕННО ПОКА НЕ ПОЧИНИЛ ОПРЕДЕЛЕНИЕ ПОБЕДЫ
+      // callback = fail;
     }
 
     this.winTimeEvent = this.time.addEvent({
@@ -61,10 +62,7 @@ function win() {
       } else {
         this.game.isGameOver = true;
 
-        ui.get('.win-screen .score-text-value').textContent = this.game.score;
-        ui.enableUIInteraction();
-        ui.hide('.score-screen');
-        ui.show('.win-screen');
+        showScoreScreenAfterComics(this, 'win');
 
         initVKWidget(this);
       }
@@ -79,9 +77,22 @@ function fail() {
 
     console.log('fail');
 
-    ui.get('.fail-screen .score-text-value').textContent = this.game.score;
+    showScoreScreenAfterComics(this, 'fail');
+  }
+}
+
+function showScoreScreenAfterComics(scene, screen) {
     ui.enableUIInteraction();
     ui.hide('.score-screen');
-    ui.show('.fail-screen');
-  }
+    ui.get(`.${ screen }-screen .score-text-value`).textContent = scene.game.score;
+
+    let comicsScreen = ui.get('.comics-end');
+
+    ui.show(comicsScreen);
+
+    // iOS?
+    comicsScreen.addEventListener('click', () => {
+      ui.hide(comicsScreen);
+      ui.show(`.${ screen }-screen`);      
+    });
 }

@@ -16,14 +16,13 @@ export default class Level5 extends (<any>Phaser.Scene) {
   slingshot: Slingshot;
   levelData: any = Level5Data;
   nextLevel: any;
-  winTimeout: number = 2500;
+  winTimeout: number = 7500;
   zoom: number = 0.4;
   isWin: boolean;
   winTimeEvent: any;
   scoreText: any;
 
   preload = preload.bind(this);
-  create = create.bind(this);
   update = update.bind(this);
   initDebugCamera = initDebugCamera.bind(this);
   addEnvironment = addEnvironment.bind(this);
@@ -32,5 +31,11 @@ export default class Level5 extends (<any>Phaser.Scene) {
 
   constructor(config) {
     super(config);
+  }
+
+  create() {
+    // this.matter.world.engine.timing.timeScale = 0.35;
+
+    create.bind(this)();
   }
 }

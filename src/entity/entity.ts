@@ -60,6 +60,7 @@ export default class Entity {
 
     // events
     this.sprite.on('destroy', this.onDestroy.bind(this));
+    this.sprite.on('update', this.onDestroy.bind(this));
 
     this.sprite
       .setExistingBody(this.body)
@@ -150,7 +151,8 @@ export default class Entity {
   }
 
   createDestroyParticles() {
-    let particle = this.scene.add.sprite(this.sprite.x, this.sprite.y, this.destructionParticlesConfig.name);
+    let particle = this.scene.add.sprite(this.sprite.x, this.sprite.y, this.destructionParticlesConfig.name)
+      .setScale(this.sprite.scaleX, this.sprite.scaleY);
 
     this.scene.anims.create({
       key: 'destroy',

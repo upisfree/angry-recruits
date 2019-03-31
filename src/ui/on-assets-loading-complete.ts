@@ -1,8 +1,22 @@
 import ui from './ui';
 
-export default function(progress) {
-  ui.hide('.subpoenas');
-  ui.show('#game');
+export default function() {
+  this.systems.scene.scene.pause();
 
-  ui.showUI();
+  ui.hide('.subpoenas');
+
+  // iOS?
+  let comicsStart = ui.get('.comics-start');
+
+  comicsStart.addEventListener('click', () => {
+    ui.disableUIInteraction();
+
+    ui.hide(comicsStart);
+
+    ui.show('#game');
+
+    ui.showUI();
+  
+    this.systems.scene.scene.resume();
+  });
 }

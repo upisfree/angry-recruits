@@ -44,7 +44,11 @@
 
 /* css-only image preload */
 body::after {
-  content: url('./assets/ui/subpoena-front.jpg') url('./assets/ui/subpoena-back.jpg');
+  content:
+    url('./assets/ui/subpoena-front.jpg')
+    url('./assets/ui/subpoena-back.jpg')
+    url('./assets/ui/comics-start.jpg')
+    url('./assets/ui/comics-end.jpg');
   position: absolute;
   width: 0;
   height: 0;
@@ -195,6 +199,19 @@ body {
 .next-level-japanese {
   animation: text-blinking 1s step-start infinite;
 }
+
+.comics-screen {
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+
+.comics-start {
+  background-image: url('./assets/ui/comics-start.jpg');
+}
+
+.comics-end {
+  background-image: url('./assets/ui/comics-end.jpg');
+}
     </style>
 
     <script src="https://vk.com/js/api/openapi.js?160" type="text/javascript"></script>
@@ -206,7 +223,10 @@ body {
 
     <div id="game" class="hidden"></div>
 
-    <div id="ui-container" class="hidden no-interaction">
+    <div id="ui-container" class="hidden">
+      <div class="screen comics-screen comics-start"></div>
+      <div class="screen comics-screen comics-end hidden"></div>
+
       <div class="screen score-screen">
         <p><span class="score-text-value">0</span> очков</p>
       </div>
