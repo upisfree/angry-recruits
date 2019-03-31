@@ -7,7 +7,7 @@ export default function(game) {
   let appealScreen = ui.get('.wrong-orientation-screen');
 
   if (isMobile()) {
-    if (Math.abs(orientation) !== 90 {
+    if (Math.abs(orientation) !== 90 && isMobile()) {
       ui.enableUIInteraction();
       ui.show(appealScreen);
     } else {
