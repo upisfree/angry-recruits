@@ -15,8 +15,12 @@ export default function() {
     this.initDebugCamera();
   }
 
+  this.score = this.game.score;
+
   this.enemies = [];
   this.shells = [];
+
+  this.winTimeEvent = null;
 
   this.cameras.main.setZoom(CONFIG.DEFAULT_ZOOM);
 
@@ -27,7 +31,7 @@ export default function() {
   this.cameras.main.setZoom(this.zoom);
 
   this.cameras.main.pan(this.enemies[0].sprite.x, this.enemies[0].sprite.y, 0);
-  this.winTimeEvent = this.time.addEvent({
+  this.time.addEvent({
     delay: CONFIG.SLINGSHOT_PAN_DELAY,
     callback: () => {
       this.cameras.main.pan(this.slingshot.x, this.slingshot.y, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);

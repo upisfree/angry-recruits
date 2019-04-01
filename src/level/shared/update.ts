@@ -43,12 +43,14 @@ function win() {
     this.game.isLevelOver = true;
 
     countShellsScore(this, () => {
+      this.game.score = this.score;
+
       if (this.nextLevel) {
         ui.hide('.score-screen');
 
         ui.enableUIInteraction();
 
-        ui.get('.next-level-screen .score-text-value').textContent = this.game.score;
+        ui.get('.next-level-screen-score-text-value').textContent = this.game.score;
         let nextLevelScreen = ui.show('.next-level-screen');
         nextLevelScreen.addEventListener('click', () => {
           ui.hide(nextLevelScreen);
@@ -61,7 +63,19 @@ function win() {
       } else {
         this.game.isGameOver = true;
 
-        showScoreScreenAfterComics(this, 'win');
+        ui.enableUIInteraction();
+        ui.hide('.score-screen');
+
+        ui.get('.win-screen .score-text-value').textContent = this.game.score;
+
+        let comicsScreen = ui.get('.comics-end');
+
+        ui.show(comicsScreen);
+
+        comicsScreen.addEventListener('click', () => {
+          ui.hide(comicsScreen);
+          ui.show('.win-screen');
+        });
 
         initVKWidget(this);
       }
@@ -76,22 +90,23 @@ function fail() {
 
     console.log('fail');
 
-    showScoreScreenAfterComics(this, 'fail');
-  }
-}
-
-function showScoreScreenAfterComics(scene, screen) {
     ui.enableUIInteraction();
     ui.hide('.score-screen');
-    ui.get(`.${ screen }-screen .score-text-value`).textContent = scene.game.score;
 
-    let comicsScreen = ui.get('.comics-end');
+    ui.get('.fail-screen-score-text-value').textContent = this.score;
 
-    ui.show(comicsScreen);
+    let failScreen = ui.show('.fail-screen');
+    failScreen.addEventListener('click', () => {
+      this.game.isGameOver = false;
+      this.game.isLevelOver = false;
 
-    // iOS?
-    comicsScreen.addEventListener('click', () => {
-      ui.hide(comicsScreen);
-      ui.show(`.${ screen }-screen`);      
+      ui.disableUIInteraction();
+      ui.hide(failScreen);
+      ui.show('.score-screen');
+
+      this.scene.restart();
+
+      ui.get('.score-screen .score-text-value').textContent = this.game.score;
     });
+  }
 }

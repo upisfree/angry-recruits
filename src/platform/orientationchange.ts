@@ -7,14 +7,14 @@ export default function(game) {
   let appealScreen = ui.get('.wrong-orientation-screen');
 
   if (isMobile()) {
+    document.documentElement[fullscreenFunction]();
+
     if (Math.abs(orientation) !== 90) {
       ui.enableUIInteraction();
       ui.show(appealScreen);
     } else {
       ui.disableUIInteraction();
       ui.hide(appealScreen);
-
-      document.documentElement[fullscreenFunction]();
     }
   }
 }

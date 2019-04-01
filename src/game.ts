@@ -29,8 +29,8 @@ function startGame() {
     apiId: CONFIG.VK_AUTH_APP_ID
   });
 
-  window.addEventListener('resize', resize.bind(this, game, uiContainer));
+  window.addEventListener('resize', resize.bind(this, game));
   window.addEventListener('orientationchange', orientationchange.bind(this, game));
 
-  resize(game, uiContainer);
+  resize(game);
 }

@@ -18,6 +18,7 @@ export default class Level5 extends (<any>Phaser.Scene) {
   slingshot: Slingshot;
   levelData: any = Level5Data;
   nextLevel: any;
+  score: number = 0;
   winTimeout: number = 7500;
   zoom: number = 0.4;
   isWin: boolean;

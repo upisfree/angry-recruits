@@ -1,4 +1,4 @@
-import updateScore from '../../utils/update-score';
+import ui from '../../ui/ui';
 import createScoreText from '../../ui/create-score-text';
 
 export default function(scene, callback) {
@@ -8,7 +8,9 @@ export default function(scene, callback) {
 
   scene.entities.forEach((e) => {
     if (e.type === 'shell' && !e.isShooted) {
-      updateScore(scene, e.destructionScores.destroy);
+      scene.score += e.destructionScores.destroy;
+      ui.get('.score-screen .score-text-value').textContent = scene.score;
+
       createScoreText(scene, e, e.destructionScores.destroy);
 
       callbackDelay += animationDuration;

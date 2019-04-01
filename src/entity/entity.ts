@@ -70,7 +70,9 @@ export default class Entity {
       .setSizeToFrame(this.sprite.frame)
       .setTexture(startTextureKey);
 
-    console.log(this.textureKey, this.body.mass);
+    if (CONFIG.DEBUG_MODE) {
+      console.log(this.textureKey, this.body.mass);      
+    }
 
     if (destructionOptions) {
       this.destructionSteps = destructionOptions.steps;

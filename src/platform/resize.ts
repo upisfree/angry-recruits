@@ -1,4 +1,6 @@
-export default function(game, ui) {
+import ui from '../ui/ui';
+
+export default function(game) {
   let scale = Math.min(
     window.innerWidth / game.config.width,
     window.innerHeight / game.config.height
@@ -9,5 +11,5 @@ export default function(game, ui) {
   game.canvas.style.transform = transformRule;
   game.scale.resize(game.config.width, game.config.height);
 
-  ui.style.transform = transformRule;
+  ui.getUI().style.transform = transformRule;
 }
