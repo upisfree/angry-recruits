@@ -4,9 +4,14 @@ const CONFIG = require('./config');
 const User = require('./user');
 
 function score(body, callback) {
-  let json = JSON.parse(body);
+  let json;
 
-  if (json.userId &&
+  try {
+    json = JSON.parse(body);
+  } catch (e) { }
+
+  if (json &&
+      json.userId &&
       json.firstName &&
       json.lastName &&
       json.photoUrl &&

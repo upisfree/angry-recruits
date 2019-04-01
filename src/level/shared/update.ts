@@ -64,7 +64,7 @@ function win() {
         this.game.isGameOver = true;
 
         this.sound.play('maxim', {
-          volume: 0.5,
+          volume: 0.35,
         });
 
         ui.enableUIInteraction();

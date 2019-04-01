@@ -18,7 +18,6 @@ var server = http.createServer(function(req, res) {
   });
 
   req.on('end', () => {
-    console.log()
     switch (req.url) {
       case '/score':
         score(body, () => {
