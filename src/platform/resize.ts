@@ -1,6 +1,10 @@
 import ui from '../ui/ui';
 
 export default function(game) {
+  if (!game) {
+    return;
+  }
+
   let scale = Math.min(
     window.innerWidth / game.config.width,
     window.innerHeight / game.config.height

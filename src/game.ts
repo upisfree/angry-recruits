@@ -10,7 +10,7 @@ let game;
 let subpoenasElement = document.querySelector('.subpoenas');
 let uiContainer = ui.getUI();
 
-subpoenasElement.addEventListener('click', startGame);
+subpoenasElement.addEventListener('click', startGame, { once: true });
 
 if (!CONFIG.DEBUG_MODE) {
   console.log('%cчё лезешь сюда? пиздуй служить', 'font-size: 32pt');  
