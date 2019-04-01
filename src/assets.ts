@@ -43,7 +43,11 @@ const ASSETS = {
       }
     }
   },
-  SOUNDS: []
+  SOUNDS: {
+    'gru-begin': './assets/sound/gru-begin.mp3',
+    'march': './assets/sound/march.mp3',
+    'maxim': './assets/sound/maxim.mp3'
+  }
 }
 
 export default ASSETS;

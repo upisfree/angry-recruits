@@ -1,3 +1,4 @@
+import ASSETS from '../assets';
 import CONFIG from '../config';
 import Phaser from '../lib/phaser';
 import distance from '../utils/distance';

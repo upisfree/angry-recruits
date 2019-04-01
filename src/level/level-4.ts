@@ -174,5 +174,14 @@ export default class Level4 extends (<any>Phaser.Scene) {
     });
 
     create.bind(this)();
+
+    this.sound.play('march', {
+      volume: 0.15,
+      loop: true
+    });
+
+    this.sound.play('gru-begin', {
+      volume: 0.75,
+    });
   }
 }

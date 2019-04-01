@@ -20,6 +20,8 @@ export default function() {
   this.enemies = [];
   this.shells = [];
 
+  this.sound.stopAll();
+
   this.winTimeEvent = null;
 
   this.cameras.main.setZoom(CONFIG.DEFAULT_ZOOM);

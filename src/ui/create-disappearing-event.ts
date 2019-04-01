@@ -46,7 +46,7 @@ export default function(scene, x, y, type, data, scale = 1, animationDuration = 
     });
   } else {
     scene.time.addEvent({
-      delay: 200,
+      delay: 500,
       callback: () => {
         e.destroy();
       },

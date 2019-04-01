@@ -42,13 +42,19 @@ export default class Level5 extends (<any>Phaser.Scene) {
     // this.matter.world.engine.timing.timeScale = 0.35;
 
     this.time.addEvent({
-      delay: 250,
+        delay: 250,
       callback: this.spawnCommissar,
       callbackScope: this,
       loop: true
     });
 
     create.bind(this)();
+
+    this.sound.play('march', {
+      volume: 0.25,
+      rate: 0.45,
+      loop: true
+    });
 
     // this.distanceBetweenShellAndEnemy = distance(this.slingshot.currentShell.body.position, this.enemies[0].body.position) - this.enemyWidth;
   }

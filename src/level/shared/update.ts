@@ -63,6 +63,10 @@ function win() {
       } else {
         this.game.isGameOver = true;
 
+        this.sound.play('maxim', {
+          volume: 0.5,
+        });
+
         ui.enableUIInteraction();
         ui.hide('.score-screen');
 
