@@ -24,7 +24,7 @@ export default function() {
 
   this.cameras.main.setZoom(CONFIG.DEFAULT_ZOOM);
 
-  this.addEnvironment();
+  this.addEnvironment(this.nextLevel);
 
   this.entities = generateEntities(this.levelData, this);
 

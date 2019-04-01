@@ -10,6 +10,7 @@ import initDebugCamera from './shared/init-debug-camera';
 import preload from './shared/preload';
 import update from './shared/update';
 import randomBetween from '../utils/random-between';
+import distance from '../utils/distance';
 
 export default class Level5 extends (<any>Phaser.Scene) {
   enemies: Array<Entity> = [];
@@ -26,11 +27,12 @@ export default class Level5 extends (<any>Phaser.Scene) {
   scoreText: any;
 
   preload = preload.bind(this);
-  update = update.bind(this);
   initDebugCamera = initDebugCamera.bind(this);
   addEnvironment = addEnvironment.bind(this);
 
   cameraControls: any;
+  distanceBetweenShellAndEnemy: number;
+  enemyWidth: number = 700;
 
   constructor(config) {
     super(config);
@@ -47,6 +49,20 @@ export default class Level5 extends (<any>Phaser.Scene) {
     });
 
     create.bind(this)();
+
+    // this.distanceBetweenShellAndEnemy = distance(this.slingshot.currentShell.body.position, this.enemies[0].body.position) - this.enemyWidth;
+  }
+
+  update() {
+    // if (this.slingshot.currentShell && this.slingshot.currentShell.isShooted) {
+    //   let d = distance(this.slingshot.currentShell.body.position, this.enemies[0].body.position) - this.enemyWidth;
+
+    //   if (d / this.distanceBetweenShellAndEnemy < 0.5) {
+    //     this.matter.world.engine.timing.timeScale = 0;
+    //   }
+    // }
+
+    update.bind(this)();
   }
 
   spawnCommissar() {

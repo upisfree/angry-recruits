@@ -9,6 +9,7 @@ import create from './shared/create';
 import initDebugCamera from './shared/init-debug-camera';
 import preload from './shared/preload';
 import update from './shared/update';
+import createDisappearingEvent from '../ui/create-disappearing-event';
 
 export default class Level2 extends (<any>Phaser.Scene) {
   enemies: Array<Entity> = [];
@@ -25,7 +26,6 @@ export default class Level2 extends (<any>Phaser.Scene) {
   scoreText: any;
 
   preload = preload.bind(this);
-  create = create.bind(this);
   update = update.bind(this);
   initDebugCamera = initDebugCamera.bind(this);
   addEnvironment = addEnvironment.bind(this);
@@ -34,5 +34,46 @@ export default class Level2 extends (<any>Phaser.Scene) {
 
   constructor(config) {
     super(config);
+  }
+
+  create() {
+    let events = [
+      {
+        type: 'sprite',
+        data: 'dagestan-sign-1',
+        x: 2000,
+        y: -400,
+        delay: 5000,
+        duration: 0,
+        scale: 2
+      },
+      {
+        type: 'sprite',
+        data: 'ingush-sign-1',
+        x: 2000,
+        y: -400,
+        delay: 10000,
+        duration: 0,
+        scale: 2
+      },
+      {
+        type: 'sprite',
+        data: 'dagestan-sign-2',
+        x: 2000,
+        y: -400,
+        delay: 15000,
+        duration: 0,
+        scale: 2
+      }
+    ];
+
+    events.forEach((v) => {
+      this.time.addEvent({
+        delay: v.delay,
+        callback: createDisappearingEvent.bind(this, this, v.x, v.y, v.type, v.data, v.scale, v.duration),
+      });
+    });
+
+    create.bind(this)();
   }
 }
