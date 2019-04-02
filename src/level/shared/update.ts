@@ -63,8 +63,8 @@ function win() {
       } else {
         this.game.isGameOver = true;
 
-        this.sound.play('maxim', {
-          volume: 0.35,
+        this.sound.playAudioSprite('soundsprite', 'maxim', {
+          volume: 0.2,
         });
 
         ui.enableUIInteraction();

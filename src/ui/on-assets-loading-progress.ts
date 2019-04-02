@@ -3,5 +3,5 @@ export default function(progress) {
 
   let subpoenasBack = <any>document.querySelector('.subpoenas-back'); // ну такое каждый раз тут это вызывать...
 
-  subpoenasBack.style.filter = `hue-rotate(1030deg) saturate(${ progress * MAX_SATURATION })`;
+  subpoenasBack.style.filter = `saturate(${ progress * MAX_SATURATION })`;
 }

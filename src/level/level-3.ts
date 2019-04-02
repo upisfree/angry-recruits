@@ -20,7 +20,7 @@ export default class Level3 extends (<any>Phaser.Scene) {
   nextLevel: any = Level4;
   winTimeout: number = 2500;
   score: number = 0;
-  zoom: number = 0.5;
+  zoom: number = 0.35;
   isWin: boolean;
   winTimeEvent: any;
   scoreText: any;
@@ -38,24 +38,6 @@ export default class Level3 extends (<any>Phaser.Scene) {
 
   create() {
     let events = [
-      {
-        type: 'text',
-        data: 'когда жирный будет полетит, нажми на него',
-        x: 1500,
-        y: 0,
-        delay: 4000,
-        duration: 2500,
-        scale: 1
-      },
-      // {
-      //   type: 'sprite',
-      //   data: 'ingush-sign-2',
-      //   x: 2000,
-      //   y: -400,
-      //   delay: 10000,
-      //   duration: 0,
-      //   scale: 2
-      // },
       this.commissarText('братан', 5000),
       this.commissarText('попусти', 7500),
       this.commissarText('всё', 10000),
@@ -94,8 +76,8 @@ export default class Level3 extends (<any>Phaser.Scene) {
         x: 700,
         y: 200,
         delay: 52000,
-        duration: 1500,
-        scale: 2
+        duration: 2000,
+        scale: 1.5
       },
       {
         type: 'text',
@@ -103,8 +85,8 @@ export default class Level3 extends (<any>Phaser.Scene) {
         x: 700,
         y: 200,
         delay: 54000,
-        duration: 1500,
-        scale: 2
+        duration: 2000,
+        scale: 1.5
       }
     ];
 
@@ -118,6 +100,16 @@ export default class Level3 extends (<any>Phaser.Scene) {
     create.bind(this)();
 
     this.add.sprite(5300, 465, 'lenin');
+
+    let tutorialText = this.add.text(
+      300,
+      -500,
+      'Напоминаю!\nВо время полёта пухлого призывника нужно нажать на экран',
+      {
+        fontSize: 54,
+        fontFamily: '"Press Start 2P"' // двойные кавычки тут неспроста: https://github.com/photonstorm/phaser/blob/v3.16.1/src/gameobjects/text/static/Text.js#L31
+      }
+    );
   }
 
   commissarText(t, d) {

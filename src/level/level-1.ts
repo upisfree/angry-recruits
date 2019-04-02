@@ -20,7 +20,7 @@ export default class Level1 extends (<any>Phaser.Scene) {
   nextLevel: any = Level2;
   winTimeout: number = 2500;
   score: number = 0;
-  zoom: number = 0.5;
+  zoom: number = 0.425;
   isWin: boolean;
   winTimeEvent: any;
   scoreText: any;
@@ -47,55 +47,6 @@ export default class Level1 extends (<any>Phaser.Scene) {
         duration: 3000,
         scale: 1
       },
-      {
-        type: 'text',
-        data: 'раз',
-        x: 500,
-        y: 100,
-        delay: 4000,
-        scale: 1
-      },
-      {
-        type: 'text',
-        data: 'два',
-        x: 700,
-        y: 200,
-        delay: 6000,
-        scale: 1
-      },
-      {
-        type: 'text',
-        data: 'три',
-        x: 900,
-        y: 300,
-        delay: 8000,
-        scale: 1
-      },
-      {
-        type: 'sprite',
-        data: 'tank',
-        x: 1100,
-        y: 100,
-        delay: 10000,
-        duration: 3000,
-        scale: 2
-      },
-      {
-        type: 'text',
-        data: 'хочу передать привет своему военкому',
-        x: 2000,
-        y: -500,
-        delay: 20000,
-        scale: 1
-      },
-      {
-        type: 'text',
-        data: 'играл вообще в энгрибёрдс?',
-        x: 2500,
-        y: 0,
-        delay: 15000,
-        scale: 1
-      },
     ];
 
     events.forEach((v) => {
@@ -106,5 +57,37 @@ export default class Level1 extends (<any>Phaser.Scene) {
     });
 
     create.bind(this)();
+
+    const FONT_SIZE = 54;
+
+    let tutorialText = this.add.text(
+      300,
+      -500,
+      '',
+      {
+        fontSize: FONT_SIZE,
+        fontFamily: '"Press Start 2P"' // двойные кавычки тут неспроста: https://github.com/photonstorm/phaser/blob/v3.16.1/src/gameobjects/text/static/Text.js#L31
+      }
+    );
+
+    let tutorialTexts = [
+      'ПризываНет.ру и Сеня Пугач представляют\nкомпьютерную игру «ЗЛОЙ ПРИЗЫВНИК»',
+      'В ней вы ассоциируете себя с призывником,\nкоторый ведёт борьбу за своё будущее',
+      'Воспользуйтесь рогаткой, чтобы\nзапустить призывника в военкомов',
+      'Но не натягивайте рогатку слишком сильно!\nОна может порваться...',
+      'Запустив призывника, нажмите на экран\nчтобы активировать его особый дар',
+      'Обычный призывник умеет только ходить в военкомат,\nа вот его полный друг может камнем упасть вниз,\nсминая всё на своём падении',
+      'А что умеет призывник в чёрном я вам не расскажу.',
+      'Ну, успехов!',
+    ];
+
+    tutorialTexts.forEach((v, i) => {
+      this.time.addEvent({
+        delay: 5000 * i,
+        callback: () => {
+          tutorialText.text = v;
+        },
+      });
+    });
   }
 }

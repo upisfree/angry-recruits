@@ -40,69 +40,6 @@ export default class Level4 extends (<any>Phaser.Scene) {
     let events = [
       {
         type: 'text',
-        data: 'будешь с пацанами служить',
-        x: 2000,
-        y: -400,
-        delay: 5000,
-        duration: 2000,
-        scale: 2
-      },
-      {
-        type: 'sprite',
-        data: 'dagestan-sign-2',
-        x: 2000,
-        y: -400,
-        delay: 6000,
-        duration: 0,
-        scale: 4
-      },
-      {
-        type: 'sprite',
-        data: 'ingush-sign-1',
-        x: 2000,
-        y: -400,
-        delay: 6500,
-        duration: 0,
-        scale: 4
-      },
-      {
-        type: 'sprite',
-        data: 'dagestan-sign-1',
-        x: 2000,
-        y: -400,
-        delay: 7000,
-        duration: 0,
-        scale: 4
-      },
-      {
-        type: 'sprite',
-        data: 'ingush-sign-2',
-        x: 2000,
-        y: -400,
-        delay: 7500,
-        duration: 0,
-        scale: 4
-      },
-      {
-        type: 'text',
-        data: 'подружитесь',
-        x: 2000,
-        y: -400,
-        delay: 8500,
-        duration: 2000,
-        scale: 2
-      },
-      {
-        type: 'text',
-        data: 'кстати, нажми на шахида в полёте',
-        x: 2000,
-        y: 0,
-        delay: 10000,
-        duration: 2000,
-        scale: 1
-      },
-      {
-        type: 'text',
         data: 'я',
         x: 2500,
         y: -100,
@@ -175,8 +112,14 @@ export default class Level4 extends (<any>Phaser.Scene) {
 
     create.bind(this)();
 
-    // this.sound.play('gru-begin', {
-    //   volume: 0.75,
-    // });
+    let tutorialText = this.add.text(
+      300,
+      -500,
+      'Напоминаю ещё раз!\nКак запустишь чёрного призывника, жми на экран',
+      {
+        fontSize: 54,
+        fontFamily: '"Press Start 2P"' // двойные кавычки тут неспроста: https://github.com/photonstorm/phaser/blob/v3.16.1/src/gameobjects/text/static/Text.js#L31
+      }
+    );
   }
 }

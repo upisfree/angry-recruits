@@ -142,7 +142,7 @@ export default class Entity {
       }
 
       this.scene.sound.playAudioSprite('soundsprite', `hit-${ randomBetween(1, 5) }`, {
-        volume: 0.35 - 0.25 * Math.random(),
+        volume: 0.7 - 0.25 * Math.random(),
         rate: 1 - 0.25 * Math.random() // 0.75...1.0
       });
 

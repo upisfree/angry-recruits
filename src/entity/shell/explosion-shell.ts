@@ -42,7 +42,7 @@ export default class ExplosionShell extends Shell {
     this.showSmoke();
 
     this.scene.cameras.main.stopFollow();
-    this.scene.cameras.main.pan(this.scene.slingshot.x, this.scene.slingshot.y, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
+    this.scene.cameras.main.pan(this.scene.slingshot.x, this.scene.slingshot.y, 4000, CONFIG.FLIGHT_ZOOM_EASING);
     this.scene.cameras.main.shake(2000, 0.4);
     this.sprite.destroy();
 

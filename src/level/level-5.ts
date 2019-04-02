@@ -11,6 +11,7 @@ import preload from './shared/preload';
 import update from './shared/update';
 import randomBetween from '../utils/random-between';
 import distance from '../utils/distance';
+import createDisappearingEvent from '../ui/create-disappearing-event';
 
 export default class Level5 extends (<any>Phaser.Scene) {
   enemies: Array<Entity> = [];
@@ -39,40 +40,58 @@ export default class Level5 extends (<any>Phaser.Scene) {
   }
 
   create() {
-    // this.matter.world.engine.timing.timeScale = 0.35;
-
     this.time.addEvent({
-        delay: 250,
+      delay: 250,
       callback: this.spawnCommissar,
       callbackScope: this,
       loop: true
     });
 
+    let events = [
+      this.commissarText('слыш пездюк', 3000),
+      this.commissarText('я генерал-майор', 5000),
+      this.commissarText('диванных войск', 7000),
+      this.commissarText('трава себя не покрасит', 9000),
+      this.commissarText('моя дача сама не построится', 11000),
+      this.commissarText('сюда подошёл', 15000),
+      this.commissarText('один на один', 17000),
+      this.commissarText('только ты и я', 19000),
+      this.commissarText('встречаемся в военкомате', 21000),
+      this.commissarText('ну чё стоишь пердишь', 27000),
+      this.commissarText('давай шакал', 30000),
+      this.commissarText('я тут уже 30 лет сижу', 32000),
+      this.commissarText('знаешь сколько таких видал', 34000),
+      this.commissarText('знаешь...', 38000),
+      this.commissarText('знаешь ли ты', 42000),
+      this.commissarText('вдоль ночных дорог', 43000),
+      this.commissarText('шла босиком', 44000),
+      this.commissarText('не жалея ног', 45000),
+    ];
+
+    events.forEach((v) => {
+      this.time.addEvent({
+        delay: v.delay,
+        callback: createDisappearingEvent.bind(this, this, v.x, v.y, v.type, v.data, v.scale, v.duration),
+      });
+    });
+
     create.bind(this)();
-
-    // this.sound.play('march', {
-    //   volume: 0.25,
-    //   rate: 0.45,
-    //   loop: true
-    // });
-
-    // this.distanceBetweenShellAndEnemy = distance(this.slingshot.currentShell.body.position, this.enemies[0].body.position) - this.enemyWidth;
   }
 
   update() {
-    if (this.slingshot.currentShell.isShooted && this.slingshot.currentShell.isDirty) {
-      this.game.loop.targetFps = 60 * 0.25;
-      // this.matter.world.engine.timing.timeScale = 0.25;
-    }
-    // if (this.slingshot.currentShell && this.slingshot.currentShell.isShooted) {
-    //   let d = distance(this.slingshot.currentShell.body.position, this.enemies[0].body.position) - this.enemyWidth;
-
-    //   if (d / this.distanceBetweenShellAndEnemy < 0.5) {
-    //     this.matter.world.engine.timing.timeScale = 0;
-    //   }
-    // }
-
     update.bind(this)();
+  }
+
+  commissarText(t, d) {
+    return {
+      type: 'text',
+      data: t,
+      x: 3850,
+      y: -700,
+      delay: d,
+      duration: 2500,
+      scale: 1.55
+    };
   }
 
   spawnCommissar() {

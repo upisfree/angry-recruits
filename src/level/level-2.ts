@@ -45,7 +45,7 @@ export default class Level2 extends (<any>Phaser.Scene) {
         y: -400,
         delay: 5000,
         duration: 0,
-        scale: 2
+        scale: 3
       },
       {
         type: 'sprite',
@@ -54,7 +54,7 @@ export default class Level2 extends (<any>Phaser.Scene) {
         y: -400,
         delay: 10000,
         duration: 0,
-        scale: 2
+        scale: 3
       },
       {
         type: 'sprite',
@@ -63,7 +63,16 @@ export default class Level2 extends (<any>Phaser.Scene) {
         y: -400,
         delay: 15000,
         duration: 0,
-        scale: 2
+        scale: 3
+      },
+      {
+        type: 'sprite',
+        data: 'ingush-sign-2',
+        x: 2000,
+        y: -400,
+        delay: 20000,
+        duration: 0,
+        scale: 3
       }
     ];
 

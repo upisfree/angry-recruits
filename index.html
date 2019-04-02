@@ -98,12 +98,7 @@ body {
   background-repeat: no-repeat;
 }
 
-.subpoenas-front {
-  background-image: url('./assets/ui/subpoena-front.jpg');
-  cursor: pointer;
-}
-
-.subpoenas-front::before {
+.subpoenas::before {
   content: '';
   position: absolute;
   top: -100%;
@@ -116,9 +111,28 @@ body {
   opacity: 0.25;
 }
 
+.subpoenas-front {
+  background-image: url('./assets/ui/subpoena-front.jpg');
+  cursor: pointer;
+}
+
 .subpoenas-back {
   background-image: url('./assets/ui/subpoena-back.jpg');
   filter: hue-rotate(1030deg) saturate(1);
+}
+
+.subpoenas h1 {
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  background: #000;
+  padding: 30px;
+}
+
+.subpoenas-front h1 {
+  display: none;
 }
 
 #ui-container {
@@ -244,7 +258,9 @@ body {
     <script src="https://vk.com/js/api/openapi.js?160" type="text/javascript"></script>
   </head>
   <body>
-    <div class="subpoenas subpoenas-front"></div>
+    <div class="subpoenas subpoenas-front">
+      <h1>Загрузка...</h1>
+    </div>
 
     <div id="game" class="hidden"></div>
 
@@ -261,8 +277,8 @@ body {
         <div id="vk-auth"></div>
 
         <p>
-Не служи. Это пиздец. Зайди через ВК, чтобы сохранить результат и попасть в рейтинг лучших игроков!
-(десять человек с наибольшим количеством очков получат скидку в 10% на услуги ПРИЗЫВАНЕТ.РУ) 
+Сохрани результат и попади в рейтинг игроков: 10 лучших получат скидку на услуги ПризываНет.ру!
+Чтобы сохранить результат, зайди через ВК.
         </p>
         <h2 class="score-text"><span class="score-text-value">0</span> очков</h2>
       </div>
