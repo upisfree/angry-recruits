@@ -56,7 +56,9 @@ export default class Slingshot {
       .setScale(this.slingshotSpritesScaleFactor)
       .setOrigin(0, 0);
 
-    this.scene.add.text(this.x - this.maxTensionDistanceX, this.y - 10, '|', { fontSize: 64 })
+    if (CONFIG.DEBUG_MODE) {
+      this.scene.add.text(this.x - this.maxTensionDistanceX, this.y - 10, '|', { fontSize: 64 })      
+    }
 
     this.frontSprite.depth = 15;
     this.rubberSpriteFront.depth = 12;
