@@ -1,7 +1,6 @@
 import ui from './ui';
 import orientationchange from '../platform/orientationchange';
 import isMobile from '../platform/is-mobile';
-import fullscreenFunction from '../platform/fullscreen-function';
 
 export default function() {
   this.systems.scene.scene.pause();

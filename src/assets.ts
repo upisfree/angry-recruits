@@ -45,7 +45,7 @@ const ASSETS = {
   },
   SOUNDS: {
     'ambient': './assets/sound/ambient.mp3'
-  }
+  },
   SOUNDSPRITES: {
     'soundsprite': {
       json: './assets/sound/soundsprite.json',
