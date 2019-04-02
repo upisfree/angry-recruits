@@ -20,7 +20,7 @@ export default class Level5 extends (<any>Phaser.Scene) {
   levelData: any = Level5Data;
   nextLevel: any;
   score: number = 0;
-  winTimeout: number = 7500;
+  winTimeout: number = 3000;
   zoom: number = 0.4;
   isWin: boolean;
   winTimeEvent: any;
@@ -50,16 +50,20 @@ export default class Level5 extends (<any>Phaser.Scene) {
 
     create.bind(this)();
 
-    this.sound.play('march', {
-      volume: 0.25,
-      rate: 0.45,
-      loop: true
-    });
+    // this.sound.play('march', {
+    //   volume: 0.25,
+    //   rate: 0.45,
+    //   loop: true
+    // });
 
     // this.distanceBetweenShellAndEnemy = distance(this.slingshot.currentShell.body.position, this.enemies[0].body.position) - this.enemyWidth;
   }
 
   update() {
+    if (this.slingshot.currentShell.isShooted && this.slingshot.currentShell.isDirty) {
+      this.game.loop.targetFps = 60 * 0.25;
+      // this.matter.world.engine.timing.timeScale = 0.25;
+    }
     // if (this.slingshot.currentShell && this.slingshot.currentShell.isShooted) {
     //   let d = distance(this.slingshot.currentShell.body.position, this.enemies[0].body.position) - this.enemyWidth;
 

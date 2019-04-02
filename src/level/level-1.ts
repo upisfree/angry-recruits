@@ -106,10 +106,5 @@ export default class Level1 extends (<any>Phaser.Scene) {
     });
 
     create.bind(this)();
-
-    this.sound.play('march', {
-      volume: 0.15,
-      loop: true
-    });
   }
 }

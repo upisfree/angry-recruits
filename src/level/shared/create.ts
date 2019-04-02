@@ -1,5 +1,6 @@
 import CONFIG from '../../config';
 import generateEntities from './generate-entities';
+import randomBetween from '../../utils/random-between';
 
 export default function() {
   this.game.isLevelOver = false;
@@ -39,5 +40,20 @@ export default function() {
       this.cameras.main.pan(this.slingshot.x, this.slingshot.y, CONFIG.FLIGHT_ZOOM_DURATION, CONFIG.FLIGHT_ZOOM_EASING);
     },
     callbackScope: this
+  });
+
+  this.time.addEvent({
+    delay: 5000,
+    callback: () => {
+      if (this.enemies.length && this.game.hasFocus) {
+        this.sound.playAudioSprite('soundsprite', `commissar-${ randomBetween(1, 12) }`, {
+          volume: 0.25 - 0.25 * Math.random(),
+          rate: (this.nextLevel) ? 1 : 0.75 - 0.25 * Math.random() // 0.75...1.0
+          delay: Math.random() * 7
+        });
+      }
+    },
+    callbackScope: this,
+    loop: true
   });
 }

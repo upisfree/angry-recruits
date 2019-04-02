@@ -44,9 +44,13 @@ const ASSETS = {
     }
   },
   SOUNDS: {
-    'gru-begin': './assets/sound/gru-begin.mp3',
-    'march': './assets/sound/march.mp3',
-    'maxim': './assets/sound/maxim.mp3'
+    'ambient': './assets/sound/ambient.mp3'
+  }
+  SOUNDSPRITES: {
+    'soundsprite': {
+      json: './assets/sound/soundsprite.json',
+      mp3: './assets/sound/soundsprite.mp3',
+    }
   }
 }
 

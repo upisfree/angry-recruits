@@ -121,6 +121,10 @@ export default class Slingshot {
 
         this.currentShell.sprite.setIgnoreGravity(true);
         this.currentShell.sprite.setVelocity(-10, -50);
+
+        this.scene.sound.playAudioSprite('soundsprite', 'kulak', {
+          volume: 0.25 - 0.25 * Math.random(),
+        });
       }
     } else {
       // если уже можно отпустить рогатку и снаряд заряжен, то стреляем
@@ -128,6 +132,11 @@ export default class Slingshot {
 
       if (d > this.minTensionDistance && this.isNewShellSpawned) {
         this.shootTightShell();
+
+        this.scene.sound.playAudioSprite('soundsprite', 'scream', {
+          volume: 0.25 - 0.25 * Math.random(),
+          rate: 1 - 0.25 * Math.random() // 0.75...1.0
+        });
       }
     }
   }

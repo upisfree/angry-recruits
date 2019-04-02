@@ -18,4 +18,8 @@ export default function() {
     this.load.audio(k, ASSETS.SOUNDS[k]);
     // this.load.audioSprite('sound', ASSETS.SOUNDS[k].json, [ASSETS.SOUNDS[k].mp3]);
   }
+
+  for (let k in ASSETS.SOUNDSPRITES) {
+    this.load.audioSprite(k, ASSETS.SOUNDSPRITES[k].json, [ASSETS.SOUNDSPRITES[k].mp3]);
+  }
 }

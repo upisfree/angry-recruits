@@ -1,0 +1,112 @@
+{
+  "resources": [
+    "soundsprite.mp3"
+  ],
+  "spritemap": {
+    "commissar-1": {
+      "start": 0,
+      "end": 3.2,
+      "loop": false
+    },
+    "commissar-10": {
+      "start": 5,
+      "end": 6.76,
+      "loop": false
+    },
+    "commissar-11": {
+      "start": 8,
+      "end": 9.879999999999999,
+      "loop": false
+    },
+    "commissar-12": {
+      "start": 11,
+      "end": 13.879999999999999,
+      "loop": false
+    },
+    "commissar-2": {
+      "start": 15,
+      "end": 22.28,
+      "loop": false
+    },
+    "commissar-3": {
+      "start": 24,
+      "end": 25.68,
+      "loop": false
+    },
+    "commissar-4": {
+      "start": 27,
+      "end": 30.12,
+      "loop": false
+    },
+    "commissar-5": {
+      "start": 32,
+      "end": 38.56,
+      "loop": false
+    },
+    "commissar-6": {
+      "start": 40,
+      "end": 41.12,
+      "loop": false
+    },
+    "commissar-7": {
+      "start": 43,
+      "end": 44.88,
+      "loop": false
+    },
+    "commissar-8": {
+      "start": 46,
+      "end": 48.44,
+      "loop": false
+    },
+    "commissar-9": {
+      "start": 50,
+      "end": 51.4,
+      "loop": false
+    },
+    "gru-begin": {
+      "start": 53,
+      "end": 76.08800453514739,
+      "loop": false
+    },
+    "hit-1": {
+      "start": 78,
+      "end": 79.48,
+      "loop": false
+    },
+    "hit-2": {
+      "start": 81,
+      "end": 82.12,
+      "loop": false
+    },
+    "hit-3": {
+      "start": 84,
+      "end": 85.24,
+      "loop": false
+    },
+    "hit-4": {
+      "start": 87,
+      "end": 88,
+      "loop": false
+    },
+    "hit-5": {
+      "start": 89,
+      "end": 90.08,
+      "loop": false
+    },
+    "kulak": {
+      "start": 92,
+      "end": 97.28,
+      "loop": false
+    },
+    "maxim": {
+      "start": 99,
+      "end": 216.62938775510204,
+      "loop": false
+    },
+    "scream": {
+      "start": 218,
+      "end": 219,
+      "loop": false
+    }
+  }
+}

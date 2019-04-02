@@ -3,7 +3,7 @@ import Phaser from '../lib/phaser';
 import momentum from '../utils/momentum';
 import updateScore from '../utils/update-score';
 import createScoreText from '../ui/create-score-text';
-const { Vector } = Phaser.Physics.Matter.Matter;
+import randomBetween from '../utils/random-between';
 
 export interface IDestructionOptions {
   steps?: number;     // сколько текстур сменится от нетронутого объекта до полностью
@@ -140,6 +140,11 @@ export default class Entity {
         updateScore(this.scene, this.destructionScores.destroy);
         createScoreText(this.scene, this, this.destructionScores.destroy);
       }
+
+      this.scene.sound.playAudioSprite('soundsprite', `hit-${ randomBetween(1, 5) }`, {
+        volume: 0.35 - 0.25 * Math.random(),
+        rate: 1 - 0.25 * Math.random() // 0.75...1.0
+      });
 
       this.sprite.destroy(); // это удаляет и физическое тело
       this.isDestroyed = true;

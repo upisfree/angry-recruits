@@ -2,11 +2,6 @@ export default function(nextLevel) {
   let w = this.game.config.width;
   let h = this.game.config.height;
 
-  // let tileSprite = this.add.tileSprite(this.game.config.width / 2, 1920, 20000, 290, 'grass');
-  // console.log(tileSprite);
-  // this.matter.add.tileBody(tileSprite, {});
-  // let grass = this.matter.add.image(this.game.config.width / 2, this.game.config.height, 'grass', null, { isStatic: true });
-
   let skyTile = this.add.sprite(0, 0, (nextLevel) ? 'sky' : 'sky-end')
     .setDisplaySize(w * 4, h * 4)
     .setPosition(w * 4, h)
@@ -23,4 +18,10 @@ export default function(nextLevel) {
   grassBottomSprite.body.label = 'grassBottomSprite';
 
   this.cameras.main.setBounds(0, -h * 3, w * 4, h * 4);
+
+  this.game.ambientSound = this.sound.play('ambient', {
+    volume: 0.4,
+    seek: 25 * Math.random(),
+    loop: true
+  });
 }
