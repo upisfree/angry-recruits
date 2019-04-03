@@ -20,6 +20,8 @@ function startGame() {
   subpoenasElement.classList.remove('subpoenas-front');
   subpoenasElement.classList.add('subpoenas-back');
 
+  ui.get('.subpoenas h1').textContent = 'ГРУЗИСЬ УЖЕ...';
+
   game = new Phaser.Game(phaserConfig);
   game.score = 0;
   game.isGameOver = false;

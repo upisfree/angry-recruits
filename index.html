@@ -47,8 +47,7 @@ body::after {
   content:
     url('./assets/ui/subpoena-front.jpg')
     url('./assets/ui/subpoena-back.jpg')
-    url('./assets/ui/comics-start.jpg')
-    url('./assets/ui/comics-end.jpg');
+    url('./assets/ui/comics-start.jpg');
   position: absolute;
   width: 0;
   height: 0;
@@ -128,11 +127,8 @@ body {
   transform: translate(-50%, -50%);
   color: #fff;
   background: #000;
-  padding: 30px;
-}
-
-.subpoenas-front h1 {
-  display: none;
+  padding: 1.5em;
+  font-size: 1em;
 }
 
 #ui-container {
@@ -189,6 +185,15 @@ body {
   margin: 6%;
   font-size: 28pt;
   text-align: center;
+}
+
+#ui-container .score-screen .restart-button {
+  position: absolute;
+  top: 0.5em;
+  right: 0.75em;
+  pointer-events: auto;
+  font-size: 6em;
+  filter: hue-rotate(250deg)
 }
 
 #ui-container .fail-screen,
@@ -259,7 +264,7 @@ body {
   </head>
   <body>
     <div class="subpoenas subpoenas-front">
-      <h1>Загрузка...</h1>
+      <h1>ПОЛУЧИ ПОВЕСТКУ</h1>
     </div>
 
     <div id="game" class="hidden"></div>
@@ -270,10 +275,11 @@ body {
 
       <div class="screen score-screen">
         <p><span class="score-text-value">0</span> очк</p>
+        <span class="restart-button">🔄</span>
       </div>
 
       <div class="screen win-screen hidden">
-        <h1>ПОБЕДА</h1>
+        <h1>НИ НА ЧТО НЕ ГОДЕН</h1>
         <div id="vk-auth"></div>
 
         <p>
@@ -296,7 +302,7 @@ body {
       </div>
 
       <div class="screen wrong-orientation-screen hidden">
-        <h1>переверни телефон, играть неудобно</h1>
+        <h1>переверни&nbsp;🔄&nbsp;телефон&nbsp;📱, играть неудобно</h1>
       </div>
     </div>
 

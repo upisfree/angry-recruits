@@ -24,6 +24,7 @@ export default class Level3 extends (<any>Phaser.Scene) {
   isWin: boolean;
   winTimeEvent: any;
   scoreText: any;
+  commissarWithDialog: any;
 
   preload = preload.bind(this);
   update = update.bind(this);
@@ -93,11 +94,17 @@ export default class Level3 extends (<any>Phaser.Scene) {
     events.forEach((v) => {
       this.time.addEvent({
         delay: v.delay,
-        callback: createDisappearingEvent.bind(this, this, v.x, v.y, v.type, v.data, v.scale, v.duration),
+        callback: () => {
+          if (this.commissarWithDialog && !this.commissarWithDialog.isDestroyed) {
+            createDisappearingEvent(this, v.x, v.y, v.type, v.data, v.scale, v.duration);            
+          }
+        }
       });
     });
 
     create.bind(this)();
+
+    this.commissarWithDialog = this.enemies[4];
 
     this.add.sprite(5300, 465, 'lenin');
 
@@ -106,10 +113,12 @@ export default class Level3 extends (<any>Phaser.Scene) {
       -500,
       'Напоминаю!\nВо время полёта пухлого призывника нужно нажать на экран',
       {
-        fontSize: 54,
+        fontSize: 26,
         fontFamily: '"Press Start 2P"' // двойные кавычки тут неспроста: https://github.com/photonstorm/phaser/blob/v3.16.1/src/gameobjects/text/static/Text.js#L31
       }
-    );
+    ).setScale(2.5, 2.5);
+
+    console.log();
   }
 
   commissarText(t, d) {

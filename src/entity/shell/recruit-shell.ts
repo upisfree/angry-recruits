@@ -15,7 +15,7 @@ export default class RecruitShell extends Shell {
       {
         steps: 1,
         score: {
-          destroy: 10000
+          destroy: 15000
         }
       }
     );

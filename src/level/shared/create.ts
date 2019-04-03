@@ -47,7 +47,7 @@ export default function() {
     callback: () => {
       if (this.enemies.length && this.game.hasFocus) {
         this.sound.playAudioSprite('soundsprite', `commissar-${ randomBetween(1, 12) }`, {
-          volume: 0.25 - 0.25 * Math.random(),
+          volume: 1 - 0.25 * Math.random(),
           rate: (this.nextLevel) ? 1 : 0.75 - 0.25 * Math.random(), // 0.75...1.0
           delay: Math.random() * 7
         });

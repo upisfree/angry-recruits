@@ -1,4 +1,5 @@
 import CommissarEnemy from '../entity/enemy/commissar-enemy';
+import CommissarBossEnemy from '../entity/enemy/commissar-boss-enemy';
 import ExplosionShell from '../entity/shell/explosion-shell';
 import FatShell from '../entity/shell/fat-shell';
 import RecruitShell from '../entity/shell/recruit-shell';
@@ -15,7 +16,8 @@ const PlainEntitiesList = [
   RecruitShell,
   FatShell,
   ExplosionShell,
-  CommissarEnemy
+  CommissarEnemy,
+  CommissarBossEnemy
 ];
 
 const KeyedEntitiesList = {};

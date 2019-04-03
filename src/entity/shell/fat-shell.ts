@@ -19,7 +19,7 @@ export default class FatShell extends Shell {
       {
         steps: 1,
         score: {
-          destroy: 10000
+          destroy: 20000
         }
       }
       // PhysicsEditorParser.parseBody(x, y, 1, 1, BODY_DATA['fat-shell'])

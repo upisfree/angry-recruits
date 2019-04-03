@@ -26,6 +26,8 @@ export default class Level5 extends (<any>Phaser.Scene) {
   isWin: boolean;
   winTimeEvent: any;
   scoreText: any;
+  commissarWithDialog: any;
+  commissarsCount: number = 0;
 
   preload = preload.bind(this);
   initDebugCamera = initDebugCamera.bind(this);
@@ -66,16 +68,24 @@ export default class Level5 extends (<any>Phaser.Scene) {
       this.commissarText('вдоль ночных дорог', 43000),
       this.commissarText('шла босиком', 44000),
       this.commissarText('не жалея ног', 45000),
+      this.commissarText('это не слёзы', 47000),
+      this.commissarText('просто дождь...', 49000),
     ];
 
     events.forEach((v) => {
       this.time.addEvent({
         delay: v.delay,
-        callback: createDisappearingEvent.bind(this, this, v.x, v.y, v.type, v.data, v.scale, v.duration),
+        callback: () => {
+          if (this.commissarWithDialog && !this.commissarWithDialog.isDestroyed) {
+            createDisappearingEvent(this, v.x, v.y, v.type, v.data, v.scale, v.duration);            
+          }
+        }
       });
     });
 
     create.bind(this)();
+
+    this.commissarWithDialog = this.enemies[0];
   }
 
   update() {
@@ -95,7 +105,7 @@ export default class Level5 extends (<any>Phaser.Scene) {
   }
 
   spawnCommissar() {
-    if (!this.shells.length) {
+    if (this.commissarsCount > 20) {
       return;
     }
 
@@ -103,6 +113,11 @@ export default class Level5 extends (<any>Phaser.Scene) {
     let y = -2000;
 
     let commissar = new CommissarEnemy(this, x, y, true);
+
+    if (!this.enemies.length) {
+      this.commissarsCount += 1;
+      commissar.destructionMomentum = Infinity;
+    }
 
     let angularVelocityDirection = (Math.random() > 0.5) ? 1 : -1;
 

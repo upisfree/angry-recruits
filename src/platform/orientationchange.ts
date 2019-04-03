@@ -13,10 +13,10 @@ export default function(game) {
     requestFullscreen();
 
     if (Math.abs(orientation) !== 90) {
-      ui.enableUIInteraction();
+      // ui.enableUIInteraction();
       ui.show(appealScreen);
     } else {
-      ui.disableUIInteraction();
+      // ui.disableUIInteraction();
       ui.hide(appealScreen);
     }
   }

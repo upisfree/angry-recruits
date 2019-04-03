@@ -95,8 +95,13 @@ export default class Entity {
 
   }
 
+  // событие, чтобы внутри объектов реализовывать логику (см. CommissarBossEnemy)
+  onMomentumChange(): void {
+
+  }
+
   onCollideStart(e): void {
-    if (this.body.isStatic === true) {
+    if (this.body.isStatic === true || this.destructionMomentum === Infinity) {
       return;
     }
 
@@ -142,12 +147,16 @@ export default class Entity {
       }
 
       this.scene.sound.playAudioSprite('soundsprite', `hit-${ randomBetween(1, 5) }`, {
-        volume: 0.7 - 0.25 * Math.random(),
+        volume: 1 - 0.25 * Math.random(),
         rate: 1 - 0.25 * Math.random() // 0.75...1.0
       });
 
       this.sprite.destroy(); // это удаляет и физическое тело
       this.isDestroyed = true;
+    }
+
+    if (this.onMomentumChange) {
+      this.onMomentumChange();
     }
   }
 
