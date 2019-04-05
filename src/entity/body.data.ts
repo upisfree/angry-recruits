@@ -7,7 +7,7 @@ const BODY_DATA = {
     "fixtures": [
       {
         "label": "outline",
-        "density": 0.004, // масса тела — 100 кг
+        "density": 0.0048, // масса тела — 100 кг
         "restitution": 0.65,
         "friction": 1,
         "frictionAir": 0.00001,
@@ -27,12 +27,71 @@ const BODY_DATA = {
       },
       {
         "label": "editor",
-        "mass": 0,
-        "isSensor": false,
+        "density": 0,
+        "isSensor": true,
         "circle": {
           "x": 84.16636883494965,
           "y": 83.24955325242453,
-          "radius": 70.69757330019453
+          "radius": 200.69757330019453
+        }
+      }
+    ]
+  },
+  "fat-shell": {
+    "type": "fromPhysicsEditor",
+    "label": "fat-shell",
+    "isStatic": false,
+    "fixtures": [
+      {
+        "label": "outline",
+        "density": 0.015, // масса тела — 100 кг
+        "restitution": 0.35,
+        "isSensor": false,
+        "circle": {
+          "x": 0,
+          "y": 0,
+          "radius": 75
+        }
+      },
+      {
+        "label": "editor",
+        "density": 0,
+        "isSensor": true,
+        "circle": {
+          "x": 0,
+          "y": 0,
+          "radius": 200.69757330019453
+        }
+      }
+    ]
+  },
+  "explosion-shell": {
+    "type": "fromPhysicsEditor",
+    "label": "explosion-shell",
+    "isStatic": false,
+    "fixtures": [
+      {
+        "label": "outline",
+        "density": 0.001,
+        "restitution": 0.35,
+        "friction": 1,
+        "frictionAir": 0.00001,
+        "frictionStatic": 100,
+        "isSensor": false,
+        "circle": {
+          "x": 0,
+          "y": 0,
+          "radius": 75
+        }
+      },
+      {
+        "label": "editor",
+        "density": 0,
+        "isSensor": true,
+        "circle": {
+          "x": 0,
+          "y": 0,
+          "radius": 200.69757330019453
         }
       }
     ]

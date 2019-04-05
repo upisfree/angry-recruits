@@ -37,7 +37,7 @@ export default class CommissarBossEnemy extends Enemy {
 
   onMomentumChange() {
     this.healthBar.setScale(this.currentMomentum / this.destructionMomentum, 1);
-    this.healthBar.setPosition(this.body.position.x - this.healthBarWidth / 2, this.body.position.y - 850);
+    this.healthBar.setPosition(this.body.position.x - this.healthBarWidth / 2, this.body.position.y - 800);
   }
 
   onDestroy(sprite) {

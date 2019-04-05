@@ -1,4 +1,5 @@
 import CONFIG from '../../config';
+import BODY_DATA from '../body.data';
 import Phaser from '../../lib/phaser';
 import explosion from '../../utils/explosion';
 import Shell from './shell';
@@ -15,14 +16,7 @@ export default class ExplosionShell extends Shell {
       x,
       y,
       'explosion-shell',
-      Bodies.circle(0, 0, 75, {
-        density: 0.001,
-        restitution: 0.35,
-        friction: 1,
-        frictionAir: 0.00001,
-        frictionStatic: 100,
-      }),
-      // PhysicsEditorParser.parseBody(x, y, 1, 1, BODY_DATA['shahid-shell'])
+      PhysicsEditorParser.parseBody(x, y, 1, 1, BODY_DATA['explosion-shell']),
       {
         steps: 1,
         score: {

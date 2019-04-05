@@ -1,3 +1,4 @@
+import BODY_DATA from '../body.data';
 import Phaser from '../../lib/phaser';
 import Shell from './shell';
 const { Bodies } = Phaser.Physics.Matter.Matter;
@@ -12,17 +13,13 @@ export default class FatShell extends Shell {
       x,
       y,
       'fat-shell',
-      Bodies.circle(0, 0, 75, {
-        density: 0.015, // масса тела — 74 кг
-        restitution: 0.35
-      }),
+      PhysicsEditorParser.parseBody(x, y, 1, 1, BODY_DATA['fat-shell']),
       {
         steps: 1,
         score: {
           destroy: 20000
         }
       }
-      // PhysicsEditorParser.parseBody(x, y, 1, 1, BODY_DATA['fat-shell'])
     );
   }
 

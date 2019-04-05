@@ -86,6 +86,7 @@ export default class Level5 extends (<any>Phaser.Scene) {
     create.bind(this)();
 
     this.commissarWithDialog = this.enemies[0];
+    this.commissarsCount = 0;
   }
 
   update() {
@@ -114,9 +115,17 @@ export default class Level5 extends (<any>Phaser.Scene) {
 
     let commissar = new CommissarEnemy(this, x, y, true);
 
+    // всё, победа
     if (!this.enemies.length) {
       this.commissarsCount += 1;
       commissar.destructionMomentum = Infinity;
+      commissar.body.collisionFilter.category = 0x0002;
+
+      this.entities.forEach((e) => {
+        if (e.type === 'shell') {
+          e.body.collisionFilter.mask = 0x0001;
+        }
+      });
     }
 
     let angularVelocityDirection = (Math.random() > 0.5) ? 1 : -1;

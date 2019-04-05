@@ -5,6 +5,7 @@ import phaserConfig from './phaser-config';
 import ui from './ui/ui';
 import resize from './platform/resize';
 import orientationchange from './platform/orientationchange';
+import printCommissarToConsole from './utils/print-commissar-to-console';
 
 let game;
 let subpoenasElement = document.querySelector('.subpoenas');
@@ -13,7 +14,7 @@ let uiContainer = ui.getUI();
 subpoenasElement.addEventListener('click', startGame, { once: true });
 
 if (!CONFIG.DEBUG_MODE) {
-  console.log('%cчё лезешь сюда? пиздуй служить', 'font-size: 32pt');  
+  printCommissarToConsole();
 }
 
 function startGame() {
