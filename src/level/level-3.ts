@@ -111,14 +111,12 @@ export default class Level3 extends (<any>Phaser.Scene) {
     let tutorialText = this.add.text(
       300,
       -500,
-      'Напоминаю!\nВо время полёта пухлого призывника нужно нажать на экран',
+      'Во время полёта пухлого призывника лучше нажать на экран!',
       {
         fontSize: 26,
         fontFamily: '"Press Start 2P"' // двойные кавычки тут неспроста: https://github.com/photonstorm/phaser/blob/v3.16.1/src/gameobjects/text/static/Text.js#L31
       }
     ).setScale(2.5, 2.5);
-
-    console.log();
   }
 
   commissarText(t, d) {

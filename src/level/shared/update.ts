@@ -38,7 +38,7 @@ export default function(time, delta) {
 
 function win() {
   if (!this.game.isGameOver && !this.game.isLevelOver) {
-    console.log('win');
+    // console.log('win');
 
     this.game.isLevelOver = true;
 
@@ -92,7 +92,7 @@ function fail() {
     this.game.isGameOver = true;
     this.game.isLevelOver = true;
 
-    console.log('fail');
+    // console.log('fail');
 
     ui.enableUIInteraction();
     ui.hide('.score-screen');

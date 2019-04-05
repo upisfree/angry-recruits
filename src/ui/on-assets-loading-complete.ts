@@ -25,15 +25,4 @@ export default function() {
 
     orientationchange(this.systems.game);      
   });
-
-  let restartButton = ui.get('.restart-button');
-
-  restartButton.addEventListener('click', () => {
-    this.systems.game.isGameOver = false;
-    this.systems.game.isLevelOver = false;
-
-    this.systems.scenePlugin.restart();
-
-    ui.get('.score-screen .score-text-value').textContent = this.systems.game.score;
-  });
 }

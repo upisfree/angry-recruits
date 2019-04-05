@@ -13,13 +13,15 @@ export interface IUser {
 
 export function initVKWidget(scene) {
   VK.Widgets.Auth(CONFIG.VK_AUTH_DIV_ID, {
-    onAuth: (user: IUser) => {
-      console.log(user);
+    onAuth: (user: IUser, err, err2) => {
+      console.log(user, err, err2);
 
       let xhr = new XMLHttpRequest();
 
       xhr.open('POST', CONFIG.SCORE_URL, true);
       xhr.onreadystatechange = () => {
+        alert('Результат сохранён :)');
+
         console.log(xhr.responseText);
       };
 

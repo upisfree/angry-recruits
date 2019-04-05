@@ -1,6 +1,7 @@
 import CONFIG from '../../config';
 import generateEntities from './generate-entities';
 import randomBetween from '../../utils/random-between';
+import ui from '../../ui/ui';
 
 export default function() {
   this.game.isLevelOver = false;
@@ -45,7 +46,7 @@ export default function() {
   this.time.addEvent({
     delay: 5000,
     callback: () => {
-      if (this.enemies.length && this.game.hasFocus) {
+      if (this.enemies.length) {
         this.sound.playAudioSprite('soundsprite', `commissar-${ randomBetween(1, 12) }`, {
           volume: 1 - 0.25 * Math.random(),
           rate: (this.nextLevel) ? 1 : 0.75 - 0.25 * Math.random(), // 0.75...1.0
@@ -56,4 +57,15 @@ export default function() {
     callbackScope: this,
     loop: true
   });
+
+  let restartButton = ui.get('.restart-button');
+
+  restartButton.onclick = () => {
+    this.game.isGameOver = false;
+    this.game.isLevelOver = false;
+
+    this.scene.restart();
+
+    ui.get('.score-screen .score-text-value').textContent = this.game.score;
+  };
 }

@@ -8,7 +8,7 @@ function rating(callback) {
     } else {
       let html = '<table>';
 
-      for (var i = 0; i < users.length; i++) {
+      for (let i = 0; i < users.length; i++) {
         let u = users[i];
 
         if (!u.isCheater) {
