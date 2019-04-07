@@ -35,7 +35,7 @@ export default class FatShell extends Shell {
 
     this.sprite.applyForce({
       x: 0,
-      y: 1000
+      y: 10000
     });
   }
 }

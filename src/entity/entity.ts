@@ -101,7 +101,12 @@ export default class Entity {
   }
 
   onCollideStart(e): void {
-    if (this.body.isStatic === true || this.destructionMomentum === Infinity) {
+    if (
+      this.body.isStatic === true ||
+      this.destructionMomentum === Infinity ||
+      e.bodyA.label === 'editor' ||
+      e.bodyB.label === 'editor'
+    ) {
       return;
     }
 

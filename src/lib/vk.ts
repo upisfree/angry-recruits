@@ -13,9 +13,7 @@ export interface IUser {
 
 export function initVKWidget(scene) {
   VK.Widgets.Auth(CONFIG.VK_AUTH_DIV_ID, {
-    onAuth: (user: IUser, err, err2) => {
-      console.log(user, err, err2);
-
+    onAuth: (user: IUser) => {
       let xhr = new XMLHttpRequest();
 
       xhr.open('POST', CONFIG.SCORE_URL, true);
