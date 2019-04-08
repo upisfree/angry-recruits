@@ -1,5 +1,4 @@
 import isWin from './is-win';
-import { initVKWidget } from '../../lib/vk';
 import countShellsScore from './count-shells-score';
 import ui from '../../ui/ui';
 
@@ -80,8 +79,6 @@ function win() {
           ui.hide(comicsScreen);
           ui.show('.win-screen');
         });
-
-        initVKWidget(this);
       }
     });
   }

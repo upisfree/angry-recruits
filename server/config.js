@@ -7,9 +7,8 @@ const CONFIG = {
     PORT: 27017,
     NAME: 'users'
   },
-  VK: {
-    APP_ID: 6909305,
-    SECRET_KEY: 'uGpD84KAY90CJRme59HA' // ну чё, пацаны, кладём в гит?)))
+  GOOGLE: {
+    APP_ID: '119429520778-i21ilgjpna01jb35hlg7modcrv71gsq7.apps.googleusercontent.com'
   },
   MAX_SCORE: Infinity /////////////////////// НЕ ЗАБЫТЬ ПОСЧИТАТЬ МАКСИМАЛЬНОЕ ЗНАЧЕНИЕ ОЧКОВ
 };

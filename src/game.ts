@@ -1,6 +1,6 @@
 import CONFIG from './config';
 import Phaser from './lib/phaser';
-import VK from './lib/vk';
+import initGoogleAuth from './lib/google';
 import phaserConfig from './phaser-config';
 import ui from './ui/ui';
 import resize from './platform/resize';
@@ -28,12 +28,10 @@ function startGame() {
   game.isGameOver = false;
   game.isLevelOver = false;
 
-  VK.init({
-    apiId: CONFIG.VK_AUTH_APP_ID
-  });
-
   window.addEventListener('resize', resize.bind(this, game));
   window.addEventListener('orientationchange', orientationchange.bind(this, game));
 
   resize(game);
+
+  initGoogleAuth(game);
 }

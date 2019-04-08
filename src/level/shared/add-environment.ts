@@ -11,11 +11,9 @@ export default function(nextLevel) {
 
   // 87 — высота картинки верхней части травы
   // 193 — высота картинки нижней части травы
-  // let grassBottomTile = this.add.tileSprite(w / 2, h - 100, w * 10, 193, (nextLevel) ? 'grass-bottom' : 'grass-bottom-end');
   let grassBottomTile = this.add.tileSprite(w / 2, h - 100, w * 10, 193, 'grass-bottom');
   let grassBottomSprite = this.matter.add.gameObject(grassBottomTile)
     .setStatic(true);
-  // let grassBottomTop = this.add.tileSprite(w / 2, h - 240, w * 10, 87, (nextLevel) ? 'grass-top' : 'grass-top-end');
   let grassBottomTop = this.add.tileSprite(w / 2, h - 240, w * 10, 87, 'grass-top');
 
   grassBottomSprite.body.label = 'grassBottomSprite';

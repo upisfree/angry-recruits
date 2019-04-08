@@ -46,6 +46,7 @@ ddmmNNNmNNNNNNmmmmNMMMMMNMNmNNNNNNNNNNNNNNNNNNNNNNNNNNmmmmmmNNmmmmmmmmmmmmmmmmNM
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google-signin-client_id" content="119429520778-i21ilgjpna01jb35hlg7modcrv71gsq7.apps.googleusercontent.com">
 
     <title>Компьютерная игра «Злой Призывник»</title>
 
@@ -89,7 +90,8 @@ body::after {
   content:
     url('./assets/ui/subpoena-front.jpg')
     url('./assets/ui/subpoena-back.jpg')
-    url('./assets/ui/comics-start.jpg');
+    url('./assets/ui/comics-start.jpg')
+    url('./assets/ui/comics-end.jpg');
   position: absolute;
   width: 0;
   height: 0;
@@ -208,12 +210,16 @@ body {
   margin: auto;
 }
 
+.g-signin2 {
+  margin: auto;
+}
+
 #ui-container .win-screen p {
   padding: 0 31%;
   font-size: 14pt;
   line-height: 1.7;
   text-align: center;
-  margin-top: -4em;
+  margin-top: -2em;
 }
 
 #ui-container .win-screen .score-text {
@@ -306,7 +312,7 @@ body {
 }
     </style>
 
-    <script src="https://vk.com/js/api/openapi.js?160" type="text/javascript"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
     <div class="subpoenas subpoenas-front">
@@ -326,7 +332,8 @@ body {
 
       <div class="screen win-screen hidden">
         <h1>НИ НА ЧТО НЕ ГОДЕН</h1>
-        <div id="vk-auth"></div>
+
+        <div class="g-signin2" data-onsuccess="onGoogleSignIn"></div>
 
         <p>
 Сохрани результат и попади в рейтинг игроков: 10 лучших получат скидку на услуги ПризываНет.ру!
