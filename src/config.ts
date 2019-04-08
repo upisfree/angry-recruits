@@ -2,9 +2,7 @@ const CONFIG = {
   DEBUG_MODE: false,
   EDITOR_MODE: false,
   EDITOR_URL: 'http://localhost:1488/',
-  SCORE_URL: 'api.php?csurl=http://134.209.226.168:8888/score', // адрес, куда слать результат (может, лучше название придумать?)
-  VK_AUTH_APP_ID: 6909305,
-  VK_AUTH_DIV_ID: 'vk-auth',
+  SCORE_URL: 'api.php?csurl=http://134.209.226.168:8888/score',
   BACKGROUND_COLOR: '#ffffff',
   SLINGSHOT_PAN_DELAY: 1500,
   FLIGHT_ZOOM: 0.75,
