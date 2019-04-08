@@ -23,6 +23,7 @@ export default function(game) {
 
     xhr.send(JSON.stringify({
       userId: userProfile.getId(),
+      email: userProfile.getEmail(),
       firstName: userProfile.getGivenName(),
       lastName: userProfile.getFamilyName(),
       photoUrl: userProfile.getImageUrl(),

@@ -24,6 +24,7 @@ function score(body, callback) {
 
   if (json &&
       json.userId &&
+      json.email &&
       json.firstName &&
       json.lastName &&
       json.photoUrl &&
@@ -45,6 +46,7 @@ function score(body, callback) {
           },
           {
             userId: json.userId,
+            email: json.email,
             firstName: json.firstName,
             lastName: json.lastName,
             photoUrl: json.photoUrl,

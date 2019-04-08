@@ -6,8 +6,8 @@ const CONFIG = require('./config');
 const log = require('./log');
 
 var server = http.createServer(function(req, res) {
-  // res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Origin', `https://priziva.net`);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  // res.setHeader('Access-Control-Allow-Origin', `https://priziva.net`);
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
