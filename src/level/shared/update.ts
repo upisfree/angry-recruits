@@ -9,6 +9,13 @@ export default function(time, delta) {
     this.cameraControls.update(delta);    
   }
 
+  // на случай, если кто-то (жирный призывник) пробьёт землю и захочет улететь вниз
+  this.entities.forEach((e) => {
+    if (e.type === 'shell' && e.sprite.y > 10000) {
+      e.sprite.y = -5000;
+    }
+  });
+
   // win check
   let currentWinStatus = isWin(this);
   let timeout;
