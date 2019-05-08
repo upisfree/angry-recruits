@@ -11,7 +11,7 @@ export default function(time, delta) {
 
   // на случай, если кто-то (жирный призывник) пробьёт землю и захочет улететь вниз
   this.entities.forEach((e) => {
-    if (e.type === 'shell' && e.sprite.y > 10000) {
+    if (!e.isDestroyed && e.type === 'shell' && e.sprite.y > 10000) {
       e.sprite.y = -5000;
     }
   });
