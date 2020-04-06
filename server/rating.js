@@ -1,3 +1,4 @@
+const sanitizeHtml = require('sanitize-html');
 const log = require('./log');
 const User = require('./user');
 
@@ -85,6 +86,13 @@ const htmlEnd = `
 </html>
 `;
 
+function removeHtml(str) {
+  return sanitizeHtml(str, {
+    allowedTags: [],
+    allowedAttributes: {}
+  });
+}
+
 function rating(callback) {
   User.find().sort({ score: -1 }).exec((err, users) => {
     if (err) {
@@ -92,24 +100,24 @@ function rating(callback) {
     } else {
       let html = htmlBegin;
 
-      for (let i = 0; i < users.length; i++) {
-        let u = users[i];
+      let nonCheaters = users.filter(u => !u.isCheater);
 
-        if (!u.isCheater) {
-          html += `
-          <tr>
-            <td>${ i + 1 }</td>
-            <td>${ u.firstName } ${ u.lastName }</td>
-            <td><b>${ u.score }</b></td>
-          </tr>`;
+      for (let i = 0; i < nonCheaters.length; i++) {
+        let u = nonCheaters[i];
 
-          // <td><img src="${ u.photoUrl }" width="32" height="32"></td>
-        }
+        html += `
+        <tr>
+          <td>${ i + 1 }</td>
+          <td>${ removeHtml(u.firstName) } ${ removeHtml(u.lastName) }</td>
+          <td><b>${ removeHtml(u.score.toLocaleString('ru-RU')) }</b></td>
+        </tr>`;
+
+        // <td><img src="${ u.photoUrl }" width="32" height="32"></td>
       }
 
       html += htmlEnd;
 
-      log(`render rating table with ${ users.length } users`);
+      log(`render rating table with ${ nonCheaters.length } users`);
 
       callback(html);
     }

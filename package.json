@@ -21,14 +21,16 @@
   "homepage": "https://github.com/upisfree/angry-recruits#readme",
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.1",
-    "http-server": "^0.11.1",
+    "http-server": "^0.12.1",
     "phaser3-docs": "github:photonstorm/phaser3-docs",
-    "typescript": "^3.3.1",
-    "webpack": "^4.29.2",
-    "webpack-cli": "^3.2.3"
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "google-auth-library": "^3.1.2",
-    "mongoose": "^5.4.19"
+    "google-auth-library": "^5.10.1",
+    "mongo-sanitize": "^1.1.0",
+    "mongoose": "^5.9.5",
+    "sanitize-html": "^1.22.1"
   }
 }

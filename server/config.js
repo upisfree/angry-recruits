@@ -10,7 +10,7 @@ const CONFIG = {
   GOOGLE: {
     APP_ID: '119429520778-i21ilgjpna01jb35hlg7modcrv71gsq7.apps.googleusercontent.com'
   },
-  MAX_SCORE: Infinity /////////////////////// НЕ ЗАБЫТЬ ПОСЧИТАТЬ МАКСИМАЛЬНОЕ ЗНАЧЕНИЕ ОЧКОВ
+  MAX_SCORE: 3000000 // настоящее значение — 915 800, подменить при подсчёте игроков
 };
 
 module.exports = CONFIG;

@@ -1,4 +1,6 @@
 const crypto = require('crypto');
+const sanitize = require('mongo-sanitize');
+const sanitizeHtml = require('sanitize-html');
 const log = require('./log');
 const CONFIG = require('./config');
 const User = require('./user');
@@ -13,6 +15,13 @@ async function verifyToken(hash) {
 
   const payload = ticket.getPayload();
   const userId = payload['sub'];
+}
+
+function removeHtml(str) {
+  return sanitizeHtml(str, {
+    allowedTags: [],
+    allowedAttributes: {}
+  });
 }
 
 function score(body, callback) {
@@ -37,21 +46,21 @@ function score(body, callback) {
         } else {
           json.isCheater = true;
 
-          console.log(`user ${ json.userId } is cheater`);
+          console.log(`user ${ sanitize(json.userId) } is cheater`);
         }
 
         User.findOneAndUpdate(
           {
-            userId: json.userId
+            userId: sanitize(json.userId)
           },
           {
-            userId: json.userId,
-            email: json.email,
-            firstName: json.firstName,
-            lastName: json.lastName,
-            photoUrl: json.photoUrl,
+            userId: removeHtml(sanitize(json.userId)),
+            email: removeHtml(sanitize(json.email)).substring(0, 256),
+            firstName: removeHtml(sanitize(json.firstName)).substring(0, 256),
+            lastName: removeHtml(sanitize(json.lastName)).substring(0, 256),
+            photoUrl: removeHtml(sanitize(json.photoUrl)).substring(0, 2048),
             isCheater: json.isCheater,
-            hash: json.hash
+            hash: removeHtml(sanitize(json.hash))
           },
           {
             new: true,
@@ -64,7 +73,7 @@ function score(body, callback) {
                 user = new User(json);
               }
 
-              user.updateScoreAndSave(json.score, (updatedUser) => {
+              user.updateScoreAndSave(sanitize(json.score), (updatedUser) => {
                 callback(updatedUser);
               });
             }
