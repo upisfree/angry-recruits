@@ -8,7 +8,7 @@ const CONFIG = {
     NAME: 'users'
   },
   GOOGLE: {
-    APP_ID: '119429520778-i21ilgjpna01jb35hlg7modcrv71gsq7.apps.googleusercontent.com'
+    APP_ID: ''
   },
   MAX_SCORE: 3000000 // настоящее значение — 915 800, подменить при подсчёте игроков
 };

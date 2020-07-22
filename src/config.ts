@@ -2,7 +2,6 @@ const CONFIG = {
   DEBUG_MODE: false,
   EDITOR_MODE: false,
   EDITOR_URL: 'http://localhost:1488/',
-  // SCORE_URL: 'http://82.202.221.249:8888/score',
   SCORE_URL: 'api.php?csurl=http://82.202.221.249:8888/score',
   BACKGROUND_COLOR: '#ffffff',
   SLINGSHOT_PAN_DELAY: 1500,
