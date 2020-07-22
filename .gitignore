@@ -1,5 +1,6 @@
 bin/
 tmp/
+dump/
 node_modules/
 
 .DS_Store
