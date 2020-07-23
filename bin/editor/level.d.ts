@@ -1,0 +1,43 @@
+import Entity from '../entity/entity';
+import Shell from '../entity/shell/shell';
+declare const LevelEditor_base: any;
+export default class LevelEditor extends LevelEditor_base {
+    preload: any;
+    addEnvironment: any;
+    enemies: Array<Entity>;
+    shells: Array<Shell>;
+    entities: Array<Entity>;
+    currentEntity: Entity;
+    entitiesListWithKeys: any;
+    keyS: any;
+    keyA: any;
+    keyD: any;
+    keyZ: any;
+    keyC: any;
+    keyPlus: any;
+    keyMinus: any;
+    keyBracketLeft: any;
+    keyBracketRight: any;
+    keyQuote: any;
+    keyBackslash: any;
+    keyBackspace: any;
+    keyDelete: any;
+    cameraControls: any;
+    constructor(config: any);
+    create(): void;
+    update(time: any, delta: any): void;
+    initCamera(): void;
+    displayAllEnities(): void;
+    generateJson(): string;
+    newEntity(e: any): void;
+    getEntityData(e: any): {
+        type: any;
+        x: any;
+        y: any;
+        rotation: any;
+        scaleX: any;
+        scaleY: any;
+    };
+    onNewEntityClick(e: any): void;
+}
+export {};
