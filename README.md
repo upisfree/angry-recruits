@@ -1,5 +1,10 @@
 # angry-recruits
-Игра для Призыванет.ру
+Angry Birds clone for priziva.net
+
+![](/gif.gif?raw=true)
+
+### play
+[play play play](https://upisfr.ee/game/angry-recruits).
 
 ### dev
 ```bash
