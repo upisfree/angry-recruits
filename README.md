@@ -4,7 +4,7 @@ Angry Birds clone for priziva.net
 ![](/gif.gif?raw=true)
 
 ### play
-[play play play](https://upisfr.ee/game/angry-recruits).
+[play play play](https://upisfr.ee/game/angry-recruits)
 
 ### dev
 ```bash
